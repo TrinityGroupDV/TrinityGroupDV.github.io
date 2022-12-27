@@ -1,8 +1,12 @@
-header {
+body {
     font-family: 'Bitter', serif;
-    background-color: aquamarine;
 }
 
 li {
     font-size: larger;
+}
+
+section {
+
+    font-family: 'Bitter', serif;
 }
