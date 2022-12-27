@@ -1,53 +1,55 @@
 $(document).ready(function () {
 
+
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 20, bottom: 30, left: 50 },
         width = 1500 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 450 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3.select("#graph_2D")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    //Read the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv").then(function (data) {
 
-        // Add X axis
-        const x = d3.scaleLinear()
-            .domain([0, 10000])
-            .range([0, width]);
+
+    // Map and projection
+    const path = d3.geoPath();
+    const projection = d3.geoMercator()
+        .scale(70)
+        .center([0, 20])
+        .translate([width / 2, height / 2]);
+
+    // Data and color scale
+    let data = new Map()
+    const colorScale = d3.scaleThreshold()
+        .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
+        .range(d3.schemeBlues[7]);
+
+    // Load external data and boot
+    Promise.all([
+        d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
+        d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function (d) {
+            data.set(d.code, +d.pop)
+        })
+    ]).then(function (loadData) {
+        let topo = loadData[0]
+
+        // Draw the map
         svg.append("g")
-            .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
-
-        // Add Y axis
-        const y = d3.scaleLinear()
-            .domain([35, 90])
-            .range([height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        // Add a scale for bubble size
-        const z = d3.scaleLinear()
-            .domain([200000, 1310000000])
-            .range([1, 40]);
-
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
-            .data(data)
-            .join("circle")
-            .attr("cx", d => x(d.gdpPercap))
-            .attr("cy", d => y(d.lifeExp))
-            .attr("r", d => z(d.pop))
-            .style("fill", "#69b3a2")
-            .style("opacity", "0.7")
-            .attr("stroke", "black")
-
+            .selectAll("path")
+            .data(topo.features)
+            .join("path")
+            // draw each country
+            .attr("d", d3.geoPath()
+                .projection(projection)
+            )
+            // set the color of each country
+            .attr("fill", function (d) {
+                d.total = data.get(d.id) || 0;
+                return colorScale(d.total);
+            })
     })
 })
 

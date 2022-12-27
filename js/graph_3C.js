@@ -1,54 +1,60 @@
 $(document).ready(function () {
 
-    // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 20, bottom: 30, left: 50 },
-        width = 1500 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
 
-    // append the svg object to the body of the page
+    // set the dimensions and margins of the graph
+    const width = 1500,
+        height = 450,
+        margin = 40;
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    const radius = Math.min(width, height) / 2 - margin
+
+    // append the svg object to the div called 'my_dataviz'
     const svg = d3.select("#graph_3C")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width)
+        .attr("height", height)
         .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    //Read the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv").then(function (data) {
+    // Create dummy data
+    const data = { a: 9, b: 20, c: 30, d: 8, e: 12 }
 
-        // Add X axis
-        const x = d3.scaleLinear()
-            .domain([0, 10000])
-            .range([0, width]);
-        svg.append("g")
-            .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
+    // set the color scale
+    const color = d3.scaleOrdinal()
+        .range(d3.schemeSet2);
 
-        // Add Y axis
-        const y = d3.scaleLinear()
-            .domain([35, 90])
-            .range([height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
+    // Compute the position of each group on the pie:
+    const pie = d3.pie()
+        .value(function (d) { return d[1] })
+    const data_ready = pie(Object.entries(data))
+    // Now I know that group A goes from 0 degrees to x degrees and so on.
 
-        // Add a scale for bubble size
-        const z = d3.scaleLinear()
-            .domain([200000, 1310000000])
-            .range([1, 40]);
+    // shape helper to build arcs:
+    const arcGenerator = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
 
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
-            .data(data)
-            .join("circle")
-            .attr("cx", d => x(d.gdpPercap))
-            .attr("cy", d => y(d.lifeExp))
-            .attr("r", d => z(d.pop))
-            .style("fill", "#69b3a2")
-            .style("opacity", "0.7")
-            .attr("stroke", "black")
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg
+        .selectAll('mySlices')
+        .data(data_ready)
+        .join('path')
+        .attr('d', arcGenerator)
+        .attr('fill', function (d) { return (color(d.data[0])) })
+        .attr("stroke", "black")
+        .style("stroke-width", "2px")
+        .style("opacity", 0.7)
 
-    })
+    // Now add the annotation. Use the centroid method to get the best coordinates
+    svg
+        .selectAll('mySlices')
+        .data(data_ready)
+        .join('text')
+        .text(function (d) { return "grp " + d.data[0] })
+        .attr("transform", function (d) { return `translate(${arcGenerator.centroid(d)})` })
+        .style("text-anchor", "middle")
+        .style("font-size", 17)
 })
 
 

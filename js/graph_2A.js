@@ -1,54 +1,60 @@
 $(document).ready(function () {
 
-    // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 20, bottom: 30, left: 50 },
-        width = 750 - margin.left - margin.right,
-        height = 460 - margin.top - margin.bottom;
 
-    // append the svg object to the body of the page
+    // set the dimensions and margins of the graph
+    const margin = { top: 100, right: 0, bottom: 0, left: 0 },
+        width = 750 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom,
+        innerRadius = 100,
+        outerRadius = Math.min(width, height) / 2;   // the outerRadius goes from the middle of the SVG area to the border
+
+    // append the svg object
     const svg = d3.select("#graph_2A")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`);
 
-    //Read the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/4_ThreeNum.csv").then(function (data) {
+    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv").then(function (data) {
 
-        // Add X axis
-        const x = d3.scaleLinear()
-            .domain([0, 10000])
-            .range([0, width]);
+        // Scales
+        const x = d3.scaleBand()
+            .range([0, 2 * Math.PI])    // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
+            .align(0)                  // This does nothing
+            .domain(data.map(d => d.Country)); // The domain of the X axis is the list of states.
+        const y = d3.scaleRadial()
+            .range([innerRadius, outerRadius])   // Domain will be define later.
+            .domain([0, 14000]); // Domain of Y is from 0 to the max seen in the data
+
+        // Add the bars
         svg.append("g")
-            .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
-
-        // Add Y axis
-        const y = d3.scaleLinear()
-            .domain([35, 90])
-            .range([height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        // Add a scale for bubble size
-        const z = d3.scaleLinear()
-            .domain([200000, 1310000000])
-            .range([1, 40]);
-
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
+            .selectAll("path")
             .data(data)
-            .join("circle")
-            .attr("cx", d => x(d.gdpPercap))
-            .attr("cy", d => y(d.lifeExp))
-            .attr("r", d => z(d.pop))
-            .style("fill", "#69b3a2")
-            .style("opacity", "0.7")
-            .attr("stroke", "black")
+            .join("path")
+            .attr("fill", "#69b3a2")
+            .attr("d", d3.arc()     // imagine your doing a part of a donut plot
+                .innerRadius(innerRadius)
+                .outerRadius(d => y(d['Value']))
+                .startAngle(d => x(d.Country))
+                .endAngle(d => x(d.Country) + x.bandwidth())
+                .padAngle(0.01)
+                .padRadius(innerRadius))
 
-    })
+        // Add the labels
+        svg.append("g")
+            .selectAll("g")
+            .data(data)
+            .join("g")
+            .attr("text-anchor", function (d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+            .attr("transform", function (d) { return "rotate(" + ((x(d.Country) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (y(d['Value']) + 10) + ",0)"; })
+            .append("text")
+            .text(function (d) { return (d.Country) })
+            .attr("transform", function (d) { return (x(d.Country) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+            .style("font-size", "11px")
+            .attr("alignment-baseline", "middle")
+
+    });
 })
 
 
