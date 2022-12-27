@@ -1,41 +1,14 @@
 header {
     font-family: 'Bitter', serif;
-    width: 1000px;
+    width: 1500px;
 
     /*Le prossime due stringhe centrano il body al centro della pagina*/
     margin-left: auto;
     margin-right: auto;
 
     padding-top: 70px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     text-align: center;
-}
-
-.center {
-    width: 1000px;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    height: 500px;
-    text-align: justify;
-}
-
-.PROVA1 {
-    width: 500px;
-    height: 500px;
-    padding: 20px;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
-
-}
-
-.PROVA2 {
-    width: 500px;
-    font-family: 'Bitter', serif;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
 section {
@@ -88,5 +61,46 @@ section {
 h3 {
     font-size: 30px;
     text-align: center;
+    font-family: 'Bitter', serif;
+    padding-bottom: 20px;
 
+}
+
+
+
+/*-----------STANDARD INLINE BLOCK-----------*/
+
+p.inlineText {
+    width: 750px;
+    text-align: justify;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 50px;
+}
+
+.inlineGraph {
+
+    width: 750px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+
+/*-----------STANDARD SINGLE LINE BLOCK-----------*/
+p.singleLine {
+    padding-top: 50px;
+    text-align: justify;
+}
+
+/*-----------VISIONE GLOBALE-----------*/
+
+section.visioneGlobale {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: justify;
 }
