@@ -1,12 +1,76 @@
-body {
+header {
     font-family: 'Bitter', serif;
+    width: 1000px;
+    /*Le prossime due stringhe centrano il body al centro della pagina*/
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 70px;
+    padding-bottom: 50px;
+    text-align: center;
 }
 
-li {
-    font-size: larger;
+.main {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.PROVA1 {
+    padding: 20px
+}
+
+.PROVA2 {
+    padding: 20px
 }
 
 section {
-
     font-family: 'Bitter', serif;
+    text-align: justify;
+    width: 1000px;
+    /*Le prossime due stringhe centrano il container*/
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    left: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+}
+
+/* Links inside the navbar */
+.navbar a {
+    font-family: 'Bitter', serif;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 60px;
+    text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.navbarLinks {
+
+    background-color: rgb(255, 255, 255);
+    height: 50px;
+}
+
+h3 {
+    font-size: 30px;
+    text-align: center;
+
 }
