@@ -104,3 +104,37 @@ section.visioneGlobale {
     display: flex;
     text-align: justify;
 }
+
+/*-----------SANITA'-----------*/
+section.sanità {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: justify;
+}
+
+div.graph_2D {
+    width: 1500px;
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+
+/*-----------ECONOMIA-----------*/
+section.economia {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: justify;
+}
+
+div.graph_3A {
+    width: 1500px;
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
