@@ -1,6 +1,7 @@
 header {
     font-family: 'Bitter', serif;
     width: 1000px;
+
     /*Le prossime due stringhe centrano il body al centro della pagina*/
     margin-left: auto;
     margin-right: auto;
@@ -10,29 +11,44 @@ header {
     text-align: center;
 }
 
-.main {
-    display: flex;
+.center {
+    width: 1000px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
-
+    display: flex;
+    height: 500px;
+    text-align: justify;
 }
 
 .PROVA1 {
-    padding: 20px
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+
 }
 
 .PROVA2 {
-    padding: 20px
+    width: 500px;
+    font-family: 'Bitter', serif;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 section {
     font-family: 'Bitter', serif;
     text-align: justify;
-    width: 1000px;
+    width: 1500px;
     /*Le prossime due stringhe centrano il container*/
     margin-left: auto;
     margin-right: auto;
+    /*
+    Stoppa il testo a una larghezza settata
     max-width: 1000px;
+    */
 }
 
 .navbar {
