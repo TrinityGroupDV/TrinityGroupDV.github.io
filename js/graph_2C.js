@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // set the dimensions and margins of the graph
-    const width = 750,
+    const width = 680,
         height = 450,
         margin = 10;
 

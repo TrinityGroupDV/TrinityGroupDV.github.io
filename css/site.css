@@ -7,15 +7,22 @@ body {
 
 header {
     font-family: 'Bitter', serif;
-    width: 1500px;
-
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 1px #000000, 0 0 1px #000000;
+    width: 700px;
+    max-width: 350px;
     /*Le prossime due stringhe centrano il body al centro della pagina*/
     margin-left: auto;
     margin-right: auto;
 
-    padding-top: 70px;
-    padding-bottom: 30px;
-    text-align: center;
+
+}
+
+h2 {
+    font-size: 20px;
+    max-width: 200px;
+
 }
 
 section {
@@ -74,6 +81,25 @@ h3 {
 
 }
 
+section.intro {
+    margin-top: 100px;
+    display: flex;
+    width: 1500px
+}
+
+.cardIntro {
+    background-color: rgba(255, 254, 254, 0.842);
+    border-radius: 20px;
+    width: 700px;
+    height: auto;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 50px;
+    box-shadow: 5px 10px 18px #888888;
+
+}
+
 
 
 /*-----------STANDARD INLINE BLOCK-----------*/
@@ -94,7 +120,6 @@ p.inlineText {
     margin-top: auto;
     margin-bottom: auto;
     padding-top: 30px;
-    padding-bottom: 30px;
     display: flex;
     margin-left: 20px;
     margin-right: 20px;
@@ -107,6 +132,10 @@ p.inlineText {
     padding-bottom: 50px;
 }
 
+.doubleGraph {
+
+    width: 710px;
+}
 
 section.card {
     background-color: rgb(255, 254, 254);
@@ -125,6 +154,7 @@ p.singleLine {
     text-align: justify;
     margin-left: 40px;
     margin-right: 40px;
+    padding-top: 30px
 }
 
 /*
