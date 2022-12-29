@@ -1,22 +1,6 @@
 body {
-    /* background-color: blue;  */
-
-    background-image: linear-gradient(to right, #9F57B6, #7CD1D9, #7CD9BD);
-
-}
-
-header {
-    font-family: 'Bitter', serif;
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-    text-shadow: 0 0 1px #000000, 0 0 1px #000000;
-    width: 700px;
-    max-width: 350px;
-    /*Le prossime due stringhe centrano il body al centro della pagina*/
-    margin-left: auto;
-    margin-right: auto;
-
-
+    /* background-image: linear-gradient(to right, #9F57B6, #7CD1D9, #7CD9BD);  */
+    background-image: linear-gradient(to right, #ae50cd, #4672b3, #46c985);
 }
 
 h2 {
@@ -25,18 +9,15 @@ h2 {
 
 }
 
-section {
+h3 {
+    font-size: 30px;
+    text-align: center;
     font-family: 'Bitter', serif;
-    text-align: justify;
-    width: 1500px;
-    /*Le prossime due stringhe centrano il container*/
-    margin-left: auto;
-    margin-right: auto;
-    /*
-    Stoppa il testo a una larghezza settata
-    max-width: 1000px;
-    */
+    padding-bottom: 20px;
+    color: #ffffff;
 }
+
+/* -------------- NAV-BAR -------------- */
 
 .navbar {
     overflow: hidden;
@@ -47,6 +28,7 @@ section {
     left: 0;
     /* Position the navbar at the top of the page */
     width: 100%;
+    z-index: 1;
 }
 
 /* Links inside the navbar */
@@ -67,19 +49,68 @@ section {
 }
 
 .navbarLinks {
-    /* background-color: rgb(255, 255, 255); */
-    background-image: linear-gradient(to right, #9F57B6, #7CD1D9, #7CD9BD);
-    /* background-color: #767676; */
+
+    /* background-image: linear-gradient(to right, #9F57B6, #7CD1D9, #7CD9BD); */
+    background-image: linear-gradient(to right, #ae50cd, #4672b3, #46c985);
     height: 50px;
 }
 
-h3 {
+header {
+    font-family: 'Bitter', serif;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 1px #000000, 0 0 1px #000000;
+    width: 700px;
+    max-width: 350px;
+    /*Le prossime due stringhe centrano il body al centro della pagina*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    font-family: 'Bitter', serif;
+    text-align: justify;
+    width: 1500px;
+    /*Le prossime due stringhe centrano il container*/
+    margin-left: auto;
+    margin-right: auto;
+    /*
+    Stoppa il testo a una larghezza settata
+    max-width: 1000px;
+    */
+}
+
+/*-------------- ANIMAZIONE SOTTLINEATURA TITOLO --------------*/
+.hover-underline-animation {
     font-size: 30px;
     text-align: center;
     font-family: 'Bitter', serif;
-    padding-bottom: 20px;
-
+    padding-bottom: 2px;
+    display: inline-block;
+    position: relative;
+    color: #ffffff;
+   
 }
+
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    background-color:
+        #5bbce9;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
 
 section.intro {
     margin-top: 100px;
@@ -88,19 +119,17 @@ section.intro {
 }
 
 .cardIntro {
-    background-color: rgba(255, 254, 254, 0.842);
-    border-radius: 20px;
+    /* background-color: rgba(255, 254, 254, 0.842); */
+    background-color: rgba(56, 56, 56, 0.323);
+    /* border-radius: 20px; */
     width: 700px;
-    height: auto;
+    height: 800px;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 50px;
-    box-shadow: 5px 10px 18px #888888;
-
+    box-shadow: 5px 10px 18px #00000041;
 }
-
-
 
 /*-----------STANDARD INLINE BLOCK-----------*/
 
@@ -111,6 +140,7 @@ p.inlineText {
     margin-bottom: auto;
     margin-left: 20px;
     margin-right: 20px;
+    color: #ffffff;
 }
 
 .inlineGraph {
@@ -119,11 +149,18 @@ p.inlineText {
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
-    padding-top: 30px;
+    padding-top: 20px;
     display: flex;
     margin-left: 20px;
     margin-right: 20px;
+}
 
+div.inlineGraph {
+
+    background-color: rgb(255, 254, 254);
+    /* background-color: rgba(255, 254, 254, 0.471); */
+    border-radius: 20px;
+    box-shadow: 5px 10px 18px #0000002e;
 }
 
 .singleGraph {
@@ -138,7 +175,9 @@ p.inlineText {
 }
 
 section.card {
-    background-color: rgb(255, 254, 254);
+    /* background-color: rgb(255, 254, 254); */
+    /* background-color: rgba(0, 0, 0, 0.203); */
+    background-color: rgba(56, 56, 56, 0.323);
     border-radius: 20px;
     width: auto;
     height: auto;
@@ -146,7 +185,7 @@ section.card {
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 50px;
-    box-shadow: 5px 10px 18px #888888;
+    box-shadow: 5px 10px 18px #0000002e;
 }
 
 /*-----------STANDARD SINGLE LINE BLOCK-----------*/
@@ -154,7 +193,8 @@ p.singleLine {
     text-align: justify;
     margin-left: 40px;
     margin-right: 40px;
-    padding-top: 30px
+    padding-top: 30px;
+    color: #ffffff;
 }
 
 /*
