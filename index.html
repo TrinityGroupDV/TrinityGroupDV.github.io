@@ -12,27 +12,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/site.css">
+    <script src="d3v4.js"></script>
     <script src="https://d3js.org/d3.v6.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--REFERENCE AI JAVA SCRIPT-->
-    <script type="text/javascript" src="js/graph_1A.js"></script>
-    <script type="text/javascript" src="js/graph_1B.js"></script>
-    <script type="text/javascript" src="js/graph_1C.js"></script>
-    <script type="text/javascript" src="js/graph_2A.js"></script>
-    <script type="text/javascript" src="js/graph_2B.js"></script>
-    <script type="text/javascript" src="js/graph_2C.js"></script>
-    <script type="text/javascript" src="js/graph_2D.js"></script>
-    <script type="text/javascript" src="js/graph_2E.js"></script>
-    <script type="text/javascript" src="js/graph_3A.js"></script>
-    <script type="text/javascript" src="js/graph_3B.js"></script>
-    <script type="text/javascript" src="js/graph_3C.js"></script>
-    <script type="text/javascript" src="js/graph_3D.js"></script>
+    <script type="text/javascript" src="js/visione_globale/graph_1A.js"></script>
+    <script type="text/javascript" src="js/visione_globale/graph_1B.js"></script>
+    <script type="text/javascript" src="js/visione_globale/graph_1C.js"></script>
+    <script type="text/javascript" src="js/sanità/graph_2A.js"></script>
+    <script type="text/javascript" src="js/sanità/graph_2B.js"></script>
+    <script type="text/javascript" src="js/sanità/graph_2C.js"></script>
+    <script type="text/javascript" src="js/sanità/graph_2D.js"></script>
+    <script type="text/javascript" src="js/sanità/graph_2E.js"></script>
+    <script type="text/javascript" src="js/economia/graph_3A.js"></script>
+    <script type="text/javascript" src="js/economia/graph_3B.js"></script>
+    <script type="text/javascript" src="js/economia/graph_3C.js"></script>
+    <script type="text/javascript" src="js/economia/graph_3D.js"></script>
 
 </head>
 
 <body>
-
+    <!--
     <div class="navbar">
         <a href="#introduzione">Introduzione</a>
         <a href="#visione globale">Visione globale</a>
@@ -42,7 +43,7 @@
         <a href="#ambiente">Ambiente</a>
         <a href="#contact">Conclusioni</a>
         <a href="#contact">Fonti</a>
-    </div>
+    </div>-->
 
     <!-- <section class="intro">
         <header>
@@ -73,46 +74,51 @@
             </p>
         </section>
     </section> -->
-    <section class="intro">
-        <header>
-            <h1>HOW COVID-19 CHANGED LIFE IN EUROPE</h1>
-            <h2>Trinity Group</h2>
-            <h2>By Alessio Distante and Hanna De Maria</h2>
-
-        </header>
-
-
-        <div id="introduzione" class="navbarLinks"></div>
-        <section class="cardIntro">
-            <h3 class="hover-underline-animation">Introduzione</h3>
-            <p class="inlineText1">
-                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-                the city. It is important to specify that the data reported dates back to censuses and surveys carried
-                out at different times. The surveys and updates of green areas are being completed and therefore the
-                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-                The dataset contains a variety of information, which can be divided into two macro-categories: the first
-                category refers to the physical characteristics of individual trees, such as species, height, crown size
-                and position. The second, on the other hand, exploits precise methodologies that use the physical
-                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-                removed, energy saved, and money saved.<br><br>
-                Our goal is to rework the dataset and develop a series of graphical representations of the data that
-                will allow for easier and faster reading of the findings.
-
-
-            </p>
-        </section>
-    </section>
-
+    <div class="row">
+        <div class="introleft">
+            <header>
+                <h1>HOW COVID-19 CHANGED LIFE IN EUROPE</h1>
+                <h2>Trinity Group</h2>
+                <h2>By Alessio Distante and Hanna De Maria</h2>
+            </header>
+        </div>
+        <div class="introright">
+            <section class="cardIntro">
+                <h3 class="hover-underline-animation">Introduzione</h3>
+                <p class="text">
+                    Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees
+                    in
+                    the city. It is important to specify that the data reported dates back to censuses and surveys
+                    carried
+                    out at different times. The surveys and updates of green areas are being completed and therefore the
+                    data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                    The dataset contains a variety of information, which can be divided into two macro-categories: the
+                    first
+                    category refers to the physical characteristics of individual trees, such as species, height, crown
+                    size
+                    and position. The second, on the other hand, exploits precise methodologies that use the physical
+                    characteristics of the tree to estimate secondary information such as carbon dioxide captured,
+                    pollution
+                    removed, energy saved, and money saved.<br><br>
+                    Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                    will allow for easier and faster reading of the findings.
+                </p>
+            </section>
+        </div>
+    </div>
 
     <!---------------VISIONE GLOBALE--------------->
 
     <div id="visione globale" class="navbarLinks"></div>
-    <h3 >Visione globale</h3>
+    <h3>Visione globale</h3>
     <section>
         <section class="card">
-            <section class="inlineGraph">
-                <div id="graph_1A" class="inlineGraph"></div>
-                <p class="inlineText">
+            <div class="row">
+                <div class="column1">
+                    <div id="graph_1A" class="graph"></div>
+
+                </div>
+                <div class="column2">
                     Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees
                     in
                     the city. It is important to specify that the data reported dates back to censuses and surveys
@@ -130,27 +136,55 @@
                     Our goal is to rework the dataset and develop a series of graphical representations of the data that
                     will allow for easier and faster reading of the findings.
 
-                </p>
-            </section>
-            <p class="singleLine">
-                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-                the city. It is important to specify that the data reported dates back to censuses and surveys carried
-                out at different times. The surveys and updates of green areas are being completed and therefore the
-                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-                The dataset contains a variety of information, which can be divided into two macro-categories: the first
-                category refers to the physical characteristics of individual trees, such as species, height, crown size
-                and position. The second, on the other hand, exploits precise methodologies that use the physical
-                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-                removed, energy saved, and money saved.<br><br>
-                Our goal is to rework the dataset and develop a series of graphical representations of the data that
-                will allow for easier and faster reading of the findings.
+                    </p>
 
-            </p>
+                </div>
+                <p class="text">
+
+
+                <div class="column3">
+                    <p class="text">
+                        Since 1996, the municipality of Trento has been carrying out surveys of green areas and street
+                        trees in
+                        the city. It is important to specify that the data reported dates back to censuses and surveys
+                        carried
+                        out at different times. The surveys and updates of green areas are being completed and therefore
+                        the
+                        data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                        The dataset contains a variety of information, which can be divided into two macro-categories:
+                        the first
+                        category refers to the physical characteristics of individual trees, such as species, height,
+                        crown size
+                        and position. The second, on the other hand, exploits precise methodologies that use the
+                        physical
+                        characteristics of the tree to estimate secondary information such as carbon dioxide captured,
+                        pollution
+                        removed, energy saved, and money saved.<br><br>
+                        Our goal is to rework the dataset and develop a series of graphical representations of the data
+                        that
+                        will allow for easier and faster reading of the findings.
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+
+
+
+
         </section>
 
         <section class="card">
+
             <section class="inlineGraph">
+
                 <div id="graph_1B" class="inlineGraph"></div>
+                <section>
+                    <button id="world1" class="button" type="button">Click Me!</button>
+                    <button id="world2" class="button" type="button">Click </button>
+
+                </section>
+
                 <div id="graph_1C" class="inlineGraph"></div>
             </section>
 
@@ -234,7 +268,17 @@
         </section>
 
         <section class="card">
-            <div id="graph_2D" class="singleGraph"></div>
+            <div id="graph_2D" class="singleGraph"> </div>
+            <select id="ddlViewBy">
+                <option value="1" selected="selected">Stay-at-home restrictions</option>
+                <option value="2">Testing policies</option>
+                <option value="3">Face coverings policies</option>
+            </select>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="3" value="0" class="slider" id="myRange">
+            </div>
+
+
             <p class="singleLine">
                 Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
                 the city. It is important to specify that the data reported dates back to censuses and surveys carried
@@ -281,9 +325,90 @@
             <div id="graph_3A" class="singleGraph"></div>
         </section>
 
-        <section class="economia">
-            <div id="graph_3B" class="inlineGraph"></div>
-            <p class="inlineText">
+        <section class="card">
+            <section class="inlineGraph">
+                <div id="graph_3B" class="inlineGraph"></div>
+                <p class="inlineText">
+                    Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees
+                    in
+                    the city. It is important to specify that the data reported dates back to censuses and surveys
+                    carried
+                    out at different times. The surveys and updates of green areas are being completed and therefore the
+                    data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                    The dataset contains a variety of information, which can be divided into two macro-categories: the
+                    first
+                    category refers to the physical characteristics of individual trees, such as species, height, crown
+                    size
+                    and position. The second, on the other hand, exploits precise methodologies that use the physical
+                    characteristics of the tree to estimate secondary information such as carbon dioxide captured,
+                    pollution
+                    removed, energy saved, and money saved.<br><br>
+                    Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                    will allow for easier and faster reading of the findings.
+
+                </p>
+            </section>
+
+            <p class="singleLine">
+                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
+                the city. It is important to specify that the data reported dates back to censuses and surveys carried
+                out at different times. The surveys and updates of green areas are being completed and therefore the
+                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                The dataset contains a variety of information, which can be divided into two macro-categories: the first
+                category refers to the physical characteristics of individual trees, such as species, height, crown size
+                and position. The second, on the other hand, exploits precise methodologies that use the physical
+                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
+                removed, energy saved, and money saved.<br><br>
+                Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                will allow for easier and faster reading of the findings.
+            </p>
+
+            <section class="economia">
+
+
+                <div id="graph_3C" class="inlineGraph">
+
+                    <button id="pie2" class="button" type="button" value="1">Click</button>
+                    <button id="pie2" class="button" type="button" value="2">Click </button>
+                </div>
+            </section>
+
+            <section class="economia">
+                <p class="inlineText">
+                    Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees
+                    in
+                    the city. It is important to specify that the data reported dates back to censuses and surveys
+                    carried
+                    out at different times. The surveys and updates of green areas are being completed and therefore the
+                    data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                    The dataset contains a variety of information, which can be divided into two macro-categories: the
+                    first
+                    category refers to the physical characteristics of individual trees, such as species, height, crown
+                    size
+                    and position. The second, on the other hand, exploits precise methodologies that use the physical
+                    characteristics of the tree to estimate secondary information such as carbon dioxide captured,
+                    pollution
+                    removed, energy saved, and money saved.<br><br>
+                    Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                    will allow for easier and faster reading of the findings.
+
+                </p>
+                <div id="graph_3D" class="inlineGraph">
+                    <label class="form-control">
+                        <input type="checkbox" id="italy">italy<br>
+                        <input type="checkbox" id="france">france<br>
+                    </label>
+                </div>
+            </section>
+
+        </section>
+
+
+        <!---------------SOCIETA'--------------->
+        <div id="società" class="navbarLinks"></div>
+        <section>
+            <h3>Società</h3>
+            <p class="singleLine">
                 Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
                 the city. It is important to specify that the data reported dates back to censuses and surveys carried
                 out at different times. The surveys and updates of green areas are being completed and therefore the
@@ -296,29 +421,27 @@
                 Our goal is to rework the dataset and develop a series of graphical representations of the data that
                 will allow for easier and faster reading of the findings.
 
+                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
+                the city. It is important to specify that the data reported dates back to censuses and surveys carried
+                out at different times. The surveys and updates of green areas are being completed and therefore the
+                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                The dataset contains a variety of information, which can be divided into two macro-categories: the first
+                category refers to the physical characteristics of individual trees, such as species, height, crown size
+                and position. The second, on the other hand, exploits precise methodologies that use the physical
+                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
+                removed, energy saved, and money saved.<br><br>
+                Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                will allow for easier and faster reading of the findings.
             </p>
         </section>
 
-        <p class="singleLine">
-            Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-            the city. It is important to specify that the data reported dates back to censuses and surveys carried
-            out at different times. The surveys and updates of green areas are being completed and therefore the
-            data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-            The dataset contains a variety of information, which can be divided into two macro-categories: the first
-            category refers to the physical characteristics of individual trees, such as species, height, crown size
-            and position. The second, on the other hand, exploits precise methodologies that use the physical
-            characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-            removed, energy saved, and money saved.<br><br>
-            Our goal is to rework the dataset and develop a series of graphical representations of the data that
-            will allow for easier and faster reading of the findings.
-        </p>
 
-        <section class="economia">
-            <div id="graph_3C" class="inlineGraph"></div>
-        </section>
 
-        <section class="economia">
-            <p class="inlineText">
+        <!---------------AMBIENTE--------------->
+        <div id="ambiente" class="navbarLinks"></div>
+        <section>
+            <h3>Ambiente</h3>
+            <p class="intro">
                 Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
                 the city. It is important to specify that the data reported dates back to censuses and surveys carried
                 out at different times. The surveys and updates of green areas are being completed and therefore the
@@ -331,76 +454,19 @@
                 Our goal is to rework the dataset and develop a series of graphical representations of the data that
                 will allow for easier and faster reading of the findings.
 
+                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
+                the city. It is important to specify that the data reported dates back to censuses and surveys carried
+                out at different times. The surveys and updates of green areas are being completed and therefore the
+                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                The dataset contains a variety of information, which can be divided into two macro-categories: the first
+                category refers to the physical characteristics of individual trees, such as species, height, crown size
+                and position. The second, on the other hand, exploits precise methodologies that use the physical
+                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
+                removed, energy saved, and money saved.<br><br>
+                Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                will allow for easier and faster reading of the findings.
             </p>
-            <div id="graph_3D" class="inlineGraph"></div>
         </section>
-
-    </section>
-
-
-    <!---------------SOCIETA'--------------->
-    <div id="società" class="navbarLinks"></div>
-    <section>
-        <h3>Società</h3>
-        <p class="singleLine">
-            Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-            the city. It is important to specify that the data reported dates back to censuses and surveys carried
-            out at different times. The surveys and updates of green areas are being completed and therefore the
-            data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-            The dataset contains a variety of information, which can be divided into two macro-categories: the first
-            category refers to the physical characteristics of individual trees, such as species, height, crown size
-            and position. The second, on the other hand, exploits precise methodologies that use the physical
-            characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-            removed, energy saved, and money saved.<br><br>
-            Our goal is to rework the dataset and develop a series of graphical representations of the data that
-            will allow for easier and faster reading of the findings.
-
-            Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-            the city. It is important to specify that the data reported dates back to censuses and surveys carried
-            out at different times. The surveys and updates of green areas are being completed and therefore the
-            data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-            The dataset contains a variety of information, which can be divided into two macro-categories: the first
-            category refers to the physical characteristics of individual trees, such as species, height, crown size
-            and position. The second, on the other hand, exploits precise methodologies that use the physical
-            characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-            removed, energy saved, and money saved.<br><br>
-            Our goal is to rework the dataset and develop a series of graphical representations of the data that
-            will allow for easier and faster reading of the findings.
-        </p>
-    </section>
-
-
-
-    <!---------------AMBIENTE--------------->
-    <div id="ambiente" class="navbarLinks"></div>
-    <section>
-        <h3>Ambiente</h3>
-        <p class="intro">
-            Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-            the city. It is important to specify that the data reported dates back to censuses and surveys carried
-            out at different times. The surveys and updates of green areas are being completed and therefore the
-            data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-            The dataset contains a variety of information, which can be divided into two macro-categories: the first
-            category refers to the physical characteristics of individual trees, such as species, height, crown size
-            and position. The second, on the other hand, exploits precise methodologies that use the physical
-            characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-            removed, energy saved, and money saved.<br><br>
-            Our goal is to rework the dataset and develop a series of graphical representations of the data that
-            will allow for easier and faster reading of the findings.
-
-            Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
-            the city. It is important to specify that the data reported dates back to censuses and surveys carried
-            out at different times. The surveys and updates of green areas are being completed and therefore the
-            data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
-            The dataset contains a variety of information, which can be divided into two macro-categories: the first
-            category refers to the physical characteristics of individual trees, such as species, height, crown size
-            and position. The second, on the other hand, exploits precise methodologies that use the physical
-            characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
-            removed, energy saved, and money saved.<br><br>
-            Our goal is to rework the dataset and develop a series of graphical representations of the data that
-            will allow for easier and faster reading of the findings.
-        </p>
-    </section>
 
 
 

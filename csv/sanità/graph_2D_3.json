@@ -1,0 +1,52 @@
+[
+  {
+    "id": "Italy",
+    "title": "ITA",
+    "date": [
+      ["gennaio", 0],
+      ["febbraio", 1],
+      ["marzo", 1],
+      ["aprile", 0]
+    ]
+  },
+  {
+    "id": "Germany",
+    "title": "DEU",
+    "date": [
+      ["gennaio", 0],
+      ["febbraio", 1],
+      ["marzo", 1],
+      ["aprile", 0]
+    ]
+  },
+  {
+    "id": "France",
+    "title": "FRA",
+    "date": [
+      ["gennaio", 3],
+      ["febbraio", 0],
+      ["marzo", 1],
+      ["aprile", 0]
+    ]
+  },
+  {
+    "id": "Spain",
+    "title": "ESP",
+    "date": [
+      ["gennaio", 3],
+      ["febbraio", 2],
+      ["marzo", 1],
+      ["aprile", 0]
+    ]
+  },
+  {
+    "id": "Great Britain",
+    "title": "GBR",
+    "date": [
+      ["gennaio", 3],
+      ["febbraio", 2],
+      ["marzo", 1],
+      ["aprile", 0]
+    ]
+  }
+]
