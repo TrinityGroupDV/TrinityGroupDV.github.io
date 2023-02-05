@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="/css/site.css">
     <script src="d3v4.js"></script>
     <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--REFERENCE AI JAVA SCRIPT-->
@@ -29,6 +31,10 @@
     <script type="text/javascript" src="js/economia/graph_3B.js"></script>
     <script type="text/javascript" src="js/economia/graph_3C.js"></script>
     <script type="text/javascript" src="js/economia/graph_3D.js"></script>
+    <script type="text/javascript" src="js/società/graph_4A.js"></script>
+    <script type="text/javascript" src="js/società/graph_4B.js"></script>
+    <!--<script type="text/javascript" src="js/società/graph_4C.js"></script>-->
+    <script type="text/javascript" src="js/società/graph_4D.js"></script>
 
 </head>
 
@@ -274,8 +280,8 @@
                 <option value="2">Testing policies</option>
                 <option value="3">Face coverings policies</option>
             </select>
-            <div class="slidecontainer">
-                <input type="range" min="0" max="3" value="0" class="slider" id="myRange">
+            <div class="slidecontainer" id="rangeContainer2D">
+                <input type="range" min="0" max="3" value="0" class="slider" id="myRange2D">
             </div>
 
 
@@ -433,6 +439,38 @@
                 Our goal is to rework the dataset and develop a series of graphical representations of the data that
                 will allow for easier and faster reading of the findings.
             </p>
+            <div id="graph_4A" class="inlineGraph">
+                <label class="form-control">
+                    <input type="checkbox" id="italy_4A">italy<br>
+                    <input type="checkbox" id="france_4A">france<br>
+                </label>
+            </div>
+        </section>
+        <section class="card">
+            <div id="graph_4B" class="singleGraph"> </div>
+
+            <div class="slidecontainer" id="rangeContainer4B">
+                <input type="range" min="0" max="3" value="0" class="slider" id="myRange4B">
+            </div>
+
+
+            <p class="singleLine">
+                Since 1996, the municipality of Trento has been carrying out surveys of green areas and street trees in
+                the city. It is important to specify that the data reported dates back to censuses and surveys carried
+                out at different times. The surveys and updates of green areas are being completed and therefore the
+                data and gardens reported are still partial or do not entirely correspond to reality.<br><br>
+                The dataset contains a variety of information, which can be divided into two macro-categories: the first
+                category refers to the physical characteristics of individual trees, such as species, height, crown size
+                and position. The second, on the other hand, exploits precise methodologies that use the physical
+                characteristics of the tree to estimate secondary information such as carbon dioxide captured, pollution
+                removed, energy saved, and money saved.<br><br>
+                Our goal is to rework the dataset and develop a series of graphical representations of the data that
+                will allow for easier and faster reading of the findings.
+            </p>
+            <!-- <div id="graph_4C" class="singleGraph"> </div>-->
+            <div id="graph_4D" class="singleGraph"> </div>
+
+
         </section>
 
 

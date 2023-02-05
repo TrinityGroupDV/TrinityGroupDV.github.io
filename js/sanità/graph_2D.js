@@ -47,16 +47,18 @@ $(document).ready(async function () {
 
             //If first redraw after changing dataset
             if (firstRedraw1 == 0) {
-                stayAtHomeDataset(document.getElementById("myRange").value)
+                stayAtHomeDataset(document.getElementById("myRange2D").value)
                 firstRedraw1 = 1;
             }
             else if (firstRedraw1 == 1) {
                 // Check slider
-                slider = document.getElementById("myRange");
+                slider = document.getElementById("myRange2D");
                 slider.oninput = function () {
                     stayAtHomeDataset(this.value)
+                    console.log(this.value)
                 }
             }
+
         }
         //If SECOND dataset
         else if (auxDrop == 2) {
@@ -65,12 +67,12 @@ $(document).ready(async function () {
 
             //If first redraw after changing dataset
             if (firstRedraw2 == 0) {
-                testingDataset(document.getElementById("myRange").value)
+                testingDataset(document.getElementById("myRange2D").value)
                 firstRedraw2 = 1;
             }
             else if (firstRedraw2 == 1) {
                 // Check slider
-                slider = document.getElementById("myRange");
+                slider = document.getElementById("myRange2D");
                 slider.oninput = function () {
                     testingDataset(this.value)
                 }
@@ -84,13 +86,13 @@ $(document).ready(async function () {
 
             //If first redraw after changing dataset
             if (firstRedraw3 == 0) {
-                faceCoveringsDataset(document.getElementById("myRange").value)
+                faceCoveringsDataset(document.getElementById("myRange2D").value)
                 firstRedraw3 = 1;
             }
             //If is not
             else if (firstRedraw3 == 1) {
                 // Check slider
-                slider = document.getElementById("myRange");
+                slider = document.getElementById("myRange2D");
                 slider.oninput = function () {
                     faceCoveringsDataset(this.value)
                 }

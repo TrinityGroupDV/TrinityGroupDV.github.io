@@ -208,6 +208,10 @@ p.text {
     transition: opacity .2s;
 }
 
+.slidecontainer#rangeContainer4B {
+    bottom: 50px;
+}
+
 /* Mouse-over effects */
 .slider:hover {
     opacity: 1;
@@ -223,7 +227,7 @@ p.text {
     /* Set a specific slider handle width */
     height: 25px;
     /* Slider handle height */
-    background: #04AA6D;
+    background: #04aa20;
     /* Green background */
     cursor: pointer;
     /* Cursor on hover */
