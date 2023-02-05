@@ -138,7 +138,7 @@ class CovidDataHelper:
 
 if __name__ == '__main__':
     temp_json = read_data_from_json('owid-covid-data.json')
-    temp_csv = read_data_from_csv('owid-covid-data.csv')
+   # temp_csv = read_data_from_csv('owid-covid-data.csv')
 
     # Path del file
     covid_path = Path('owid-covid-data.json')
@@ -150,4 +150,4 @@ if __name__ == '__main__':
     covid_data_helper.set_covid_path(covid_path.name)
 
     # Creo CSV con la lista dei nomi e il numero di alberi
-    covid_data_helper.create_death_by_days_csv('csv/' + covid_path.stem + '_death_by_days')
+    covid_data_helper.create_death_by_days_csv('../csv/' +  'graph_1A')

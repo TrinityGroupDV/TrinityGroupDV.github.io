@@ -1,35 +1,32 @@
 $(document).ready(function () {
 
-    // Dimensioni e margini del grafico
-    const margin = { top: 10, right: 40, bottom: 40, left: 80 },
-        width = 600 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
 
-    const size = 200;
+    // set the dimensions and margins of the graph
+    const margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
-
-    // SVG
+    // append the svg object to the body of the page
     const svg = d3.select("#graph_1A")
         .append("svg")
-        //.attr("width", width + margin.left + margin.right)
-        // .attr("height", height + margin.top + margin.bottom)
-        .attr('width', '100%')
-        .attr('viewBox', '0 0 600 300 ')
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform",
             `translate(${margin.left}, ${margin.top})`);
 
-    // Leggo i dati
-    d3.csv("../../csv/visione_globale/graph_1A.csv",
+    //Read the data
+    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
 
-        // Formatto le date
+        // When reading the csv, I must format variables:
         function (d) {
             return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
         }).then(
 
+            // Now I can use this dataset:
             function (data) {
 
-                // Asse X (date)
+                // Add X axis --> it is a date format
                 const x = d3.scaleTime()
                     .domain(d3.extent(data, function (d) { return d.date; }))
                     .range([0, width]);
@@ -37,14 +34,14 @@ $(document).ready(function () {
                     .attr("transform", `translate(0, ${height})`)
                     .call(d3.axisBottom(x));
 
-                // Asse Y
+                // Add Y axis
                 const y = d3.scaleLinear()
                     .domain([0, d3.max(data, function (d) { return +d.value; })])
                     .range([height, 0]);
                 yAxis = svg.append("g")
                     .call(d3.axisLeft(y));
 
-                // Aggiungo clipPath: tutto quello fuori da quest'area non verrà disegnato
+                // Add a clipPath: everything out of this area won't be drawn.
                 const clip = svg.append("defs").append("svg:clipPath")
                     .attr("id", "clip")
                     .append("svg:rect")
@@ -53,19 +50,19 @@ $(document).ready(function () {
                     .attr("x", 0)
                     .attr("y", 0);
 
-                // Aggiungo evidenziatore
-                const brush = d3.brushX()
-                    .extent([[0, 0], [width, height]])     // Inizializzo area evidenziatore: inizia at 0,0 e finisce a width,height: significa che seleziono tutto il grafico
-                    .on("end", updateChart)                // Ogni volta che la zona evidenziata cambia, lancio 'updateChart' 
+                // Add brushing
+                const brush = d3.brushX()                   // Add the brush feature using the d3.brush function
+                    .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+                    .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
 
-                // Creo le linee dell'evidenziatore
+                // Create the line variable: where both the line and the brush take place
                 const line = svg.append('g')
                     .attr("clip-path", "url(#clip)")
 
-                // Disegno la linea del grafico
+                // Add the line
                 line.append("path")
                     .datum(data)
-                    .attr("class", "line")  // Aggiungo classe "line" per poterla modificare dopo
+                    .attr("class", "line")  // I add the class line to be able to modify this line later on.
                     .attr("fill", "none")
                     .attr("stroke", "steelblue")
                     .attr("stroke-width", 1.5)
@@ -74,13 +71,13 @@ $(document).ready(function () {
                         .y(function (d) { return y(d.value) })
                     )
 
-                // Aggiugno l'evidenziatore
+                // Add the brushing
                 line
                     .append("g")
                     .attr("class", "brush")
                     .call(brush);
 
-                // Funzioni che gestiscono l'evidenziatore
+                // A function that set idleTimeOut to null
                 let idleTimeout
                 function idled() { idleTimeout = null; }
 
@@ -111,7 +108,7 @@ $(document).ready(function () {
                         )
                 }
 
-                // Se doppio click, reinizializzo
+                // If user double click, reinitialize the chart
                 svg.on("dblclick", function () {
                     x.domain(d3.extent(data, function (d) { return d.date; }))
                     xAxis.transition().call(d3.axisBottom(x))
@@ -123,22 +120,8 @@ $(document).ready(function () {
                             .y(function (d) { return y(d.value) })
                         )
                 });
-            })
 
-    // Legend
-    svg.append("text")
-        .attr("x", -220)
-        .attr("y", -60)
-        .text("Death")
-        .style("font-size", "12px")
-        .attr("alignment-baseline", "middle")
-        .attr("transform", "rotate(-90)")
-    svg.append("text")
-        .attr("x", 150)
-        .attr("y", 435)
-        .text("Date")
-        .style("font-size", "12px")
-        .attr("alignment-baseline", "middle")
+            })
 })
 
 

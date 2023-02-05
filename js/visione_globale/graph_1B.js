@@ -24,16 +24,16 @@ $(document).ready(async function () {
 
     // Variabile aux per controllare se è la prima mappa disegnata in assoluto
     let firstDrawMap = 0;
-    date1();
+    date1("date1");
 
     // Mappa prima data
-    function date1() {
+    function date1(pippo) {
 
         // Carico i dati
         Promise.all([
             d3.json("../world.geojson"),
             d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
-                data.set(d.code, +d.date1)
+                data.set(d.code, +d[pippo])
             })
         ]).then(function (loadData) {
             let topo = loadData[0]
@@ -84,104 +84,6 @@ $(document).ready(async function () {
         })
     }
 
-    // Mappa seconda data
-    function date2() {
-
-        Promise.all([
-            d3.json("../world.geojson"),
-            d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
-                data.set(d.code, +d.date2)
-            })
-        ]).then(function (loadData) {
-            let topo = loadData[0]
-
-            svg.selectAll("path")
-                .data(topo.features)
-                .join("path")
-                .attr("fill", function (d) {
-                    d.total = data.get(d.id) || 0;
-                    return colorScale(d.total);
-                })
-        })
-
-        svg.append("rect")
-            .attr("x", 520)
-            .attr("y", 0)
-            .attr('width', 120)
-            .attr('height', 20)
-            .style("fill", "white")
-        svg.append("text")
-            .attr("x", 525).attr("y", 10)
-            .text("25/02/2020")
-            .style("font-size", "20px")
-            .attr("alignment-baseline", "middle")
-    }
-
-    // Mappa terza data
-    function date3() {
-
-        Promise.all([
-            d3.json("../world.geojson"),
-            d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
-                data.set(d.code, +d.date3)
-            })
-        ]).then(function (loadData) {
-            let topo = loadData[0]
-
-            svg.selectAll("path")
-                .data(topo.features)
-                .join("path")
-                .attr("fill", function (d) {
-                    d.total = data.get(d.id) || 0;
-                    return colorScale(d.total);
-                })
-        })
-
-        svg.append("rect")
-            .attr("x", 520)
-            .attr("y", 0)
-            .attr('width', 120)
-            .attr('height', 20)
-            .style("fill", "white")
-        svg.append("text")
-            .attr("x", 525).attr("y", 10)
-            .text("03/03/2020")
-            .style("font-size", "20px")
-            .attr("alignment-baseline", "middle")
-    }
-
-    // Mappa quarta data
-    function date4() {
-
-        Promise.all([
-            d3.json("../world.geojson"),
-            d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
-                data.set(d.code, +d.date4)
-            })
-        ]).then(function (loadData) {
-            let topo = loadData[0]
-
-            svg.selectAll("path")
-                .data(topo.features)
-                .join("path")
-                .attr("fill", function (d) {
-                    d.total = data.get(d.id) || 0;
-                    return colorScale(d.total);
-                })
-        })
-
-        svg.append("rect")
-            .attr("x", 520)
-            .attr("y", 0)
-            .attr('width', 120)
-            .attr('height', 20)
-            .style("fill", "white")
-        svg.append("text")
-            .attr("x", 525).attr("y", 10)
-            .text("10/03/2020")
-            .style("font-size", "20px")
-            .attr("alignment-baseline", "middle")
-    }
 
     // Controllo se l'animazione è in corso
     buttonWorld1 = 1;
@@ -194,10 +96,10 @@ $(document).ready(async function () {
     document.getElementById('world1').addEventListener("click", function () {
         if (buttonWorld1 == 1) {
             buttonWorld1 = 0;
-            date1();
-            setTimeout(date2, 2000)
-            setTimeout(date3, 4000)
-            setTimeout(date4, 6000)
+            date1("date1");
+            setTimeout(() => date1("date2"), 2000)
+            setTimeout(() => date1("date3"), 4000)
+            setTimeout(() => date1("date4"), 6000)
             setTimeout(check, 6000);
         }
     })
