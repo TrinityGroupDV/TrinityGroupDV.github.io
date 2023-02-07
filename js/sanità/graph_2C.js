@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    //DATI DEL 2020
     // set the dimensions and margins of the graph
     const width = 680,
         height = 450,
@@ -21,12 +22,17 @@ $(document).ready(function () {
 
         // Write data inside an arry
         const dataArray = {
+            "65-74": parseInt(data[3].death),
+            "74+": parseInt(data[4].death),
             "0-24": parseInt(data[0].death),
             "25-44": parseInt(data[1].death),
             "45-64": parseInt(data[2].death),
-            "65-74": parseInt(data[3].death),
-            "74+": parseInt(data[4].death),
         }
+
+
+
+        let total = dataArray["0-24"] + dataArray["25-44"] + dataArray["45-64"] + dataArray["65-74"] + dataArray["74+"]
+
 
         //Color palette
         const color = d3.scaleOrdinal()
@@ -38,6 +44,7 @@ $(document).ready(function () {
             .sort(null) // Do not sort group by size
             .value(d => d[1])
         const data_ready = pie(Object.entries(dataArray))
+
 
         // The arc generator
         const arc = d3.arc()
@@ -73,8 +80,15 @@ $(document).ready(function () {
             svg.append("text")
                 .attr("class", "legend")
                 .attr("text-anchor", "middle")
-                .attr("y", -180)
-                .text("Age range " + legend.data[0] + ": " + legend.data[1] + " death")
+                .attr("y", -210)
+                .text("Age range " + legend.data[0])
+                .style("font-size", "18px")
+                .attr("alignment-baseline", "middle")
+            svg.append("text")
+                .attr("class", "legend")
+                .attr("text-anchor", "middle")
+                .attr("y", -190)
+                .text(legend.data[1] + " death" + " - " + ((legend.data[1] / total) * 100).toFixed(2) + "%")
                 .style("font-size", "18px")
                 .attr("alignment-baseline", "middle")
 

@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    //LINK: https://ec.europa.eu/eurostat/databrowser/view/STS_SEPR_M__custom_4855705/default/table?lang=en
+    //UNITA DI MISURA: Volume index of production (vedi graph 3A)
+
+    //FINITO
+
     // set the dimensions and margins of the graph
     const width = 450,
         height = 450,
@@ -18,8 +23,11 @@ $(document).ready(function () {
 
     d3.csv("../../csv/economia/graph_3C.csv").then(function (data) {
 
-        data1 = { it: data[0].duemila19, industry: data[1].duemila19, cars: data[2].duemila19, wears: data[3].duemila19 }
-        data2 = { it: data[0].duemila20, industry: data[1].duemila20, cars: data[2].duemila20, wears: data[3].duemila20 }
+        // console.log(data[10].nace_r2 + " " + data[10].TIME_PERIOD)
+
+
+        data1 = { Accomodation: data[0].OBS_VALUE, Real_estate: data[6].OBS_VALUE, Travel_agency: data[8].OBS_VALUE, Telecommunications: data[4].OBS_VALUE, Ict: data[2].OBS_VALUE }
+        data2 = { Accomodation: data[1].OBS_VALUE, Real_estate: data[7].OBS_VALUE, Travel_agency: data[9].OBS_VALUE, Telecommunications: data[5].OBS_VALUE, Ict: data[3].OBS_VALUE }
 
 
 
@@ -28,14 +36,22 @@ $(document).ready(function () {
             .domain(["a", "b", "c", "d", "e", "f"])
             .range(d3.schemeDark2);
 
+
         $("button").click(function () {
             butt = this.value
 
             if (butt == 1) {
                 update(data1)
+
             }
             if (butt == 2) {
                 update(data2)
+                d3.select('text.legend3C').remove()
+                svg.append("text")
+                    .attr("x", -40)
+                    .attr("y", -200)
+                    .text("May 2020")
+                    .style("font-size", "17px")
             }
         });
 
@@ -69,7 +85,6 @@ $(document).ready(function () {
                 .style("opacity", 1)
 
 
-
             // Now add the annotation. Use the centroid method to get the best coordinates
 
             const s = svg
@@ -79,10 +94,23 @@ $(document).ready(function () {
                 .join('text')
                 .transition()
                 .duration(1000)
-                .text(function (d) { return d.data[0] })
+                .text(function (d) {
+                    return d.data[0].replaceAll('_', ' ') + ': ' + d.data[1]
+                })
+                .style("font-size", "14px")
+                .attr("x", 0)
                 .attr("transform", function (d) { return `translate(${arcGenerator.centroid(d)})` })
                 .style("text-anchor", "middle")
-                .style("font-size", 17)
+
+
+            svg.append("text")
+                .attr("class", "legend3C")
+                .attr("x", -40)
+                .attr("y", -200)
+                .text("May 2019")
+                .style("font-size", "17px")
+
+
         }
 
         // Initialize the plot with the first dataset

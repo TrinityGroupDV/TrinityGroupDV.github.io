@@ -25,7 +25,7 @@ $(document).ready(function () {
         // Formatto le date
         // QUANDO SI AGGOIORNA IL CSV, OCCHIO AL FORMATO
         function (d) {
-            return { date: d3.timeParse("%d-%m-%Y")(d.date), death: d.death, ICU: d.icu, case: d.cases }
+            return { date: d3.timeParse("%Y-%m-%d")(d.date), death: d.death, icu: d.icu, case: d.cases }
         }).then(
 
             function (data) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 // Inserisco i dati entro agli array
                 for (let i = 0; i < data.length; i++) {
                     arrayDeath.push({ "date": data[i].date, "n": data[i].death })
-                    arrayIcu.push({ "date": data[i].date, "n": data[i].ICU })
+                    arrayIcu.push({ "date": data[i].date, "n": data[i].icu })
                     arrayCases.push({ "date": data[i].date, "n": data[i].case })
                 }
 
@@ -46,13 +46,13 @@ $(document).ready(function () {
                 const x = d3.scaleTime()
                     .domain(d3.extent(data, function (d) { return d.date; }))
                     .range([0, width]);
-                xAxis = svg.append("g")
+                const xAxis = svg.append("g")
                     .attr("transform", `translate(0, ${height})`)
                     .call(d3.axisBottom(x));
 
                 // Add Y 
                 const y = d3.scaleLinear()
-                    .domain([0, 100])
+                    .domain([0, 1000000])
                     .range([height, 0]);
                 svg.append("g")
                     .call(d3.axisLeft(y));

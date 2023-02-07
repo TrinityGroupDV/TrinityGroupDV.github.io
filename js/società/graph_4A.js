@@ -16,13 +16,15 @@ $(document).ready(function () {
     // Variables for checking the buttons
     const buttonItaly = document.getElementById("italy_4A")
     const buttonFrance = document.getElementById("france_4A")
+    const buttonSpain = document.getElementById("spain_4A")
+    const buttonGermany = document.getElementById("germany_4A")
 
     //Read the data
     d3.csv("../../csv/società/graph_4A.csv",
 
         // When reading the csv, I must format variables:
         function (d) {
-            return { country: d.country, date: d3.timeParse("%d-%m-%Y")(d.date), poverty: d.poverty }
+            return { country: d.country, date: d3.timeParse("%Y")(d.date), poverty: d.poverty }
         }).then(
 
             // Now I can use this dataset:
@@ -31,9 +33,11 @@ $(document).ready(function () {
                 // Auxiliary variables for construct the data
                 let arrayItaly = [];
                 let arrayFrance = [];
+                let arrayGermany = [];
+                let arraySpain = [];
                 let auxObj = {}
 
-
+                // console.log(data[0])
                 // Insert in the right array the correspondent data
                 for (i = 0; i < data.length; i++) {
 
@@ -50,9 +54,24 @@ $(document).ready(function () {
                         auxObj = { "date": data[i].date, "poverty": data[i].poverty }
                         arrayFrance.push(auxObj)
                     }
+
+                    if (data[i].country == "germany") {
+                        arrayGermany[data[0].country] = data[0].poverty
+                        auxObj = { "date": data[i].date, "poverty": data[i].poverty }
+                        arrayGermany.push(auxObj)
+                    }
+
+                    // Put in array data of France
+                    if (data[i].country == "spain") {
+                        arraySpain[data[0].country] = data[0].poverty
+                        auxObj = { "date": data[i].date, "poverty": data[i].poverty }
+                        arraySpain.push(auxObj)
+                    }
+
+
                 }
 
-                //console.log(arrayFrance4A)
+
                 // Draw only axes
                 // Add X axis
                 const x = d3.scaleTime()
@@ -62,18 +81,23 @@ $(document).ready(function () {
                     .attr("transform", `translate(0, ${height})`)
                     .call(d3.axisBottom(x));
 
+
                 // Add Y axis
                 const y = d3.scaleLinear()
-                    .domain([0, d3.max(arrayItaly, function (d) { return +d.poverty; })])
+                    .domain([8000, 16000])
                     .range([height, 0]);
                 svg.append("g")
                     .call(d3.axisLeft(y));
+
 
                 // Event listener that check when a box is checked
                 addEventListener("click", function (e) {
 
                     // Delete all previous lines including the axes
                     svg.selectAll("path").remove();
+                    svg.selectAll("text").remove();
+
+
 
                     // Redraw the axes
                     const x = d3.scaleTime()
@@ -83,7 +107,7 @@ $(document).ready(function () {
                         .attr("transform", `translate(0, ${height})`)
                         .call(d3.axisBottom(x));
                     const y = d3.scaleLinear()
-                        .domain([0, d3.max(arrayItaly, function (d) { return +d.poverty; })])
+                        .domain([8000, 16000])
                         .range([height, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
@@ -102,12 +126,39 @@ $(document).ready(function () {
                             )
                     }
 
+
                     //FRANCE
                     if (buttonFrance.checked) {
                         svg.append("path")
                             .datum(arrayFrance)
                             .attr("fill", "none")
                             .attr("stroke", "red")
+                            .attr("stroke-width", 1.5)
+                            .attr("d", d3.line()
+                                .x(function (d) { return x(d.date) })
+                                .y(function (d) { return y(d.poverty) })
+                            )
+                    }
+
+                    //FRANCE
+                    if (buttonSpain.checked) {
+                        svg.append("path")
+                            .datum(arraySpain)
+                            .attr("fill", "none")
+                            .attr("stroke", "green")
+                            .attr("stroke-width", 1.5)
+                            .attr("d", d3.line()
+                                .x(function (d) { return x(d.date) })
+                                .y(function (d) { return y(d.poverty) })
+                            )
+                    }
+
+                    //FRANCE
+                    if (buttonGermany.checked) {
+                        svg.append("path")
+                            .datum(arrayGermany)
+                            .attr("fill", "none")
+                            .attr("stroke", "yellow")
                             .attr("stroke-width", 1.5)
                             .attr("d", d3.line()
                                 .x(function (d) { return x(d.date) })

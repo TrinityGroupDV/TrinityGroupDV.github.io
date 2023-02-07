@@ -42,7 +42,7 @@ $(document).ready(function () {
                 const x = d3.scaleTime()
                     .domain(d3.extent(data, function (d) { return d.date; }))
                     .range([0, width]);
-                xAxis = svg.append("g")
+                const xAxis = svg.append("g")
                     .attr("transform", `translate(0, ${height})`)
                     .call(d3.axisBottom(x));
 

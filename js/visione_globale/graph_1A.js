@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 30, bottom: 30, left: 60 },
-        width = 460 - margin.left - margin.right,
+        width = 600 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
@@ -15,8 +15,10 @@ $(document).ready(function () {
         .attr("transform",
             `translate(${margin.left}, ${margin.top})`);
 
+    let dataProva = [];
+
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+    d3.csv("../../csv/visione_globale/graph_1A.csv",
 
         // When reading the csv, I must format variables:
         function (d) {
@@ -26,19 +28,36 @@ $(document).ready(function () {
             // Now I can use this dataset:
             function (data) {
 
+                // NUMERO DI MORTI GLOBALI PER OGNI SETTIMANA
+                for (i = 0; i < (data.length / 7) - 1; i++) {
+                    dataProva[i] = data[i * 7]
+                    dataProva[i].value =
+                        Number(data[i * 7].value) +
+                        Number(data[i * 7 + 1].value) +
+                        Number(data[i * 7 + 3].value) +
+                        Number(data[i * 7 + 4].value) +
+                        Number(data[i * 7 + 5].value) +
+                        Number(data[i * 7 + 6].value)
+
+                    dataProva[i].value = dataProva[i].value / 7;
+                }
+
+
+
+
                 // Add X axis --> it is a date format
                 const x = d3.scaleTime()
-                    .domain(d3.extent(data, function (d) { return d.date; }))
+                    .domain(d3.extent(dataProva, function (d) { return d.date; }))
                     .range([0, width]);
-                xAxis = svg.append("g")
+                let xAxis = svg.append("g")
                     .attr("transform", `translate(0, ${height})`)
                     .call(d3.axisBottom(x));
 
                 // Add Y axis
                 const y = d3.scaleLinear()
-                    .domain([0, d3.max(data, function (d) { return +d.value; })])
+                    .domain([0, d3.max(dataProva, function (d) { return +d.value; })])
                     .range([height, 0]);
-                yAxis = svg.append("g")
+                let yAxis = svg.append("g")
                     .call(d3.axisLeft(y));
 
                 // Add a clipPath: everything out of this area won't be drawn.
@@ -61,7 +80,7 @@ $(document).ready(function () {
 
                 // Add the line
                 line.append("path")
-                    .datum(data)
+                    .datum(dataProva)
                     .attr("class", "line")  // I add the class line to be able to modify this line later on.
                     .attr("fill", "none")
                     .attr("stroke", "steelblue")
@@ -110,7 +129,7 @@ $(document).ready(function () {
 
                 // If user double click, reinitialize the chart
                 svg.on("dblclick", function () {
-                    x.domain(d3.extent(data, function (d) { return d.date; }))
+                    x.domain(d3.extent(dataProva, function (d) { return d.date; }))
                     xAxis.transition().call(d3.axisBottom(x))
                     line
                         .select('.line')

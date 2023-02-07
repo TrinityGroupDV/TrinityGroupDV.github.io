@@ -24,19 +24,59 @@ $(document).ready(async function () {
 
     // Variabile aux per controllare se è la prima mappa disegnata in assoluto
     let firstDrawMap = 0;
-    date1("date1");
+
+    let tempObj = {};
+    let temp_i = 0;
+
+    let dataMap = new Map();
+    let dateObj = {};
+
+    date1B(0);
+
 
     // Mappa prima data
-    function date1(pippo) {
+    function date1B(value) {
 
         // Carico i dati
         Promise.all([
             d3.json("../world.geojson"),
-            d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
-                data.set(d.code, +d[pippo])
+            d3.csv("../../csv/visione_globale/school-closures-covid_full.csv", function (d) {
+                tempObj[temp_i] = d;
+                temp_i++;
             })
+
         ]).then(function (loadData) {
             let topo = loadData[0]
+
+            let dataTemp = 0;
+
+
+
+            //Inizializzo prima data in assoluto
+            dataTemp = new Date("2020-01-21")
+
+            // Aggiungo tot giorni
+            dataTemp.setDate(dataTemp.getDate() + value)
+
+            // Converto in string e formatto
+            let formattedDate = dataTemp.toISOString().slice(0, 10);
+
+
+            let temp_a = 0;
+
+            // Estraggo i campi con quella precisa data
+            for (i = 0; i < 199147; i++) {
+                if (tempObj[i].Day == formattedDate) {
+                    dateObj[temp_a] = tempObj[i]
+                    temp_a++;
+                }
+            }
+
+            // Riempo la mappa
+
+            for (i = 0; i < Object.keys(dateObj).length; i++) {
+                dataMap.set(dateObj[i].Code, +dateObj[i].school_closures)
+            }
 
             //If è la prima mappa disegnata in assoluto
             if (firstDrawMap == 0) {
@@ -51,7 +91,7 @@ $(document).ready(async function () {
                     )
                     // Coloro ogni paese
                     .attr("fill", function (d) {
-                        d.total = data.get(d.id) || 0;
+                        d.total = dataMap.get(d.id) || 0;
                         return colorScale(d.total);
                     })
                     .style("stroke", "black")
@@ -64,21 +104,17 @@ $(document).ready(async function () {
                     .data(topo.features)
                     .join("path")
                     .attr("fill", function (d) {
-                        d.total = data.get(d.id) || 0;
+                        d.total = dataMap.get(d.id) || 0;
                         return colorScale(d.total);
                     })
             }
 
-            // Stampo la data
-            svg.append("rect")
-                .attr("x", 520)
-                .attr("y", 0)
-                .attr('width', 120)
-                .attr('height', 20)
-                .style("fill", "white")
+            // Data a schermo
+            d3.select('text.legend1B').remove()
             svg.append("text")
-                .attr("x", 525).attr("y", 10)
-                .text("20/02/2020")
+                .attr("class", "legend1B")
+                .attr("x", 500).attr("y", 10)
+                .text(formattedDate)
                 .style("font-size", "20px")
                 .attr("alignment-baseline", "middle")
         })
@@ -91,17 +127,20 @@ $(document).ready(async function () {
         buttonWorld1 = 1
     }
 
-    // MODIFICA - PROVARE AD AGGIUNGERE CHE QUANDO SI CLICCA L'ANIMAZIONE SI RESETTA
     // Lancio l'animazione
     document.getElementById('world1').addEventListener("click", function () {
         if (buttonWorld1 == 1) {
             buttonWorld1 = 0;
-            date1("date1");
-            setTimeout(() => date1("date2"), 2000)
-            setTimeout(() => date1("date3"), 4000)
-            setTimeout(() => date1("date4"), 6000)
-            setTimeout(check, 6000);
+
+            date1B(0);
+            for (i = 0; i < 36; i++) {
+                setTimeout(date1B, i * 500, i * 10);
+
+            }
+            setTimeout(check, 18000);
         }
+
+        dataMap.clear()
     })
 
     // Disegno la legenda
