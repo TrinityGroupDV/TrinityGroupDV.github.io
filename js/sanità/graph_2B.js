@@ -5,8 +5,8 @@ $(document).ready(function () {
         draw()
     })
     function draw() {
-        let clientHeight = document.getElementById('graph_2B').clientHeight-50;
-        let clientWidth = document.getElementById('graph_2B').clientWidth-100;
+        let clientHeight = document.getElementById('graph_2B').clientHeight - 50;
+        let clientWidth = document.getElementById('graph_2B').clientWidth - 100;
 
 
         const margin = { top: 10, right: 30, bottom: 30, left: 60 };
@@ -34,18 +34,24 @@ $(document).ready(function () {
         d3.csv("../../csv/sanità/graph_2B.csv",
 
             // Formatto le date
-            // QUANDO SI AGGOIORNA IL CSV, OCCHIO AL FORMATO
             function (d) {
                 return { date: d3.timeParse("%Y-%m-%d")(d.date), death: d.death, icu: d.icu, case: d.cases }
             }).then(
 
                 function (data) {
-
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
-                        arrayDeath.push({ "date": data[i].date, "n": data[i].death })
-                        arrayIcu.push({ "date": data[i].date, "n": data[i].icu })
-                        arrayCases.push({ "date": data[i].date, "n": data[i].case })
+                        arrayDeath.push({ "date": data[i].date, "n": data[i].death }) //ROSSO
+                        arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })//BLU, CASI OGNI 10 MILIONI DI ABITANTI
+                    }
+
+                    //WEEKLY ICU, VERDE
+                    for (i = 0; i < (data.length / 7) - 1; i++) {
+                        arrayIcu.push({
+                            "date": data[i * 7].date, "n":
+                                Number(data[i * 7].icu)
+
+                        })
                     }
 
                     //Inserisco i dati dentro alle mappe
@@ -63,7 +69,7 @@ $(document).ready(function () {
 
                     // Add Y 
                     const y = d3.scaleLinear()
-                        .domain([0, 1000000])
+                        .domain([0, 27000])
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
@@ -78,16 +84,16 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.icu")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         //RIDISEGNO SOPRA LA LINEA EVIDENZIATA
                         svg.selectAll(".line")
@@ -99,7 +105,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -116,16 +122,16 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.icu")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         svg.selectAll(".line")
                             .data(mapCases)
@@ -136,7 +142,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -154,24 +160,27 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.cases")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         svg.selectAll(".line")
                             .data(mapIcu)
                             .join("path")
                             .attr("class", "icu")
                             .attr("fill", "none")
+                            .transition()
+                            .delay("100")
+                            .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -189,7 +198,6 @@ $(document).ready(function () {
                         svg.selectAll("path.icu").remove();
 
                         // LE RIDISEGNO DA ZERO
-
                         // Draw DEATH
                         svg.selectAll(".line")
                             .data(mapDeath)
@@ -325,8 +333,8 @@ $(document).ready(function () {
                         .on("mouseover", highlightICU)
                         .on("mouseleave", doNotHighlight)
                 })
-            }
-    })
+    }
+})
 
 
 
