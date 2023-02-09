@@ -16,6 +16,9 @@ $(document).ready(function () {
             $("#graph_2E").empty();
         }
         aux = 1;
+
+
+
         const svg = d3.select("#graph_2E")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -31,23 +34,27 @@ $(document).ready(function () {
         let mapVaccines = new Map();
         let mapCases = new Map();
 
+
+
         // Leggo i dati
         d3.csv("../../csv/sanità/graph_2E.csv",
 
             // Formatto le date
-            // QUANDO SI AGGOIORNA IL CSV, OCCHIO AL FORMATO
+            // QUANDO SI AGGIORNA IL CSV, OCCHIO AL FORMATO
             function (d) {
-                return { date: d3.timeParse("%d-%m-%Y")(d.date), death: d.death, vaccines: d.vaccines, case: d.cases }
+                return { date: d3.timeParse("%Y-%m-%d")(d.date), death: d.death, vaccines: d.vaccines, case: d.cases }
             }).then(
 
                 function (data) {
 
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
-                        arrayDeath.push({ "date": data[i].date, "n": data[i].death })
-                        arrayVaccines.push({ "date": data[i].date, "n": data[i].vaccines })
-                        arrayCases.push({ "date": data[i].date, "n": data[i].case })
+                        arrayDeath.push({ "date": data[i].date, "n": data[i].death }) //ROSSO
+                        arrayVaccines.push({ "date": data[i].date, "n": data[i].vaccines / 100 })//VERDI VACCINI OGNI 100 MILIONI DI ABITANTI
+                        arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })//BLU CASI OGNI 10 MILIONI DI ABITANTI
                     }
+
+
 
                     //Inserisco i dati dentro alle mappe
                     mapDeath.set("death", arrayDeath)
@@ -64,7 +71,7 @@ $(document).ready(function () {
 
                     // Add Y 
                     const y = d3.scaleLinear()
-                        .domain([0, 100])
+                        .domain([0, 15000])
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
@@ -79,16 +86,16 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.vaccines1")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         //RIDISEGNO SOPRA LA LINEA EVIDENZIATA
                         svg.selectAll(".line")
@@ -100,7 +107,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -117,16 +124,16 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.vaccines1")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         svg.selectAll(".line")
                             .data(mapCases)
@@ -137,7 +144,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -155,24 +162,27 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         d3.selectAll("path.cases1")
                             .transition()
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         svg.selectAll(".line")
                             .data(mapVaccines)
                             .join("path")
                             .attr("class", "vaccines1")
+                            .transition()
+                            .delay("100")
+                            .duration("10")
                             .attr("fill", "none")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
