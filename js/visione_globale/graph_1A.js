@@ -22,8 +22,7 @@ $(document).ready(function () {
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
             .append("g")
-            .attr("transform",
-                `translate(${margin.left}, ${margin.top})`);
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         let dataProva = [];
 
@@ -51,8 +50,6 @@ $(document).ready(function () {
 
                         dataProva[i].value = dataProva[i].value / 7;
                     }
-
-
 
 
                     // Add X axis --> it is a date format
