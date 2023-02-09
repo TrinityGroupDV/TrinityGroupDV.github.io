@@ -1,17 +1,27 @@
 $(document).ready(function () {
 
+    let aux = 0;
+    draw()
+    addEventListener("resize", (event) => {
+        draw()
+    })
+    function draw() {
+        let clientHeight = document.getElementById('graph_2A').clientHeight-130;
+        let clientWidth = document.getElementById('graph_2A').clientWidth-30;
+        
     const margin = { top: 85, right: 0, bottom: 10, left: 0 },
-        width = 550 - margin.left - margin.right,
-        height = 450 - margin.top - margin.bottom,
         innerRadius = 100,
-        outerRadius = Math.min(width, height) / 2;   // The outerRadius goes from the middle of the SVG area to the border
-
+        outerRadius = Math.min(clientWidth, clientHeight) / 2;   // The outerRadius goes from the middle of the SVG area to the border
+        if (aux == 1) {
+            $("#graph_2A").empty();
+        }
+        aux = 1;
     const svg = d3.select("#graph_2A")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", clientWidth + margin.left + margin.right)
+        .attr("height", clientHeight + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`);
+        .attr("transform", `translate(${clientWidth / 2 + margin.left}, ${clientHeight / 2 + margin.top})`);
 
     d3.csv("../../csv/sanità/graph_2A.csv").then(function (data) {
 
@@ -83,6 +93,7 @@ $(document).ready(function () {
             .on("mouseover", showTooltip)
             .on("mouseleave", hideTooltip)
     });
+}
 })
 
 

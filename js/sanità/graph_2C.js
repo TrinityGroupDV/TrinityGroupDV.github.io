@@ -1,21 +1,34 @@
 $(document).ready(function () {
 
+
+    let aux = 0;
+    draw()
+    addEventListener("resize", (event) => {
+        draw()
+    })
+
+    function draw() {
+        let clientHeight = document.getElementById('graph_2C').clientHeight-50;
+        let clientWidth = document.getElementById('graph_2C').clientWidth;
+
     //DATI DEL 2020
     // set the dimensions and margins of the graph
-    const width = 680,
-        height = 450,
-        margin = 10;
+    const margin = 10;
 
+        if (aux == 1) {
+            $("#graph_2C").empty();
+        }
+        aux = 1; 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    const radius = Math.min(width, height) / 2 - margin
+    const radius = Math.min(clientWidth, clientHeight) / 2 - margin
 
     // Append the svg object to the div 
     const svg = d3.select("#graph_2C")
         .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", clientWidth)
+        .attr("height", clientHeight)
         .append("g")
-        .attr("transform", `translate(${width / 2},${height / 2})`);
+        .attr("transform", `translate(${clientWidth / 2},${clientHeight / 2})`);
 
     // Parse the Data
     d3.csv("../../csv/sanità/graph_2C.csv").then(function (data) {
@@ -206,6 +219,7 @@ $(document).ready(function () {
                 return (midangle < Math.PI ? 'start' : 'end')
             })
     })
+}
 })
 
 
