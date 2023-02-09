@@ -305,8 +305,15 @@ section.card {
 .box4 {
     float: left;
     width: 100%;
-    height: auto;
-    /* background-color:rgb(255, 132, 0); */
+    height: 450px;
+    margin-bottom: 2%;
+    background-color: rgb(255, 254, 254);
+    border-radius: 20px;
+    box-shadow: 5px 10px 18px #0000002e;
+    /* position: relative;
+    display: inline-block;
+    transition: all 0.4s ease; */
+    padding: 1%;
 }
 
 .box5 {

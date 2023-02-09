@@ -5,7 +5,6 @@ $(document).ready(function () {
     addEventListener("resize", (event) => {
         draw()
     })
-
     function draw() {
 
         let clientHeight = document.getElementById('graph_1A').clientHeight - 50;
