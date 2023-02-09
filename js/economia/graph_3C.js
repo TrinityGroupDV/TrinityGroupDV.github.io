@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //TODO: sistemare bottoni, unità di misura, colori
 
     //LINK: https://ec.europa.eu/eurostat/databrowser/view/STS_SEPR_M__custom_4855705/default/table?lang=en
     //UNITA DI MISURA: Volume index of production (vedi graph 3A)
@@ -7,7 +8,7 @@ $(document).ready(function () {
 
     // set the dimensions and margins of the graph
     const width = 450,
-        height = 450,
+        height = 300,
         margin = 40;
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.

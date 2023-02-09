@@ -1,30 +1,6 @@
 $(document).ready(async function () {
+    //TODO: sistemare tooltip
 
-    /*
-        // List of words
-        var myWords = [
-            { word: "SARS-CoV-2", size: "70" },
-            { word: "COVID-19", size: "23.6" },
-            { word: "China", size: "19.2" },
-            { word: "SARS", size: "12.1" },
-            { word: "Epidemic", size: "9.1" },
-            { word: "Adult", size: "8.1" },
-            { word: "Psychological", size: "8.1" },
-            { word: "Nucleic acids", size: "6.3" },
-            { word: "Infection", size: "5.8" },
-            { word: "Plague", size: "5.8" },
-            { word: "Child", size: "4.3" },
-            { word: "Antiviral drugs", size: "4.3" },
-            { word: "Nursing", size: "4.3" },
-            { word: "Therapeutics", size: "3.2" },
-            { word: "Diagnosis", size: "2.7" },
-            { word: "MERS", size: "2.7" },
-            { word: "Clinical feature", size: "2.7" },
-            { word: "Nurses", size: "2.3" },
-            { word: "Amino acid", size: "2.3" },
-            { word: "Angiotensin", size: "2.3" }
-    
-        ]*/
     var myWords = [
         { word: "SARS-CoV-2", size: "19.7" },
         { word: "COVID-19", size: "9.3" },
@@ -61,23 +37,14 @@ $(document).ready(async function () {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    /* var svg = d3.select("#graph_4D")
-         .append("svg")
-         .attr("width", width + margin.left + margin.right)
-         .attr("height", height + margin.top + margin.bottom)
-         .append("g")
-         .attr("transform", `translate(${margin.left},${margin.top})`);*/
 
     const highlight = function (event, d) {
 
         let legend = d3.select(this).datum()
-        console.log(legend)
-        console.log(legend.size)
-
         var frequency = parseFloat([(legend.size * legend.size) / 210]).toFixed(2)
-
+        svg.selectAll("text.freq4D").remove()
         svg.append("text")
-            .attr("class", "legend")
+            .attr("class", "freq4D")
             .attr("text-anchor", "middle")
             .attr("x", 100)
             .attr("y", 20)

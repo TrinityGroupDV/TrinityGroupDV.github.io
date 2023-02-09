@@ -21,10 +21,10 @@ $(document).ready(function () {
     addEventListener("resize", (event) => {
         draw()
     })
-    function draw() {
 
-        let clientHeight = document.getElementById('graph_3A').clientHeight - 70;
-        let clientWidth = document.getElementById('graph_3A').clientWidth-80;
+    function draw() {
+        let clientHeight = document.getElementById('graph_3A').clientHeight - 100;
+        let clientWidth = document.getElementById('graph_3A').clientWidth - 100;
 
         // set the dimensions and margins of the graph
         const margin = { top: 10, right: 20, bottom: 30, left: 50 };
@@ -32,6 +32,10 @@ $(document).ready(function () {
             $("#graph_3A").empty();
         }
         aux = 1;
+        // append the svg object to the body of the page
+        // set the dimensions and margins of the graph
+
+
         // append the svg object to the body of the page
         const svg = d3.select("#graph_3A")
             .append("svg")
@@ -55,13 +59,13 @@ $(document).ready(function () {
             arrayData[2] = { "2017": data[10].OBS_VALUE, "2018": data[11].OBS_VALUE, "2019": data[12].OBS_VALUE, "2020": data[13].OBS_VALUE, "2021": data[14].OBS_VALUE, country: "France" }
             arrayData[3] = { "2017": data[15].OBS_VALUE, "2018": data[16].OBS_VALUE, "2019": data[17].OBS_VALUE, "2020": data[18].OBS_VALUE, "2021": data[19].OBS_VALUE, country: "Italy" }
             arrayData["columns"] = ["country", "2017", "2018", "2019", "2020", "2021"]
-            console.log(arrayData)
+
 
             const subgroups = arrayData.columns.slice(1)
-            console.log(subgroups)
+
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             const groups = arrayData.map(d => d.country)
-            console.log(groups)
+
 
 
 
@@ -75,7 +79,7 @@ $(document).ready(function () {
                 .style("border-width", "2px")
                 .style("border-radius", "5px")
                 .style("padding", "5px")
-    
+        
             const tooltip = d3.select("#graph_3A")
                 .append("div")
                 .style("opacity", 0)
@@ -117,6 +121,29 @@ $(document).ready(function () {
                 .range(['#EF5350', '#AB47BC', '#FFCA28', '#29B6F6', '#66BB6A'])
 
 
+            //2019
+
+
+            //2020
+
+
+
+            //2021
+
+
+
+
+
+
+
+
+
+
+            //LEGENDA FRANCIA
+
+
+
+
 
             const mouseover = function (event, d) {
 
@@ -136,7 +163,49 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '8.2%')
+                        .attr("y", 60)
+                        .text(arrayData[0][2017])
+                        .style("font-size", '90 %')
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '30.5%')
+                        .attr("y", 30)
+                        .text(arrayData[1][2017])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '52.7%')
+                        .attr("y", 90)
+                        .text(arrayData[2][2017])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '75%')
+                        .attr("y", 25)
+                        .text(arrayData[3][2017])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+
                 }
+
+
+
+
 
                 if (date == "2018") {
 
@@ -152,7 +221,42 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
+
+                    //LEGEND
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '11.4%')
+                        .attr("y", 50)
+                        .text(arrayData[0][2018])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '33.6%')
+                        .attr("y", 20)
+                        .text(arrayData[1][2018])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '55.8%')
+                        .attr("y", 75)
+                        .text(arrayData[2][2018])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '78.1%')
+                        .attr("y", 30)
+                        .text(arrayData[3][2018])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
                 }
+
 
                 // Funziona che evidenziano le barre in base all'anno
                 if (date == "2019") {
@@ -169,6 +273,43 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
+
+                    //LEGEND
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", "14.5%")
+                        .attr("y", 90)
+                        .text(arrayData[0][2019])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '36.9%')
+                        .attr("y", 15)
+                        .text(arrayData[1][2019])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '59%')
+                        .attr("y", 68)
+                        .text(arrayData[2][2019])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '81.2%')
+                        .attr("y", 30.5)
+                        .text(arrayData[3][2019])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
                 }
 
                 if (date == "2020") {
@@ -183,6 +324,43 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
+
+                    //LEGEND
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '39.8%')
+                        .attr("y", 150)
+                        .text(arrayData[1][2020])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '62%')
+                        .attr("y", 275)
+                        .text(arrayData[2][2020])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", "17.5%")
+                        .attr("y", 208)
+                        .text(arrayData[0][2020])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '84.3%')
+                        .attr("y", 155)
+                        .text(arrayData[3][2020])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
                 }
 
                 if (date == "2021") {
@@ -197,13 +375,43 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", "20.5%")
+                        .attr("y", 125)
+                        .text(arrayData[0][2021])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '43%')
+                        .attr("y", 40)
+                        .text(arrayData[1][2021])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '65%')
+                        .attr("y", 190)
+                        .text(arrayData[2][2021])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
+
+                    svg.append("text")
+                        .attr("class", "label_2A")
+                        .attr("text-anchor", "middle")
+                        .attr("x", '87.5%')
+                        .attr("y", 30)
+                        .text(arrayData[3][2021])
+                        .style("font-size", "90%")
+                        .attr("alignment-baseline", "middle")
                 }
-            }
-
-            const mousemove = function (event, d) {
-
-                // FARE
-
             }
 
             const mouseleave = function (event, d) {
@@ -211,6 +419,7 @@ $(document).ready(function () {
                 // Riporto tutte le barre alla stessa opacità
                 d3.selectAll("rect")
                     .style("opacity", 1)
+                svg.selectAll('text.label_2A').remove()
             }
 
             // Variabile ausiliaria per la denominazione dei rect

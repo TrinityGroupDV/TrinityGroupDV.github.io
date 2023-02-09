@@ -1,5 +1,5 @@
 $(document).ready(async function () {
-
+    //TODO: sistemare data, colori
     // Set margin
     const margin = { top: 10, right: 20, bottom: 30, left: 50 },
         width = 1400 - margin.left - margin.right,
@@ -56,17 +56,71 @@ $(document).ready(async function () {
     function drawMap(dataSlider) {
         Promise.all([
             d3.json("../europe.geojson"),
-            d3.json("../../csv/società/graph_4B.json").then(function (data) {
-                //Put data that i need in array based on date
+            d3.csv("../../py/sanità/graph_2D/stay-at-home-covid.csv").then(function (data) {
+                //Get only european country
+                aux_var = {};
+                temp2D = 0;
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].Code === "ESP" ||
+                        data[i].Code === "ITA" ||
+                        data[i].Code === "DEU" ||
+                        data[i].Code === "PRT" ||
+                        data[i].Code === "IRL" ||
+                        data[i].Code === "GBR" ||
+                        data[i].Code === "CHE" ||
+                        data[i].Code === "LUX" ||
+                        data[i].Code === "BEL" ||
+                        data[i].Code === "AUT" ||
+                        data[i].Code === "SVN" ||
+                        data[i].Code === "CZE" ||
+                        data[i].Code === "POL" ||
+                        data[i].Code === "SVK" ||
+                        data[i].Code === "HUN" ||
+                        data[i].Code === "SRB" ||
+                        data[i].Code === "ALB" ||
+                        data[i].Code === "GRC" ||
+                        data[i].Code === "BGR" ||
+                        data[i].Code === "ROU" ||
+                        data[i].Code === "NOR" ||
+                        data[i].Code === "SWE" ||
+                        data[i].Code === "FIN" ||
+                        data[i].Code === "FRA" ||
+                        data[i].Code === "NLD" ||
+                        data[i].Code === "DNK" ||
+                        data[i].Code === "HRV" ||
+                        data[i].Code === "MDA" ||
+                        data[i].Code === "UKR" ||
+                        data[i].Code === "BLR" ||
+                        data[i].Code === "EST" ||
+                        data[i].Code === "LVA" ||
+                        data[i].Code === "RUS" ||
+                        data[i].Code === "LTU" ||
+                        data[i].Code === "BIH" ||
+                        data[i].Code === "OWID_KOS" ||
+                        data[i].Code === "ISL") {
 
-
-                for (let i = 0; i < data.length; i++) {
-                    map.set(data[i].title, data[i].date[dataSlider][1])
+                        // Get only datas on the selected date
+                        if (data[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
+                            data[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
+                            aux_var[temp2D] = data[i]
+                            temp2D++
+                        }
+                    }
                 }
-                date = data[0].date[dataSlider][0]
             })
         ]).then(function (loadData) {
 
+            const colorScale = d3.scaleThreshold()
+                .domain([0, 1, 2, 3, 4])
+                .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
+
+            map.clear()
+            for (let i = 0; i < 37; i++) {
+
+                map.set(aux_var[i].Code, aux_var[i].stay_home_requirements)
+            }
+            date = aux_var[dataSlider].Day
+            date = date.substr(0, 7)
 
             // Write date
             d3.selectAll('text.legend_2D').remove()

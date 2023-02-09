@@ -99,10 +99,10 @@ class CovidDataHelper:
                         else:
                             total_stats = {}
                         # Sommo i dati
-                        sum_dict_data(total_stats, data, "new_deaths")
-                        sum_dict_data(total_stats, data, "new_cases")
+                        sum_dict_data(total_stats, data, "new_deaths_smoothed")
+                        sum_dict_data(total_stats, data, "new_cases_smoothed_per_million")
                         sum_dict_data(total_stats, data, "icu_patients")
-                        sum_dict_data(total_stats, data, "new_vaccinations")
+                        sum_dict_data(total_stats, data, "new_vaccinations_smoothed_per_million")
                         # Imposto i dati
                         self.stats_by_days[data['date']] = total_stats
             # Ordino per data
@@ -130,14 +130,13 @@ class CovidDataHelper:
         for date, value in self.stats_by_days.items():
             csv_helper.add_row([
                 date,
-                value['new_deaths'],
-                value['new_cases'],
+                value['new_deaths_smoothed'],
+                value['new_cases_smoothed_per_million'],
                 value['icu_patients'],
-                value['new_vaccinations']
+                value['new_vaccinations_smoothed_per_million']
             ])
         # Salvo il file csv
         csv_helper.save_file(path)
-
 
 if __name__ == '__main__':
     # Path del file
@@ -150,4 +149,4 @@ if __name__ == '__main__':
     covid_data_helper.set_covid_path(covid_path.name)
 
     # covid_data_helper.create_death_by_days_csv('../../csv/' + 'graph_1A')
-    covid_data_helper.create_stats_europe_by_days_csv('../../csv/' + 'graph_2B')
+    covid_data_helper.create_stats_europe_by_days_csv('../../csv/' + 'graph_2B_2E')

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //TODO: unità di misura, label assi, colori, legenda
 
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 30, bottom: 30, left: 60 },
@@ -94,7 +95,7 @@ $(document).ready(function () {
                 addEventListener("click", function (e) {
 
                     // Delete all previous lines including the axes
-                    svg.selectAll("path").remove();
+                    d3.selectAll("path.line_4A").remove();
                     svg.selectAll("text").remove();
 
 
@@ -117,6 +118,7 @@ $(document).ready(function () {
                     if (buttonItaly.checked) {
                         svg.append("path")
                             .datum(arrayItaly)
+                            .attr("class", "line_4A")
                             .attr("fill", "none")
                             .attr("stroke", "steelblue")
                             .attr("stroke-width", 1.5)
@@ -132,6 +134,7 @@ $(document).ready(function () {
                         svg.append("path")
                             .datum(arrayFrance)
                             .attr("fill", "none")
+                            .attr("class", "line_4A")
                             .attr("stroke", "red")
                             .attr("stroke-width", 1.5)
                             .attr("d", d3.line()
@@ -145,6 +148,7 @@ $(document).ready(function () {
                         svg.append("path")
                             .datum(arraySpain)
                             .attr("fill", "none")
+                            .attr("class", "line_4A")
                             .attr("stroke", "green")
                             .attr("stroke-width", 1.5)
                             .attr("d", d3.line()
@@ -158,6 +162,7 @@ $(document).ready(function () {
                         svg.append("path")
                             .datum(arrayGermany)
                             .attr("fill", "none")
+                            .attr("class", "line_4A")
                             .attr("stroke", "yellow")
                             .attr("stroke-width", 1.5)
                             .attr("d", d3.line()
