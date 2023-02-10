@@ -374,9 +374,16 @@ select {
     color: white;
 }
 
+/* --------------- LABEL ------------- */
 
-
-
+.form-control {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .form-control input[type="checkbox"] {
+    margin-right: 5px;
+  }
 
 
 
@@ -388,41 +395,6 @@ select {
 
 
 /* --------------- DA NODIFICARE------------- */
-
-
-
-
-
-
-.form-control {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 16px;
-  }
-
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    -webkit-appearance: none;
-    appearance: none;
-    border: 2px solid gray;
-    border-radius: 5px;
-    outline: none;
-    box-shadow: none;
-  }
-
-  input[type="checkbox"]:checked {
-    background-color: blue;
-  }
-
-  .form-control label {
-    margin-right: 20px;
-  }
-
-
-
-
-
 /* --------------- ROBA IN PIU' -------------- */
 
 p.singleLine {
