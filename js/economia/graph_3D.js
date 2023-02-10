@@ -4,16 +4,27 @@ $(document).ready(function () {
 
     //FINITO
 
-    // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 30, bottom: 30, left: 60 },
-        width = 600 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+    let aux = 0;
+    draw()
+    addEventListener("resize", (event) => {
+        draw()
+    })
+    function draw() {
 
+        let clientHeight = document.getElementById('graph_3D').clientHeight-30;
+        let clientWidth = document.getElementById('graph_3D').clientWidth-100;
+
+    // set the dimensions and margins of the graph
+    const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+    if (aux == 1) {
+        $("#graph_3D").empty();
+    }
+    aux = 1;
     // append the svg object to the body of the page
     const svg = d3.select("#graph_3D")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", clientWidth + margin.left + margin.right)
+        .attr("height", clientHeight + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -79,16 +90,16 @@ $(document).ready(function () {
                 // Add X axis
                 const x3D = d3.scaleTime()
                     .domain(d3.extent(arrayItaly, function (d) { return d.date; }))
-                    .range([0, width]);
+                    .range([0, clientWidth]);
                 svg.append("g")
-                    .attr("transform", `translate(0, ${height})`)
+                    .attr("transform", `translate(0, ${clientHeight})`)
                     .call(d3.axisBottom(x3D));
 
 
                 // Add Y axis
                 const y3D = d3.scaleLinear()
                     .domain([-5, +5])
-                    .range([height, 0]);
+                    .range([clientHeight, 0]);
                 svg.append("g")
                     .call(d3.axisLeft(y3D));
 
@@ -105,13 +116,13 @@ $(document).ready(function () {
                     // Redraw the axes
                     const x = d3.scaleTime()
                         .domain(d3.extent(arrayItaly, function (d) { return d.date; }))
-                        .range([0, width]);
+                        .range([0, clientWidth]);
                     svg.append("g")
-                        .attr("transform", `translate(0, ${height})`)
+                        .attr("transform", `translate(0, ${clientHeight})`)
                         .call(d3.axisBottom(x));
                     const y = d3.scaleLinear()
                         .domain([-5, +5])
-                        .range([height, 0]);
+                        .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
 
@@ -170,6 +181,7 @@ $(document).ready(function () {
                     }
                 })
             })
+    }
 })
 
 

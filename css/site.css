@@ -176,56 +176,7 @@ section.card {
     width: 60%;
 }
 
-/*----------- GRAPH -----------*/
-
-/* .graph1_l {
-    float: left;
-    width: 60%;
-    height: 450px;
-    background-color: #cd00d4;
-    margin-right: 2%;
-    margin-bottom: 2%;
-}
-.graph1_r {
-    float: right;
-    width: 60%;
-    height: 450px;
-    background-color: #6a0b61;
-    margin-left: 2%;
-    margin-bottom: 2%;
-}
-
-.graph2_l {
-    float: left;
-    width: 49%;
-    height: 450px;
-    background-color: rgb(145, 255, 0);
-    margin-right: 1%;
-    margin-bottom: 2%;
-}
-
-.graph2_r {
-    float: right;
-    width: 49%;
-    height: 450px;
-    margin-left: 1%;
-    background-color: #009d54;
-    margin-bottom: 2%;
-}
-.graph3 {
-    float: left;
-    width: 100%;
-    height: 450px;
-    margin-bottom: 2%;
-    background-color: #ff2f00;
-} */
-
-
-
-
-
-
-
+/*----------- CONTENITORI -----------*/
 
 .box_l {
     float: left;
@@ -253,10 +204,24 @@ section.card {
     transition: all 0.4s ease;
 }
 
+.centerelement{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.box0 {
+    width: auto;
+    height: auto;
+}
 
 .box1 {
     width: 60%;
     height: 450px;
+}
+
+.box1_auto {
+    width: 60%;
+    height: auto;
 }
 
 .box2 {
@@ -264,173 +229,37 @@ section.card {
     height: 450px;
 }
 
+.box2_auto {
+    width: 48%;
+    height: auto;
+}
+
 .box3 {
     width: 100%;
     height: 450px;
 }
-.box4 {
+
+.box3_auto {
     width: 100%;
     height: auto;
-}
-.box5 {
-    width: 100%;
-    height: 800px;
-}
-
-/* 
-.box {
-    float: left;
-    width: 60%;
-    height: auto;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(186, 93, 93);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s ease;
-    padding: 1%;
-}
-.box1_l {
-    float: left;
-    width: 60%;
-    height: 450px;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s ease;
-    padding: 1%;
-}
-
-.box1_r {
-    float: right;
-    width: 60%;
-    height: auto;
-    margin-left: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s ease;
-    padding: 1%;
-}
-
-.box2_l {
-    float: left;
-    width: 48%;
-    height: 450px;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s ease;
-    padding: 1%;
-}
-
-.box2_r {
-    float: right;
-    width: 48%;
-    height: 450px;
-    margin-left: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    position: relative;
-    display: inline-block;
-    transition: all 0.4s ease;
-    padding: 1%;
-
-} 
-.box3 {
-    float: left;
-    width: 100%;
-    height: auto;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    padding: 1%;
 }
 
 .box4 {
-    float: left;
-    width: 100%;
-    height: 450px;
-    margin-bottom: 2%;
-    background-color: rgb(255, 254, 254);
-    border-radius: 20px;
-    box-shadow: 5px 10px 18px #0000002e;
-    padding: 1%;
-}
-
-.box5 {
-    float: left;
     width: 100%;
     height: 800px;
 }
-
-.box6 {
-    float: left;
-    width: 100%;
-    height: auto;
-    background-color:rgb(0, 21, 255);
-}
-.box7 {
-    float: left;
-    width: 100%;
-    height: 500px;
-    background-color:rgb(0, 21, 255);
-}
-
-
- */
-
-
-
-
-
-
-
-
-
 
 /*----------- HOVER-GRAPH -----------*/
-
-div.box1_l:hover {
+div.box_l:hover {
     /* di quanto ingrandisce */
-    transform: scale(1.3);
+    transform: scale(1.1);
     /* transform: translateY(50%) translatex(50%); */
     z-index: 1;
 }
 
-div.box1_r:hover {
+div.box_r:hover {
     /* di quanto ingrandisce */
-    transform: scale(1.3);
-    /* transform: translateY(50%) translatex(50%); */
-    z-index: 1;
-}
-
-div.box2_l:hover {
-    /* di quanto ingrandisce */
-    transform: scale(1.3);
-    /* transform: translateY(50%) translatex(50%); */
-    z-index: 1;
-}
-
-div.box2_r:hover {
-    /* di quanto ingrandisce */
-    transform: scale(1.3);
+    transform: scale(1.1);
     /* transform: translateY(50%) translatex(50%); */
     z-index: 1;
 }
@@ -444,12 +273,6 @@ select {
     border-radius: 9px;
     font-size: 25px;
 }
-
-
-
-
-
-
 
 /*---------------SLIDE BAR------------*/
 .slidecontainer {
@@ -513,6 +336,43 @@ select {
     /* Cursor on hover */
 }
 
+/*-------------------BOTTONI-------------------*/
+.button {
+    /* border: none; */
+    /* color: white; */
+    padding: 1% 4%;
+    border-radius: 20px;
+    background-color: rgb(255, 254, 254);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button2 {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color: white;
+}
 
 
 
@@ -524,28 +384,46 @@ select {
 
 
 
+
+
+
+/* --------------- DA NODIFICARE------------- */
+
+
+
+
+
+
+.form-control {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: blue;
+  }
+
+  .form-control label {
+    margin-right: 20px;
+  }
 
 
 
 
 
 /* --------------- ROBA IN PIU' -------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 p.singleLine {
     text-align: justify;
@@ -587,63 +465,4 @@ div.graph:hover {
     /* transform: translateY(50%) translatex(50%); */
     z-index: 1;
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*-------------------BOTTONI-------------------*/
-.button {
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.button1 {
-    background-color: white;
-    color: black;
-    border: 2px solid #4CAF50;
-}
-
-.button1:hover {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.button2 {
-    background-color: white;
-    color: black;
-    border: 2px solid #008CBA;
-}
-
-.button2:hover {
-    background-color: #008CBA;
-    color: white;
 }
