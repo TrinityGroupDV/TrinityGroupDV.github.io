@@ -16,6 +16,8 @@ $(document).ready(async function () {
         }
         aux = 1;
         // Append the svg object to the body of the page
+        let slider = document.querySelector("input[type='range']");
+        slider.value = 0
 
         // Append the svg object to the body of the page
         const svg = d3.select("#graph_2D")
@@ -180,6 +182,7 @@ $(document).ready(async function () {
                     .range(["grey", "#2282FF", "#FAFF22", "#FF3B22"])
 
                 map.clear()
+                console.log("dentro")
 
                 // Set the map 
                 for (let i = 0; i < 37; i++) {

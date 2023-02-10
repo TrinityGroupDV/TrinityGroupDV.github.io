@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // MODIFICA: MANCA TOOLTIP
+    //TODO: rivedere il tooltip
 
     //LINK: https://ec.europa.eu/eurostat/databrowser/view/TET00001/default/table?lang=en&category=ext_go.ext_go_agg.ext_go_lti.ext_go_lti_int
     //UNITA DI MISURA:

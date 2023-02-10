@@ -81,8 +81,8 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         //RIDISEGNO SOPRA LA LINEA EVIDENZIATA
                         svg.selectAll(".line")
@@ -94,7 +94,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -111,8 +111,8 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .style("stroke", "lightgrey")
-                            .style("opacity", "1")
-                            .style("stroke-width", "3");
+                            .style("opacity", 0.7)
+                            .style("stroke-width", 1);
 
                         svg.selectAll(".line")
                             .data(mapInflation)
@@ -123,7 +123,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 2)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })

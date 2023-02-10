@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    //TODO: LE LINEE CON I NUMERI ESCONO FUORI
 
     let aux = 0;
     draw()
