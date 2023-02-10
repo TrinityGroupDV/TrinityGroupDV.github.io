@@ -1,6 +1,8 @@
 $(document).ready(function () {
     //TODO: unità di misura, label assi, colori, legenda
 
+    //LINK: https://ec.europa.eu/eurostat/databrowser/view/ilc_li01/default/line?lang=en
+
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 30, bottom: 30, left: 60 },
         width = 600 - margin.left - margin.right,
