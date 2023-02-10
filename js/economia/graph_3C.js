@@ -6,21 +6,32 @@ $(document).ready(function () {
 
     //FINITO
 
-    // set the dimensions and margins of the graph
-    const width = 450,
-        height = 300,
-        margin = 40;
+    let aux = 0;
+    draw()
+    addEventListener("resize", (event) => {
+        draw()
+    })
+    function draw() {
 
+        let clientHeight = document.getElementById('graph_3C').clientHeight;
+        let clientWidth = document.getElementById('graph_3C').clientWidth-10;
+
+    // set the dimensions and margins of the graph
+    const margin = 40;
+        if (aux == 1) {
+            $("#graph_3C").empty();
+        }
+        aux = 1;
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    const radius = Math.min(width, height) / 2 - margin;
+    const radius = Math.min(clientWidth, clientHeight) / 2 - margin;
 
     // append the svg object to the div called 'my_dataviz'
     const svg = d3.select("#graph_3C")
         .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", clientWidth)
+        .attr("height", clientHeight)
         .append("g")
-        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+        .attr("transform", `translate(${clientWidth / 2}, ${clientHeight / 2})`);
 
     d3.csv("../../csv/economia/graph_3C.csv").then(function (data) {
 
@@ -116,7 +127,7 @@ $(document).ready(function () {
 
         // Initialize the plot with the first dataset
         update(data1)
-    })
+    })}
 })
 
 
