@@ -8,11 +8,11 @@ $(document).ready(function () {
     })
 
     function draw() {
-        let clientHeight = document.getElementById('graph_3B').clientHeight - 60;
+        let clientHeight = document.getElementById('graph_3B').clientHeight - 85;
         let clientWidth = document.getElementById('graph_3B').clientWidth - 120;
 
         // set the dimensions and margins of the graph
-        const margin = { top: 10, right: 20, bottom: 30, left: 50 };
+        const margin = { top: 10, right: 20, bottom: 40, left: 65 };
         if (aux == 1) {
             $("#graph_3B").empty();
         }
@@ -34,6 +34,24 @@ $(document).ready(function () {
         let arrayInflation = [];
         let mapGDP = new Map();
         let mapInflation = new Map();
+
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "-6%")
+            .attr("y", 130)
+            .text("Percentage [%]")
+            .style("font-size", "100%")
+            .attr('transform', 'rotate(270 ' + 10 + ' ' + 180 + ')')
+            .attr("alignment-baseline", "middle")
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "40%")
+            .attr("y", 400)
+            .text("Date")
+            .style("font-size", "100%")
+            .attr("alignment-baseline", "middle")
+
+
 
         // Leggo i dati
         d3.csv("../../csv/economia/graph_3B.csv",
@@ -70,6 +88,8 @@ $(document).ready(function () {
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
+
+
 
                     // Funzioni che gestiscono i tooltip
                     // EVIDENZIARE GDP
@@ -218,21 +238,54 @@ $(document).ready(function () {
 
 
                     //LEGEND
+                    //GDP
                     svg.append("rect")
-                        .attr("x", -75)
-                        .attr("y", -40)
-                        .attr('width', 50)
-                        .attr('height', 60)
+                        .attr("x", "60%")
+                        .attr("y", 0)
+                        .attr('width', "6%")
+                        .attr('height', 5)
                         .style("fill", "red")
                         .on("mouseover", highlightGDP)
                         .on("mouseleave", doNotHighlight)
 
+                    svg.append("text")
+                        .attr("x", "67%")
+                        .attr("y", 1)
+                        .text("GDP (Percentage change")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightGDP)
+                        .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "67%")
+                        .attr("y", 15)
+                        .text("on previous period)")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightGDP)
+                        .on("mouseleave", doNotHighlight)
+
+                    //INFLATION
                     svg.append("rect")
-                        .attr("x", -75)
-                        .attr("y", 30)
-                        .attr('width', 50)
-                        .attr('height', 20)
+                        .attr("x", "60%")
+                        .attr("y", 35)
+                        .attr('width', "6%")
+                        .attr('height', 5)
                         .style("fill", "blue")
+                        .on("mouseover", highlightInflation)
+                        .on("mouseleave", doNotHighlight)
+
+                    svg.append("text")
+                        .attr("x", "67%")
+                        .attr("y", 35)
+                        .text("Inflation")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightInflation)
+                        .on("mouseleave", doNotHighlight)
+
+                    svg.append("text")
+                        .attr("x", "67%")
+                        .attr("y", 49)
+                        .text("(Percent change)")
+                        .style("font-size", "80%")
                         .on("mouseover", highlightInflation)
                         .on("mouseleave", doNotHighlight)
 

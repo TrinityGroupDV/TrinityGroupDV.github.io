@@ -164,6 +164,7 @@ $(document).ready(async function () {
                             data[i].Code === "LTU" ||
                             data[i].Code === "BIH" ||
                             data[i].Code === "OWID_KOS" ||
+                            data[i].Code === "MNE" ||
                             data[i].Code === "ISL") {
 
                             // Get only datas on the selected date
@@ -182,15 +183,19 @@ $(document).ready(async function () {
                     .range(["grey", "#2282FF", "#FAFF22", "#FF3B22"])
 
                 map.clear()
-                console.log("dentro")
+
+                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", restrictions_internal_movements: -1 }
+                aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", restrictions_internal_movements: -1 }
+                aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", restrictions_internal_movements: -1 }
 
                 // Set the map 
-                for (let i = 0; i < 37; i++) {
+                for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].restrictions_internal_movements)
                 }
                 date = aux_var[dataSlider].Day.toString()
                 date = date.substr(0, 7)
+
 
                 // Write date
                 svg.selectAll('text.legend_2D').remove()
@@ -373,13 +378,20 @@ $(document).ready(async function () {
                     .domain([0, 1, 2, 3, 4])
                     .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
 
+                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", testing_policy: "-1" }
+                aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", testing_policy: "-1" }
+                aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", testing_policy: "-1" }
+
+
                 map.clear()
-                for (let i = 0; i < 37; i++) {
+                for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].testing_policy)
                 }
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
+
+
                 // Write date
                 d3.selectAll('text.legend_2D').remove()
                 svg.append("text")
@@ -546,8 +558,13 @@ $(document).ready(async function () {
                     .domain([0, 1, 2, 3, 4, 5])
                     .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22", "#00ff1a"])
 
+                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", facial_coverings: -1 }
+                aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", facial_coverings: -1 }
+                aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", facial_coverings: -1 }
+
+                console.log(aux_var)
                 map.clear()
-                for (let i = 0; i < 37; i++) {
+                for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].facial_coverings)
                 }

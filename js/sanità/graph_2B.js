@@ -5,11 +5,11 @@ $(document).ready(function () {
         draw()
     })
     function draw() {
-        let clientHeight = document.getElementById('graph_2B').clientHeight - 50;
+        let clientHeight = document.getElementById('graph_2B').clientHeight - 90;
         let clientWidth = document.getElementById('graph_2B').clientWidth - 100;
 
 
-        const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+        const margin = { top: 10, right: 30, bottom: 50, left: 70 };
 
         if (aux == 1) {
             $("#graph_2B").empty();
@@ -29,6 +29,23 @@ $(document).ready(function () {
         let mapDeath = new Map();
         let mapIcu = new Map();
         let mapCases = new Map();
+
+        //Label
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "-10%")
+            .attr("y", 90)
+            .text("Death [unit]")
+            .style("font-size", "100%")
+            .attr('transform', 'rotate(270 ' + 10 + ' ' + 160 + ')')
+            .attr("alignment-baseline", "middle")
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "35%")
+            .attr("y", 400)
+            .text("Date")
+            .style("font-size", "100%")
+            .attr("alignment-baseline", "middle")
 
         // Leggo i dati
         d3.csv("../../csv/sanità/graph_2B.csv",
@@ -308,7 +325,7 @@ $(document).ready(function () {
                     //LEGEND
                     //DEATH
                     svg.append("rect")
-                        .attr("x", "67%")
+                        .attr("x", "60%")
                         .attr("y", -7)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -316,7 +333,7 @@ $(document).ready(function () {
                         .on("mouseover", highlightDeath)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "74%")
+                        .attr("x", "67%")
                         .attr("y", 0)
                         .text("Death")
                         .style("font-size", "90%")
@@ -324,7 +341,7 @@ $(document).ready(function () {
                         .on("mouseleave", doNotHighlight)
                     //CASES
                     svg.append("rect")
-                        .attr("x", "67%")
+                        .attr("x", "60%")
                         .attr("y", 25)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -332,14 +349,14 @@ $(document).ready(function () {
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "74%")
+                        .attr("x", "67%")
                         .attr("y", 27)
                         .text("Cases every 10")
                         .style("font-size", "80%")
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "74%")
+                        .attr("x", "67%")
                         .attr("y", 40)
                         .text("million people")
                         .style("font-size", "80%")
@@ -348,7 +365,7 @@ $(document).ready(function () {
 
                     //ICU
                     svg.append("rect")
-                        .attr("x", "67%")
+                        .attr("x", "60%")
                         .attr("y", 56)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -356,7 +373,7 @@ $(document).ready(function () {
                         .on("mouseover", highlightICU)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "74%")
+                        .attr("x", "67%")
                         .attr("y", 63)
                         .text("Weekly ICU patient")
                         .style("font-size", "80%")

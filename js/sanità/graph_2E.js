@@ -7,10 +7,10 @@ $(document).ready(function () {
     })
     function draw() {
 
-        let clientHeight = document.getElementById('graph_2E').clientHeight - 50;
+        let clientHeight = document.getElementById('graph_2E').clientHeight - 80;
         let clientWidth = document.getElementById('graph_2E').clientWidth - 150;
 
-        const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+        const margin = { top: 10, right: 30, bottom: 50, left: 80 };
 
         if (aux == 1) {
             $("#graph_2E").empty();
@@ -36,6 +36,8 @@ $(document).ready(function () {
 
 
 
+
+
         // Leggo i dati
         d3.csv("../../csv/sanità/graph_2E.csv",
 
@@ -53,8 +55,6 @@ $(document).ready(function () {
                         arrayVaccines.push({ "date": data[i].date, "n": data[i].vaccines / 100 })//VERDI VACCINI OGNI 100 MILIONI DI ABITANTI
                         arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })//BLU CASI OGNI 10 MILIONI DI ABITANTI
                     }
-
-
 
                     //Inserisco i dati dentro alle mappe
                     mapDeath.set("death", arrayDeath)
@@ -75,6 +75,7 @@ $(document).ready(function () {
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
+
 
                     // Funzioni che gestiscono i tooltip
                     // EVIDENZIARE DEATH
@@ -155,7 +156,7 @@ $(document).ready(function () {
                     }
 
                     // EVIDENZIARE VACCINES
-                    const highlightICU = function (event, d) {
+                    const highlightVaccines = function (event, d) {
 
                         d3.selectAll("path.death1")
                             .transition()
@@ -249,7 +250,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(+d.n); })
                                     (d[1])
                             })
-                            .on("mouseover", highlightICU)
+                            .on("mouseover", highlightVaccines)
                             .on("mouseleave", doNotHighlight)
                     }
 
@@ -305,37 +306,114 @@ $(document).ready(function () {
                                 .y(function (d) { return y(+d.n); })
                                 (d[1])
                         })
-                        .on("mouseover", highlightICU)
+                        .on("mouseover", highlightVaccines)
                         .on("mouseleave", doNotHighlight)
 
+                    let width = window.innerWidth;
+                    let fontSize;
+
+                    /*  if (width < 1400) {
+                          fontSize = "15";
+                      } else if (width < 1800) {
+                          fontSize = 18;
+                      } else if (width < 2000) {
+                          fontSize = 20;
+                      }
+                      else {
+                          fontSize = 25;
+                      }
+  
+                      console.log(width)
+                      let font = fontSize + "px"
+                      console.log(font)
+  
+                      console.log(width)*/
+
+                    //Label
+                    svg.append("text")
+                        .attr("class", "legend1B")
+                        .attr("x", "-4%")
+                        .attr("y", 100)
+                        .text("Death [unit]")
+                        .style("font-size", "90%")
+                        .attr('transform', 'rotate(270 ' + 10 + ' ' + 170 + ')')
+                        .attr("alignment-baseline", "middle")
+                    svg.append("text")
+                        .attr("class", "legend1B")
+                        .attr("x", "45%")
+                        .attr("y", 410)
+                        .text("Date")
+                        .style("font-size", "100%")
+                        .attr("alignment-baseline", "middle")
+
+
                     //LEGEND
+                    //DEATH
                     svg.append("rect")
-                        .attr("x", -75)
-                        .attr("y", -40)
-                        .attr('width', 50)
-                        .attr('height', 60)
+                        .attr("x", "75%")
+                        .attr("y", -7)
+                        .attr('width', "6%")
+                        .attr('height', 5)
                         .style("fill", "red")
                         .on("mouseover", highlightDeath)
                         .on("mouseleave", doNotHighlight)
-
+                    svg.append("text")
+                        .attr("x", "82%")
+                        .attr("y", 0)
+                        .text("Death")
+                        .style("font-size", "90%")
+                        .on("mouseover", highlightDeath)
+                        .on("mouseleave", doNotHighlight)
+                    //CASES
                     svg.append("rect")
-                        .attr("x", -75)
-                        .attr("y", 30)
-                        .attr('width', 50)
-                        .attr('height', 20)
+                        .attr("x", "75%")
+                        .attr("y", 25)
+                        .attr('width', "6%")
+                        .attr('height', 5)
                         .style("fill", "blue")
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "82%")
+                        .attr("y", 27)
+                        .text("Cases every 10")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightCases)
+                        .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "82%")
+                        .attr("y", 40)
+                        .text("million people")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightCases)
+                        .on("mouseleave", doNotHighlight)
 
+                    //ICU
                     svg.append("rect")
-                        .attr("x", -75)
-                        .attr("y", 60)
-                        .attr('width', 50)
-                        .attr('height', 20)
+                        .attr("x", "75%")
+                        .attr("y", 56)
+                        .attr('width', "6%")
+                        .attr('height', 5)
                         .style("fill", "green")
-                        .on("mouseover", highlightICU)
+                        .on("mouseover", highlightVaccines)
+                        .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "82%")
+                        .attr("y", 57)
+                        .text("Vaccines every")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightVaccines)
+                        .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "82%")
+                        .attr("y", 70)
+                        .text("100 million people")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightVaccines)
                         .on("mouseleave", doNotHighlight)
                 })
+
+
     }
 })
 

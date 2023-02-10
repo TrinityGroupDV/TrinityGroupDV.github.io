@@ -7,11 +7,11 @@ $(document).ready(function () {
     })
     function draw() {
 
-        let clientHeight = document.getElementById('graph_1A').clientHeight - 50;
-        let clientWidth = document.getElementById('graph_1A').clientWidth - 100;
+        let clientHeight = document.getElementById('graph_1A').clientHeight - 90;
+        let clientWidth = document.getElementById('graph_1A').clientWidth - 120;
 
         // set the dimensions and margins of the graph
-        const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+        const margin = { top: 10, right: 30, bottom: 50, left: 70 };
         if (aux == 1) {
             $("#graph_1A").empty();
         }
@@ -23,6 +23,23 @@ $(document).ready(function () {
             .attr("height", clientHeight + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        //Label
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "-4%")
+            .attr("y", 110)
+            .text("Death [unit]")
+            .style("font-size", "100%")
+            .attr('transform', 'rotate(270 ' + 10 + ' ' + 180 + ')')
+            .attr("alignment-baseline", "middle")
+        svg.append("text")
+            .attr("class", "legend1B")
+            .attr("x", "40%")
+            .attr("y", 400)
+            .text("Date")
+            .style("font-size", "100%")
+            .attr("alignment-baseline", "middle")
 
         let dataProva = [];
 
