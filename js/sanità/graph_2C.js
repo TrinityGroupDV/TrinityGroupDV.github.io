@@ -49,8 +49,8 @@ $(document).ready(function () {
 
             //Color palette
             const color = d3.scaleOrdinal()
-                .domain(["a", "b", "c", "d", "e", "f", "g", "h"])
-                .range(d3.schemeDark2);
+                .domain(["65-74", "74+", "0-24", "25-44", "45-64"])
+                .range(["blue", "green", "red", "yellow", "pink"]);
 
             // Compute the position of each group on the pie:
             const pie = d3.pie()
@@ -101,7 +101,7 @@ $(document).ready(function () {
                     .attr("class", "legend")
                     .attr("text-anchor", "middle")
                     .attr("y", -190)
-                    .text(legend.data[1] + " death" + " - " + ((legend.data[1] / total) * 100).toFixed(2) + "%")
+                    .text(((legend.data[1] / total) * 100).toFixed(2) + "%")
                     .style("font-size", "18px")
                     .attr("alignment-baseline", "middle")
 
@@ -126,7 +126,7 @@ $(document).ready(function () {
                     .attr('d', arc)
                     .attr('fill', d => color(d.data[1]))
                     .attr("stroke", "black")
-                    .style("stroke-width", "1px")
+                    .style("stroke-width", "0px")
                     .style("opacity", 0.7)
                     .on("mouseover", highlight)
                     .on("mouseleave", doNotHighlight)
@@ -178,7 +178,7 @@ $(document).ready(function () {
                 .attr('d', arc)
                 .attr('fill', d => color(d.data[1]))
                 .attr("stroke", "black")
-                .style("stroke-width", "1px")
+                .style("stroke-width", 0)
                 .style("opacity", 0.7)
                 .on("mouseover", highlight)
                 .on("mouseleave", doNotHighlight)
