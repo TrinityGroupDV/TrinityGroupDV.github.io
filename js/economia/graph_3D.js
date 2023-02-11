@@ -11,11 +11,12 @@ $(document).ready(function () {
     })
     function draw() {
 
-        let clientHeight = document.getElementById('graph_3D').clientHeight-30;
-        let clientWidth = document.getElementById('graph_3D').clientWidth-100;
+        let clientHeight = document.getElementById('graph_3D').clientHeight-40;
+        let clientWidth = document.getElementById('graph_3D').clientWidth-70;
 
     // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+    const margin = { top: 10, right: 30, bottom: 30, left: 40 };
+    
     if (aux == 1) {
         $("#graph_3D").empty();
     }
@@ -44,8 +45,6 @@ $(document).ready(function () {
 
             // Now I can use this dataset:
             function (data) {
-
-
                 // Auxiliary variables for construct the data
                 let arrayItaly = [];
                 let arrayFrance = [];

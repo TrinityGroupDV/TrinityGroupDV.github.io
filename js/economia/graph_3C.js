@@ -14,7 +14,7 @@ $(document).ready(function () {
     function draw() {
 
         let clientHeight = document.getElementById('graph_3C').clientHeight;
-        let clientWidth = document.getElementById('graph_3C').clientWidth - 10;
+        let clientWidth = document.getElementById('graph_3C').clientWidth;
 
         // set the dimensions and margins of the graph
         const margin = 40;
