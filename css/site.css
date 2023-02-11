@@ -252,16 +252,12 @@ section.card {
 
 /*----------- HOVER-GRAPH -----------*/
 div.box_l:hover {
-    /* di quanto ingrandisce */
     transform: scale(1.1);
-    /* transform: translateY(50%) translatex(50%); */
     z-index: 1;
 }
 
 div.box_r:hover {
-    /* di quanto ingrandisce */
     transform: scale(1.1);
-    /* transform: translateY(50%) translatex(50%); */
     z-index: 1;
 }
 
@@ -299,10 +295,6 @@ select {
     -webkit-transition: .2s;
     /* 0.2 seconds transition on hover */
     transition: opacity .2s;
-}
-
-.slidecontainer#rangeContainer4B {
-    bottom: 50px;
 }
 
 /* Mouse-over effects */
