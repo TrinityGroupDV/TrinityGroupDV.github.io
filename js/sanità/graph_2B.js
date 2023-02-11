@@ -66,7 +66,7 @@ $(document).ready(function () {
                     for (i = 0; i < (data.length / 7) - 1; i++) {
                         arrayIcu.push({
                             "date": data[i * 7].date, "n":
-                                Number(data[i * 7].icu)
+                                Number(data[i * 7].icu) / 7.46
 
                         })
                     }
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
                     // Add Y 
                     const y = d3.scaleLinear()
-                        .domain([0, 27000])
+                        .domain([0, 15000])
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
@@ -325,7 +325,7 @@ $(document).ready(function () {
                     //LEGEND
                     //DEATH
                     svg.append("rect")
-                        .attr("x", "60%")
+                        .attr("x", "70%")
                         .attr("y", -7)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -333,15 +333,15 @@ $(document).ready(function () {
                         .on("mouseover", highlightDeath)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "67%")
+                        .attr("x", "77%")
                         .attr("y", 0)
-                        .text("Death")
+                        .text("Weekly deaths")
                         .style("font-size", "90%")
                         .on("mouseover", highlightDeath)
                         .on("mouseleave", doNotHighlight)
                     //CASES
                     svg.append("rect")
-                        .attr("x", "60%")
+                        .attr("x", "70%")
                         .attr("y", 25)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -349,23 +349,23 @@ $(document).ready(function () {
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "67%")
+                        .attr("x", "77%")
                         .attr("y", 27)
-                        .text("Cases every 10")
+                        .text("Weekly cases every")
                         .style("font-size", "80%")
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "67%")
+                        .attr("x", "77%")
                         .attr("y", 40)
-                        .text("million people")
+                        .text("100'000 people")
                         .style("font-size", "80%")
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
 
                     //ICU
                     svg.append("rect")
-                        .attr("x", "60%")
+                        .attr("x", "70%")
                         .attr("y", 56)
                         .attr('width', "6%")
                         .attr('height', 5)
@@ -373,9 +373,16 @@ $(document).ready(function () {
                         .on("mouseover", highlightICU)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
-                        .attr("x", "67%")
-                        .attr("y", 63)
+                        .attr("x", "77%")
+                        .attr("y", 58)
                         .text("Weekly ICU patient")
+                        .style("font-size", "80%")
+                        .on("mouseover", highlightICU)
+                        .on("mouseleave", doNotHighlight)
+                    svg.append("text")
+                        .attr("x", "77%")
+                        .attr("y", 71)
+                        .text("every 100 million people")
                         .style("font-size", "80%")
                         .on("mouseover", highlightICU)
                         .on("mouseleave", doNotHighlight)

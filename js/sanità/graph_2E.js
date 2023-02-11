@@ -52,18 +52,23 @@ $(document).ready(function () {
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
                         arrayDeath.push({ "date": data[i].date, "n": data[i].death }) //ROSSO
-                        arrayVaccines.push({ "date": data[i].date, "n": data[i].vaccines })//VERDI VACCINI OGNI 10 MILIONI DI ABITANTI
-                        arrayCases.push({ "date": data[i].date, "n": data[i].case })//BLU CASI OGNI 10 MILIONI DI ABITANTI
+                        arrayVaccines.push({ "date": data[i].date, "n": data[i].vaccines / 20 })//VERDI VACCINI OGNI 10 MILIONI DI ABITANTI
+                        arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })//BLU CASI OGNI 10 MILIONI DI ABITANTI
                     }
                     let max = 0;
                     for (let i = 0; i < 1100; i++) {
-                        arrayCases[i].n > max
-                        max = arrayCases[i]
+                        if (Number(arrayCases[i].n) > max) {
+                            max = Number(arrayCases[i].n)
+                            // console.log(max)
+
+                        }
+
+
 
                     }
 
 
-                    console.log(arrayCases)
+                    console.log(max)
 
                     //Inserisco i dati dentro alle mappe
                     mapDeath.set("death", arrayDeath)
@@ -80,7 +85,7 @@ $(document).ready(function () {
 
                     // Add Y 
                     const y = d3.scaleLinear()
-                        .domain([0, 500000])
+                        .domain([0, 25000])
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
@@ -369,7 +374,7 @@ $(document).ready(function () {
                     svg.append("text")
                         .attr("x", "82%")
                         .attr("y", 0)
-                        .text("Death")
+                        .text("Weekly deaths")
                         .style("font-size", "90%")
                         .on("mouseover", highlightDeath)
                         .on("mouseleave", doNotHighlight)
@@ -385,7 +390,7 @@ $(document).ready(function () {
                     svg.append("text")
                         .attr("x", "82%")
                         .attr("y", 27)
-                        .text("Cases every ")
+                        .text("Weekly cases every ")
                         .style("font-size", "80%")
                         .on("mouseover", highlightCases)
                         .on("mouseleave", doNotHighlight)
@@ -409,14 +414,14 @@ $(document).ready(function () {
                     svg.append("text")
                         .attr("x", "82%")
                         .attr("y", 57)
-                        .text("Vaccines every")
+                        .text("Weekly vaccines every")
                         .style("font-size", "80%")
                         .on("mouseover", highlightVaccines)
                         .on("mouseleave", doNotHighlight)
                     svg.append("text")
                         .attr("x", "82%")
                         .attr("y", 70)
-                        .text("30'000 people")
+                        .text("50'000 people")
                         .style("font-size", "80%")
                         .on("mouseover", highlightVaccines)
                         .on("mouseleave", doNotHighlight)
