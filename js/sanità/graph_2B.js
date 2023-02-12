@@ -269,7 +269,7 @@ $(document).ready(function () {
 
                     // Color palette
                     const color = d3.scaleOrdinal()
-                        .range(['#e41a1c', '#377eb8', '#4daf4a'])
+                        .range(['#ff0831', '#08c0ff', '#35bc35'])
 
                     // Draw DEATH
                     svg.selectAll(".line")

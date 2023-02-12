@@ -114,7 +114,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 2)
+                            .attr("stroke-width", 4)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -143,7 +143,7 @@ $(document).ready(function () {
                             .delay("100")
                             .duration("10")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 2)
+                            .attr("stroke-width", 4)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -170,7 +170,7 @@ $(document).ready(function () {
                             .attr("class", "gdp")
                             .attr("fill", "none")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 3)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -187,7 +187,7 @@ $(document).ready(function () {
                             .attr("class", "inflation")
                             .attr("fill", "none")
                             .attr("stroke", function (d) { return color(d[0]) })
-                            .attr("stroke-width", 1.5)
+                            .attr("stroke-width", 3)
                             .attr("d", function (d) {
                                 return d3.line()
                                     .x(function (d) { return x(d.date); })
@@ -200,7 +200,7 @@ $(document).ready(function () {
 
                     // Color palette
                     const color = d3.scaleOrdinal()
-                        .range(['#e41a1c', '#377eb8', '#4daf4a'])
+                        .range(['#ff3e6b', '#46d366'])
 
                     // Draw GDP
                     svg.selectAll(".line")
@@ -209,7 +209,7 @@ $(document).ready(function () {
                         .attr("class", "gdp")
                         .attr("fill", "none")
                         .attr("stroke", function (d) { return color(d[0]) })
-                        .attr("stroke-width", 1.5)
+                        .attr("stroke-width", 3)
                         .attr("d", function (d) {
                             return d3.line()
                                 .x(function (d) { return x(d.date); })
@@ -226,7 +226,7 @@ $(document).ready(function () {
                         .attr("class", "inflation")
                         .attr("fill", "none")
                         .attr("stroke", function (d) { return color(d[0]) })
-                        .attr("stroke-width", 1.5)
+                        .attr("stroke-width", 3)
                         .attr("d", function (d) {
                             return d3.line()
                                 .x(function (d) { return x(d.date); })

@@ -12,7 +12,7 @@ $(document).ready(function () {
     })
     function draw() {
 
-        let clientHeight = document.getElementById('graph_4A').clientHeight -40;
+        let clientHeight = document.getElementById('graph_4A').clientHeight - 40;
         let clientWidth = document.getElementById('graph_4A').clientWidth - 70;
 
         // set the dimensions and margins of the graph
@@ -136,8 +136,8 @@ $(document).ready(function () {
                                 .datum(arrayItaly)
                                 .attr("class", "line_4A")
                                 .attr("fill", "none")
-                                .attr("stroke", "steelblue")
-                                .attr("stroke-width", 1.5)
+                                .attr("stroke", "#ff3e6b")
+                                .attr("stroke-width", 2)
                                 .attr("d", d3.line()
                                     .x(function (d) { return x(d.date) })
                                     .y(function (d) { return y(d.poverty) })
@@ -151,8 +151,8 @@ $(document).ready(function () {
                                 .datum(arrayFrance)
                                 .attr("fill", "none")
                                 .attr("class", "line_4A")
-                                .attr("stroke", "red")
-                                .attr("stroke-width", 1.5)
+                                .attr("stroke", "#ffbf29")
+                                .attr("stroke-width", 2)
                                 .attr("d", d3.line()
                                     .x(function (d) { return x(d.date) })
                                     .y(function (d) { return y(d.poverty) })
@@ -165,8 +165,8 @@ $(document).ready(function () {
                                 .datum(arraySpain)
                                 .attr("fill", "none")
                                 .attr("class", "line_4A")
-                                .attr("stroke", "green")
-                                .attr("stroke-width", 1.5)
+                                .attr("stroke", "#46d366")
+                                .attr("stroke-width", 2)
                                 .attr("d", d3.line()
                                     .x(function (d) { return x(d.date) })
                                     .y(function (d) { return y(d.poverty) })
@@ -179,17 +179,18 @@ $(document).ready(function () {
                                 .datum(arrayGermany)
                                 .attr("fill", "none")
                                 .attr("class", "line_4A")
-                                .attr("stroke", "yellow")
-                                .attr("stroke-width", 1.5)
+                                .attr("stroke", "#00d6ff")
+                                .attr("stroke-width", 2)
                                 .attr("d", d3.line()
                                     .x(function (d) { return x(d.date) })
                                     .y(function (d) { return y(d.poverty) })
                                 )
                         }
                     })
-                })}
+                })
+    }
 
-    })
+})
 
 
 

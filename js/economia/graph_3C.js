@@ -47,7 +47,7 @@ $(document).ready(function () {
             // set the color scale
             const color = d3.scaleOrdinal()
                 .domain(["a", "b", "c", "d", "e", "f"])
-                .range(d3.schemeDark2);
+                .range(["#46d366", "#ff3e6b", "#ffbf29", "#00d6ff", "#a862ea"]);
 
 
             $("button").click(function () {
@@ -93,7 +93,7 @@ $(document).ready(function () {
                     .duration(1000)
                     .attr('d', arcGenerator)
                     .attr('fill', function (d) { return (color(d.data[0])) })
-                    .attr("stroke", "black")
+                    .attr("stroke", "white")
                     .style("stroke-width", "2px")
                     .style("opacity", 1)
 

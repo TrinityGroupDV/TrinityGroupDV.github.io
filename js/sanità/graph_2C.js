@@ -50,7 +50,10 @@ $(document).ready(function () {
             //Color palette
             const color = d3.scaleOrdinal()
                 .domain(["65-74", "74+", "0-24", "25-44", "45-64"])
-                .range(["blue", "green", "red", "yellow", "pink"]);
+                .range(["#35bc35", "#ff0831", "#4d4dff", "#ffa500", "#08c0ff"]);
+            // ffff00
+            // 35bc35
+
 
             // Compute the position of each group on the pie:
             const pie = d3.pie()

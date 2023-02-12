@@ -45,9 +45,9 @@ $(document).ready(async function () {
 
         // Data and color scale
         let map = new Map()
-        const colorScale = d3.scaleThreshold()
+        /*const colorScale = d3.scaleThreshold()
             .domain([0, 1, 2, 3, 4])
-            .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
+            .range(["grey", "#08c0ff", "#ffa500", "#ff0831", "#FF3B22"])*/
 
         //Aux variables for first ever draw map
         checkFirstDrawMap = 0;
@@ -56,6 +56,7 @@ $(document).ready(async function () {
         let date;
 
         // Draw First Map
+        // internalMovementDataset(0)
         internalMovementDataset(0)
 
         //Auxiliary variables for first redrawing after changing datasets
@@ -191,7 +192,7 @@ $(document).ready(async function () {
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3])
-                    .range(["grey", "#2282FF", "#FAFF22", "#FF3B22"])
+                    .range(["grey", "#65b5fd", "#ffbf29", "#ff3e6b"])
 
                 map.clear()
 
@@ -397,7 +398,7 @@ $(document).ready(async function () {
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4])
-                    .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
+                    .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b"])
 
                 aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", testing_policy: "-1" }
                 aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", testing_policy: "-1" }
@@ -578,7 +579,7 @@ $(document).ready(async function () {
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4, 5])
-                    .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22", "#00ff1a"])
+                    .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b", "#a30192"])
 
                 aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", facial_coverings: -1 }
                 aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", facial_coverings: -1 }

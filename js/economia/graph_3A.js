@@ -103,7 +103,7 @@ $(document).ready(function () {
             // Color palette = one color per subgroup
             const color = d3.scaleOrdinal()
                 .domain(subgroups)
-                .range(['#EF5350', '#AB47BC', '#FFCA28', '#29B6F6', '#66BB6A'])
+                .range(["#46d366", "#ff3e6b", "#ffbf29", "#00d6ff", "#a862ea"]);
 
 
             //2019
