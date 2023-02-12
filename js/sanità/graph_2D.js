@@ -2,7 +2,9 @@ $(document).ready(async function () {
     let aux = 0;
     let data_iniziale = 1;
     draw()
+
     addEventListener("resize", (event) => {
+        data_iniziale = 1;
         draw()
     })
 
@@ -57,6 +59,10 @@ $(document).ready(async function () {
 
         // Draw First Map
         // internalMovementDataset(0)
+
+        /*if(aux_2==0){
+            internalMovementDataset(0)
+        }*/
         internalMovementDataset(0)
 
         //Auxiliary variables for first redrawing after changing datasets
@@ -288,7 +294,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "24.2%")
                     .attr('height', 15)
-                    .style("fill", "#2282FF")
+                    .style("fill", "#65b5fd")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", '33%')
@@ -303,7 +309,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', '24.2%')
                     .attr('height', 15)
-                    .style("fill", "#FAFF22")
+                    .style("fill", "#ffbf29")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", '56.5%')
@@ -324,7 +330,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', '24.2%')
                     .attr('height', 15)
-                    .style("fill", "#FF3B22")
+                    .style("fill", "#ff3e6b")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "80%")
@@ -461,7 +467,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "19%")
                     .attr('height', 15)
-                    .style("fill", "#2282FF")
+                    .style("fill", "#65b5fd")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "25%")
@@ -476,7 +482,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FAFF22")
+                    .style("fill", "#fdfe73")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "41%")
@@ -491,7 +497,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FFA922")
+                    .style("fill", "#ffbf29")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "60.5%")
@@ -506,7 +512,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FF3B22")
+                    .style("fill", "#ff3e6b")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "81%")
@@ -585,7 +591,7 @@ $(document).ready(async function () {
                 aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", facial_coverings: -1 }
                 aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", facial_coverings: -1 }
 
-                console.log(aux_var)
+
                 map.clear()
                 for (let i = 0; i < 40; i++) {
 
@@ -668,7 +674,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "15%")
                     .attr('height', 15)
-                    .style("fill", "#2282FF")
+                    .style("fill", "#65b5fd")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "25%")
@@ -683,7 +689,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "15%")
                     .attr('height', 15)
-                    .style("fill", "#FAFF22")
+                    .style("fill", "#fdfe73")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "38%")
@@ -698,7 +704,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "15%")
                     .attr('height', 15)
-                    .style("fill", "#FFA922")
+                    .style("fill", "#ffbf29")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", "55%")
@@ -719,7 +725,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "15%")
                     .attr('height', 15)
-                    .style("fill", "#FF3B22")
+                    .style("fill", "#ff3e6b")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", '70%')
@@ -740,7 +746,7 @@ $(document).ready(async function () {
                     .attr("y", 570)
                     .attr('width', "15%")
                     .attr('height', 15)
-                    .style("fill", "#00ff1a")
+                    .style("fill", "#a30192")
                     .attr('stroke', 'grey')
                 svg.append("text").attr("class", "legend2D")
                     .attr("x", '83%')

@@ -1,8 +1,8 @@
 $(document).ready(async function () {
 
     const margin = { top: 10, right: 20, bottom: 30, left: 50 },
-        width = 640 - margin.left - margin.right,
-        height = 460 - margin.top - margin.bottom;
+        width = 1300 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
 
     const svg = d3.select("#graph_1C")
         .append("svg")
@@ -12,14 +12,14 @@ $(document).ready(async function () {
     // Mappa e proiezione
     const path = d3.geoPath();
     const projection = d3.geoMercator()
-        .scale(90)
-        .center([0, 20])
+        .scale(110)
+        .center([0, 0])
         .translate([width / 1.79, height / 1.6]);
 
     // Mappa dei dati e color palette
     const colorScale = d3.scaleThreshold()
         .domain([0, 1, 2, 3])
-        .range(["grey", "#2282FF", "#FFA922", "#FF3B22"])
+        .range(["grey", "#65b5fd", "#ffbf29", "#ff3e6b"])
 
     // Variabile aux per controllare se è la prima mappa disegnata in assoluto
     let firstDrawMap = 0;
@@ -108,13 +108,14 @@ $(document).ready(async function () {
             }
 
             // Data a schermo
-            d3.select('text.legend1C').remove()
+            svg.select('text.legend1C').remove()
             svg.append("text")
                 .attr("class", "legend1C")
-                .attr("x", 500).attr("y", 10)
+                .attr("x", 370).attr("y", 400)
                 .text(formattedDate1)
                 .style("font-size", "20px")
                 .attr("alignment-baseline", "middle")
+            console.log(formattedDate1)
 
 
             dateObj = {};
@@ -147,10 +148,10 @@ $(document).ready(async function () {
             buttonWorld2 = 0;
 
             date1C(0);
-            for (i = 0; i < 35; i++) {
-                setTimeout(date1C, i * 500, i * 10, false);
+            for (i = 0; i < 72; i++) {
+                setTimeout(date1C, i * 2000, i * 10, false);
             }
-            setTimeout(date1C, 18000, 360, true);
+
             setTimeout(check, 18000);
         }
     })
@@ -159,77 +160,62 @@ $(document).ready(async function () {
 
     //No data
     svg.append("rect")
-        .attr("x", 30)
-        .attr("y", 443)
-        .attr('width', 80)
+        .attr("x", 380)
+        .attr("y", 520)
+        .attr('width', 100)
         .attr('height', 15)
         .style("fill", "grey")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 50)
-        .attr("y", 435)
+        .attr("x", 405)
+        .attr("y", 510)
         .text("No data")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Primo blocco
     svg.append("rect")
-        .attr("x", 140)
-        .attr("y", 443)
-        .attr('width', 120)
+        .attr("x", 530)
+        .attr("y", 520)
+        .attr('width', 160)
         .attr('height', 15)
-        .style("fill", "#2282FF")
+        .style("fill", "#65b5fd")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 170)
-        .attr("y", 435)
+        .attr("x", 572)
+        .attr("y", 510)
         .text("No measures")
-        .style("font-size", "10.5px")
-        .attr("alignment-baseline", "middle")
-
-    //Secondo blocco
-    svg.append("rect")
-        .attr("x", 260)
-        .attr("y", 443)
-        .attr('width', 120)
-        .attr('height', 15)
-        .style("fill", "#FAFF22")
-        .attr('stroke', 'grey')
-    svg.append("text")
-        .attr("x", 285)
-        .attr("y", 435)
-        .text("Recommended")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Terzo blocco
     svg.append("rect")
-        .attr("x", 380)
-        .attr("y", 443)
-        .attr('width', 120)
+        .attr("x", 690)
+        .attr("y", 520)
+        .attr('width', 160)
         .attr('height', 15)
-        .style("fill", "#FFA922")
+        .style("fill", "#ffbf29")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 380)
-        .attr("y", 435)
-        .text("Required (some levels)")
-        .style("font-size", "10.5px")
+        .attr("x", 690)
+        .attr("y", 510)
+        .text("Recommended cancellations")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Quarto blocco
     svg.append("rect")
-        .attr("x", 490)
-        .attr("y", 443)
-        .attr('width', 120)
+        .attr("x", 850)
+        .attr("y", 520)
+        .attr('width', 160)
         .attr('height', 15)
-        .style("fill", "#FF3B22")
+        .style("fill", "#ff3e6b")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 503)
-        .attr("y", 435)
-        .text("Required (all levels)")
-        .style("font-size", "10.5px")
+        .attr("x", 865)
+        .attr("y", 510)
+        .text("Required cancellations")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 });
 

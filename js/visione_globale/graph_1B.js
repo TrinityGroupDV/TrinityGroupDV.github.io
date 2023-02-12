@@ -1,38 +1,36 @@
 $(document).ready(async function () {
+    // TODO: aggiustare legenda, scegliere colori, fare GIF
 
     const margin = { top: 10, right: 20, bottom: 30, left: 50 },
-        width = 640 - margin.left - margin.right,
-        height = 460 - margin.top - margin.bottom;
+        width = 1300 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
 
     const svg = d3.select("#graph_1B")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-
+    let formattedDate = 0;
     // Mappa e proiezione
     const path = d3.geoPath();
     const projection = d3.geoMercator()
-        .scale(90)
-        .center([0, 20])
+        .scale(110)
+        .center([0, 0])
         .translate([width / 1.79, height / 1.6]);
 
     // Mappa dei dati e color palette
     let data = new Map()
     const colorScale = d3.scaleThreshold()
         .domain([0, 1, 2, 3, 4])
-        .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
+        .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b"])
 
     // Variabile aux per controllare se è la prima mappa disegnata in assoluto
     let firstDrawMap = 0;
-
     let tempObj = {};
     let temp_i = 0;
-
     let dataMap = new Map();
     let dateObj = {};
 
     date1B(0);
-
 
     // Mappa prima data
     function date1B(value) {
@@ -50,8 +48,6 @@ $(document).ready(async function () {
 
             let dataTemp = 0;
 
-
-
             //Inizializzo prima data in assoluto
             dataTemp = new Date("2020-01-21")
 
@@ -59,8 +55,7 @@ $(document).ready(async function () {
             dataTemp.setDate(dataTemp.getDate() + value)
 
             // Converto in string e formatto
-            let formattedDate = dataTemp.toISOString().slice(0, 10);
-
+            formattedDate = dataTemp.toISOString().slice(0, 10);
 
             let temp_a = 0;
 
@@ -73,7 +68,6 @@ $(document).ready(async function () {
             }
 
             // Riempo la mappa
-
             for (i = 0; i < Object.keys(dateObj).length; i++) {
                 dataMap.set(dateObj[i].Code, +dateObj[i].school_closures)
             }
@@ -98,6 +92,7 @@ $(document).ready(async function () {
                     .attr("stroke-opacity", 0.4)
                 firstDrawMap = 1;
             }
+
             //If non lo è
             else {
                 svg.selectAll("path")
@@ -110,16 +105,15 @@ $(document).ready(async function () {
             }
 
             // Data a schermo
-            d3.select('text.legend1B').remove()
+            svg.select('text.legend1B').remove()
             svg.append("text")
                 .attr("class", "legend1B")
-                .attr("x", 500).attr("y", 10)
+                .attr("x", 370).attr("y", 400)
                 .text(formattedDate)
                 .style("font-size", "20px")
                 .attr("alignment-baseline", "middle")
         })
     }
-
 
     // Controllo se l'animazione è in corso
     buttonWorld1 = 1;
@@ -133,13 +127,11 @@ $(document).ready(async function () {
             buttonWorld1 = 0;
 
             date1B(0);
-            for (i = 0; i < 36; i++) {
-                setTimeout(date1B, i * 500, i * 10);
-
+            for (i = 0; i < 72; i++) {
+                setTimeout(date1B, i * 2000, i * 10);
             }
             setTimeout(check, 18000);
         }
-
         dataMap.clear()
     })
 
@@ -147,77 +139,77 @@ $(document).ready(async function () {
 
     //No data
     svg.append("rect")
-        .attr("x", 30)
-        .attr("y", 443)
+        .attr("x", 370)
+        .attr("y", 520)
         .attr('width', 80)
         .attr('height', 15)
         .style("fill", "grey")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 50)
-        .attr("y", 435)
+        .attr("x", 385)
+        .attr("y", 510)
         .text("No data")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Primo blocco
     svg.append("rect")
-        .attr("x", 140)
-        .attr("y", 443)
+        .attr("x", 500)
+        .attr("y", 520)
         .attr('width', 120)
         .attr('height', 15)
-        .style("fill", "#2282FF")
+        .style("fill", "#65b5fd")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 170)
-        .attr("y", 435)
+        .attr("x", 523)
+        .attr("y", 510)
         .text("No measures")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Secondo blocco
     svg.append("rect")
-        .attr("x", 260)
-        .attr("y", 443)
+        .attr("x", 620)
+        .attr("y", 520)
         .attr('width', 120)
         .attr('height', 15)
-        .style("fill", "#FAFF22")
+        .style("fill", "#fdfe73")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 285)
-        .attr("y", 435)
+        .attr("x", 638)
+        .attr("y", 510)
         .text("Recommended")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Terzo blocco
     svg.append("rect")
-        .attr("x", 380)
-        .attr("y", 443)
+        .attr("x", 740)
+        .attr("y", 520)
         .attr('width', 120)
         .attr('height', 15)
-        .style("fill", "#FFA922")
+        .style("fill", "#ffbf29")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 380)
-        .attr("y", 435)
+        .attr("x", 738)
+        .attr("y", 510)
         .text("Required (some levels)")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
     //Quarto blocco
     svg.append("rect")
-        .attr("x", 490)
-        .attr("y", 443)
+        .attr("x", 860)
+        .attr("y", 520)
         .attr('width', 120)
         .attr('height', 15)
-        .style("fill", "#FF3B22")
+        .style("fill", "#ff3e6b")
         .attr('stroke', 'grey')
     svg.append("text")
-        .attr("x", 503)
-        .attr("y", 435)
+        .attr("x", 868)
+        .attr("y", 510)
         .text("Required (all levels)")
-        .style("font-size", "10.5px")
+        .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 });
 

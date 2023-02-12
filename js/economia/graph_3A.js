@@ -100,34 +100,21 @@ $(document).ready(function () {
                 .range([0, x.bandwidth()])
                 .padding([0.05])
 
+            //console.log(xSubgroup.key)
+
             // Color palette = one color per subgroup
             const color = d3.scaleOrdinal()
                 .domain(subgroups)
                 .range(["#46d366", "#ff3e6b", "#ffbf29", "#00d6ff", "#a862ea"]);
 
-
-            //2019
-
-
-            //2020
-
-
-
-            //2021
-
-
-
-
-
-
-
-
-
-
-            //LEGENDA FRANCIA
-
-
-
+            svg.append("text")
+                //.attr("class", "label_2A")
+                .attr("text-anchor", "middle")
+                .attr("x", '156px')
+                .attr("y", 0)
+                .text("IPERPROVA")
+                .style("font-size", '12px')
+                .attr("alignment-baseline", "middle")
 
 
             const mouseover = function (event, d) {
@@ -430,8 +417,14 @@ $(document).ready(function () {
                 .on("mouseover", mouseover)
                 // .on("mousemove", mousemove) DA FARE
                 .on("mouseleave", mouseleave)
+
+
         })
     }
+
+    let elem = d3.select("rect.bar4").x
+
+
 })
 
 

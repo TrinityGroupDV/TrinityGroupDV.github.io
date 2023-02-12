@@ -244,7 +244,7 @@ $(document).ready(function () {
                         .attr("y", 0)
                         .attr('width', "6%")
                         .attr('height', 5)
-                        .style("fill", "red")
+                        .style("fill", "#ff3e6b")
                         .on("mouseover", highlightGDP)
                         .on("mouseleave", doNotHighlight)
 
@@ -269,7 +269,7 @@ $(document).ready(function () {
                         .attr("y", 35)
                         .attr('width', "6%")
                         .attr('height', 5)
-                        .style("fill", "blue")
+                        .style("fill", "#46d366")
                         .on("mouseover", highlightInflation)
                         .on("mouseleave", doNotHighlight)
 
