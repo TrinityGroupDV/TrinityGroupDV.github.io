@@ -71,7 +71,7 @@ $(document).ready(function () {
                 .attr("x", "-5%")
                 .attr("y", 190)
                 .text("Export volume index (2015=100)")
-                .style("font-size", "100%")
+                .style("font-size", "1vi")
                 .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
                 .attr("alignment-baseline", "middle")
 
@@ -106,16 +106,6 @@ $(document).ready(function () {
             const color = d3.scaleOrdinal()
                 .domain(subgroups)
                 .range(["#46d366", "#ff3e6b", "#ffbf29", "#00d6ff", "#a862ea"]);
-
-            svg.append("text")
-                //.attr("class", "label_2A")
-                .attr("text-anchor", "middle")
-                .attr("x", '156px')
-                .attr("y", 0)
-                .text("IPERPROVA")
-                .style("font-size", '12px')
-                .attr("alignment-baseline", "middle")
-
 
             const mouseover = function (event, d) {
 
@@ -421,9 +411,6 @@ $(document).ready(function () {
 
         })
     }
-
-    let elem = d3.select("rect.bar4").x
-
 
 })
 
