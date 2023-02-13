@@ -39,10 +39,10 @@ $(document).ready(function () {
         //Label
         svg.append("text")
             .attr("class", "legend3D")
-            .attr("x", "-8%")
+            .attr("x", "-80")
             .attr("y", 130)
             .text("Percentage [%]")
-            .style("font-size", "100%")
+            .style("font-size", "1vi")
             .attr('transform', 'rotate(270 ' + 10 + ' ' + 190 + ')')
             .attr("alignment-baseline", "middle")
         svg.append("text")

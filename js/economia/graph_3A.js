@@ -23,11 +23,11 @@ $(document).ready(function () {
     })
 
     function draw() {
-        let clientHeight = document.getElementById('graph_3A').clientHeight - 70;
+        let clientHeight = document.getElementById('graph_3A').clientHeight - 100;
         let clientWidth = document.getElementById('graph_3A').clientWidth - 100;
 
         // set the dimensions and margins of the graph
-        const margin = { top: 10, right: 20, bottom: 30, left: 70 };
+        const margin = { top: 10, right: 20, bottom: 60, left: 70 };
         if (aux == 1) {
             $("#graph_3A").empty();
         }
@@ -66,14 +66,30 @@ $(document).ready(function () {
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             const groups = arrayData.map(d => d.country)
 
-            svg.append("text")
-                .attr("class", "legend1B")
-                .attr("x", "-5%")
-                .attr("y", 190)
-                .text("Export volume index (2015=100)")
-                .style("font-size", "1vi")
-                .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
-                .attr("alignment-baseline", "middle")
+
+            if (clientWidth < 1547) {
+                svg.append("text")
+                    .attr("class", "legend1B")
+                    .attr("x", "-60")
+                    .attr("y", 190)
+                    .text("Export volume index (2015=100)")
+                    .style("font-size", "90%")
+                    .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
+                    .attr("alignment-baseline", "middle")
+            }
+            else {
+                svg.append("text")
+                    .attr("class", "legend1B")
+                    .attr("x", "-60")
+                    .attr("y", 190)
+                    .text("Export volume index (2015=100)")
+                    .style("font-size", "100%")
+                    .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
+                    .attr("alignment-baseline", "middle")
+
+            }
+
+
 
 
             // Add X axis
@@ -132,7 +148,7 @@ $(document).ready(function () {
                         .attr("x", '8.2%')
                         .attr("y", 60)
                         .text(arrayData[0][2017])
-                        .style("font-size", '90 %')
+                        .style("font-size", '1vi')
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -141,7 +157,7 @@ $(document).ready(function () {
                         .attr("x", '29.5%')
                         .attr("y", 30)
                         .text(arrayData[1][2017])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -150,7 +166,7 @@ $(document).ready(function () {
                         .attr("x", '51.2%')
                         .attr("y", 90)
                         .text(arrayData[2][2017])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -159,7 +175,7 @@ $(document).ready(function () {
                         .attr("x", '72.7%')
                         .attr("y", 25)
                         .text(arrayData[3][2017])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
 
@@ -191,7 +207,7 @@ $(document).ready(function () {
                         .attr("x", '11.3%')
                         .attr("y", 50)
                         .text(arrayData[0][2018])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                     svg.append("text")
                         .attr("class", "label_2A")
@@ -199,7 +215,7 @@ $(document).ready(function () {
                         .attr("x", '33%')
                         .attr("y", 20)
                         .text(arrayData[1][2018])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                     svg.append("text")
                         .attr("class", "label_2A")
@@ -207,7 +223,7 @@ $(document).ready(function () {
                         .attr("x", '54.3%')
                         .attr("y", 75)
                         .text(arrayData[2][2018])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                     svg.append("text")
                         .attr("class", "label_2A")
@@ -215,7 +231,7 @@ $(document).ready(function () {
                         .attr("x", '76%')
                         .attr("y", 30)
                         .text(arrayData[3][2018])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                 }
 
@@ -243,7 +259,7 @@ $(document).ready(function () {
                         .attr("x", "14.2%")
                         .attr("y", 90)
                         .text(arrayData[0][2019])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -252,7 +268,7 @@ $(document).ready(function () {
                         .attr("x", '36%')
                         .attr("y", 15)
                         .text(arrayData[1][2019])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -261,7 +277,7 @@ $(document).ready(function () {
                         .attr("x", '57.3%')
                         .attr("y", 68)
                         .text(arrayData[2][2019])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -270,7 +286,7 @@ $(document).ready(function () {
                         .attr("x", '79%')
                         .attr("y", 30.5)
                         .text(arrayData[3][2019])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                 }
 
@@ -294,7 +310,7 @@ $(document).ready(function () {
                         .attr("x", "16.9%")
                         .attr("y", 208)
                         .text(arrayData[0][2020])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                     svg.append("text")
                         .attr("class", "label_2A")
@@ -302,7 +318,7 @@ $(document).ready(function () {
                         .attr("x", '38.4%')
                         .attr("y", 150)
                         .text(arrayData[1][2020])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -311,7 +327,7 @@ $(document).ready(function () {
                         .attr("x", '60.1%')
                         .attr("y", 275)
                         .text(arrayData[2][2020])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
 
@@ -322,7 +338,7 @@ $(document).ready(function () {
                         .attr("x", '82%')
                         .attr("y", 155)
                         .text(arrayData[3][2020])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                 }
 
@@ -346,7 +362,7 @@ $(document).ready(function () {
                         .attr("x", "20.1%")
                         .attr("y", 125)
                         .text(arrayData[0][2021])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -355,7 +371,7 @@ $(document).ready(function () {
                         .attr("x", '41.7%')
                         .attr("y", 40)
                         .text(arrayData[1][2021])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -364,7 +380,7 @@ $(document).ready(function () {
                         .attr("x", '63.3%')
                         .attr("y", 190)
                         .text(arrayData[2][2021])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
                     svg.append("text")
@@ -373,7 +389,7 @@ $(document).ready(function () {
                         .attr("x", '85%')
                         .attr("y", 30)
                         .text(arrayData[3][2021])
-                        .style("font-size", "90%")
+                        .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                 }
             }
@@ -410,6 +426,80 @@ $(document).ready(function () {
 
 
         })
+
+
+        //Legend
+        svg.append("rect").attr("class", "legend4B")
+            .attr("x", "9%")
+            .attr("y", 395)
+            .attr('width', '5%')
+            .attr('height', 7)
+            .style("fill", "#46d366")
+        //.attr('stroke', 'grey')
+        svg.append("text").attr("class", "legend4B")
+            .attr("x", "15%")
+            .attr("y", 400)
+            .text("2017")
+            .style("font-size", "1vi")
+            .attr("alignment-baseline", "middle")
+
+        //Legend
+        svg.append("rect").attr("class", "legend4B")
+            .attr("x", "24%")
+            .attr("y", 395)
+            .attr('width', '5%')
+            .attr('height', 7)
+            .style("fill", "#ff3e6b")
+        //.attr('stroke', 'grey')
+        svg.append("text").attr("class", "legend4B")
+            .attr("x", "30%")
+            .attr("y", 400)
+            .text("2018")
+            .style("font-size", "1vi")
+            .attr("alignment-baseline", "middle")
+
+        //Legend
+        svg.append("rect").attr("class", "legend4B")
+            .attr("x", "39%")
+            .attr("y", 395)
+            .attr('width', '5%')
+            .attr('height', 7)
+            .style("fill", "#ffbf29")
+        //.attr('stroke', 'grey')
+        svg.append("text").attr("class", "legend4B")
+            .attr("x", "45%")
+            .attr("y", 400)
+            .text("2019")
+            .style("font-size", "1vi")
+            .attr("alignment-baseline", "middle")
+
+        svg.append("rect").attr("class", "legend4B")
+            .attr("x", "54%")
+            .attr("y", 395)
+            .attr('width', '5%')
+            .attr('height', 7)
+            .style("fill", "#00d6ff")
+        //.attr('stroke', 'grey')
+        svg.append("text").attr("class", "legend4B")
+            .attr("x", "60%")
+            .attr("y", 400)
+            .text("2020")
+            .style("font-size", "1vi")
+            .attr("alignment-baseline", "middle")
+
+        svg.append("rect").attr("class", "legend4B")
+            .attr("x", "69%")
+            .attr("y", 395)
+            .attr('width', '5%')
+            .attr('height', 7)
+            .style("fill", "#a862ea")
+        //.attr('stroke', 'grey')
+        svg.append("text").attr("class", "legend4B")
+            .attr("x", "75%")
+            .attr("y", 400)
+            .text("2021")
+            .style("font-size", "1vi")
+            .attr("alignment-baseline", "middle")
     }
 
 })

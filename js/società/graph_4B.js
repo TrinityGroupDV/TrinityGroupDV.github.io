@@ -8,12 +8,12 @@ $(document).ready(async function () {
     })
     function draw() {
 
-        let clientHeight = document.getElementById('graph_4B').clientHeight - 40;
-        let clientWidth = document.getElementById('graph_4B').clientWidth - 70;
+        let clientHeight = document.getElementById('graph_4B').clientHeight - 90;
+        let clientWidth = document.getElementById('graph_4B').clientWidth - 140;
 
 
         // Set margin
-        const margin = { top: 10, right: 20, bottom: 30, left: 50 }
+        const margin = { top: 10, right: 30, bottom: 50, left: 80 }
         if (aux == 1) {
             $("#graph_4B").empty();
         }
@@ -125,7 +125,7 @@ $(document).ready(async function () {
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4])
-                    .range(["grey", "#2282FF", "#FAFF22", "#FFA922", "#FF3B22"])
+                    .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b"])
 
                 map.clear()
                 for (let i = 0; i < 37; i++) {
@@ -139,10 +139,10 @@ $(document).ready(async function () {
                 d3.selectAll('text.legend_2D').remove()
                 svg.append("text")
                     .attr("class", "legend_2D")
-                    .attr("x", 10)
-                    .attr("y", 50)
+                    .attr("x", '5%')
+                    .attr("y", 230)
                     .text(date)
-                    .style("font-size", "30px")
+                    .style("font-size", "40px")
                     .attr("alignment-baseline", "middle")
 
                 let topo = loadData[0]
@@ -184,90 +184,82 @@ $(document).ready(async function () {
                 checkFirstDrawMap = 1;
 
 
-
-
-                // LEGEND
-                //Cover
-                svg.append("rect")
-                    .attr("x", 100)
-                    .attr("y", 755)
-                    .attr('width', 1200)
-                    .attr('height', 43)
-                    .style("fill", "white")
+                svg.selectAll('text.legend4B').remove()
+                svg.selectAll('rect.legend4B').remove()
 
                 // No data
-                svg.append("rect")
-                    .attr("x", 100)
-                    .attr("y", 780)
-                    .attr('width', 150)
+                svg.append("rect").attr("class", "legend4B")
+                    .attr("x", "3%")
+                    .attr("y", 550)
+                    .attr('width', "13%")
                     .attr('height', 15)
                     .style("fill", "grey")
                     .attr('stroke', 'grey')
-                svg.append("text")
-                    .attr("x", 135)
-                    .attr("y", 770)
+                svg.append("text").attr("class", "legend4B")
+                    .attr("x", "7%")
+                    .attr("y", 540)
                     .text("No data")
-                    .style("font-size", "18px")
+                    .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
 
                 // First block
-                svg.append("rect")
-                    .attr("x", 300)
-                    .attr("y", 780)
-                    .attr('width', 250)
+                svg.append("rect").attr("class", "legend4B")
+                    .attr("x", "20%")
+                    .attr("y", 550)
+                    .attr('width', "19%")
                     .attr('height', 15)
-                    .style("fill", "#2282FF")
+                    .style("fill", "#65b5fd")
                     .attr('stroke', 'grey')
-                svg.append("text")
-                    .attr("x", 360)
-                    .attr("y", 770)
-                    .text("No measures")
-                    .style("font-size", "18px")
+                svg.append("text").attr("class", "legend4B")
+                    .attr("x", "25%")
+                    .attr("y", 540)
+                    .text("No measure")
+                    .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
 
                 // Second block
-                svg.append("rect")
-                    .attr("x", 550)
-                    .attr("y", 780)
-                    .attr('width', 250)
+                svg.append("rect").attr("class", "legend4B")
+                    .attr("x", "39%")
+                    .attr("y", 550)
+                    .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FAFF22")
+                    .style("fill", "#fdfe73")
                     .attr('stroke', 'grey')
-                svg.append("text")
-                    .attr("x", 610)
-                    .attr("y", 770)
+                svg.append("text").attr("class", "legend4B")
+                    .attr("x", "43%")
+                    .attr("y", 540)
                     .text("Recommended")
-                    .style("font-size", "18px")
+                    .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
 
                 //Third block
-                svg.append("rect")
-                    .attr("x", 800)
-                    .attr("y", 780)
-                    .attr('width', 250)
+                svg.append("rect").attr("class", "legend4B")
+                    .attr("x", "58%")
+                    .attr("y", 550)
+                    .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FFA922")
+                    .style("fill", "#ffbf29")
                     .attr('stroke', 'grey')
-                svg.append("text")
-                    .attr("x", 810)
-                    .attr("y", 770)
+                svg.append("text").attr("class", "legend4B")
+                    .attr("x", "58%")
+                    .attr("y", 540)
                     .text("Required (except essentials)")
-                    .style("font-size", "18px")
+                    .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
 
                 //Fourth block
-                svg.append("rect")
-                    .attr("x", 1050)
-                    .attr("y", 780)
-                    .attr('width', 250)
+                svg.append("rect").attr("class", "legend4B")
+                    .attr("x", "77%")
+                    .attr("y", 550)
+                    .attr('width', '19%')
                     .attr('height', 15)
-                    .style("fill", "#FF3B22")
+                    .style("fill", "#ff3e6b")
                     .attr('stroke', 'grey')
-                svg.append("text")
-                    .attr("x", 1070)
-                    .attr("y", 770)
+                svg.append("text").attr("class", "legend4B")
+                    .attr("x", "78%")
+                    .attr("y", 540)
                     .text("Required (few exceptions)")
-                    .style("font-size", "18px")
+                    .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
 
 
@@ -275,7 +267,7 @@ $(document).ready(async function () {
 
         }
     }
-    })
+})
 
 
 

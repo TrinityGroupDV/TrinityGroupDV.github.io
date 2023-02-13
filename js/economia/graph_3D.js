@@ -104,15 +104,13 @@ $(document).ready(function () {
 
                     }
 
-
-
                     svg.selectAll("path").remove();
                     svg.selectAll("text").remove();
 
                     //Label
                     svg.append("text")
                         .attr("class", "legend3D")
-                        .attr("x", "-8%")
+                        .attr("x", "-50")
                         .attr("y", 250)
                         .text("Percentage change on previous period [%]")
                         .style("font-size", "100%")

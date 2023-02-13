@@ -14,10 +14,10 @@ $(document).ready(function () {
     function draw() {
 
         let clientHeight = document.getElementById('graph_3C').clientHeight;
-        let clientWidth = document.getElementById('graph_3C').clientWidth;
+        let clientWidth = document.getElementById('graph_3C').clientWidth - 200;
 
         // set the dimensions and margins of the graph
-        const margin = 40;
+        const margin = 30;
         if (aux == 1) {
             $("#graph_3C").empty();
         }
@@ -28,7 +28,7 @@ $(document).ready(function () {
         // append the svg object to the div called 'my_dataviz'
         const svg = d3.select("#graph_3C")
             .append("svg")
-            .attr("width", clientWidth)
+            .attr("width", clientWidth + 200)
             .attr("height", clientHeight)
             .append("g")
             .attr("transform", `translate(${clientWidth / 2}, ${clientHeight / 2})`);
@@ -59,7 +59,7 @@ $(document).ready(function () {
                 }
                 if (butt == 2) {
                     update(data2)
-                    d3.select('text.legend3C').remove()
+                    d3.select('text.legend3CB').remove()
                     svg.append("text")
                         .attr("x", -40)
                         .attr("y", -200)
@@ -108,7 +108,7 @@ $(document).ready(function () {
                     .transition()
                     .duration(1000)
                     .text(function (d) {
-                        return d.data[0].replaceAll('_', ' ') + ': ' + d.data[1] + "%"
+                        return d.data[1] + "%"
                     })
                     .style("font-size", "14px")
                     .attr("x", 0)
@@ -117,19 +117,107 @@ $(document).ready(function () {
 
 
                 svg.append("text")
-                    .attr("class", "legend3C")
+                    .attr("class", "legend3CB")
                     .attr("x", -40)
                     .attr("y", -200)
                     .text("May 2019")
                     .style("font-size", "17px")
 
+                //Legend
+                svg.append("rect")
+                    .attr("class", "legend3C")
+                    .attr("x", "38%")
+                    .attr("y", -150)
+                    .attr('width', '6%')
+                    .attr('height', 10)
+                    .style("fill", "#ff3e6b")
+                //.attr('stroke', 'grey')
+                svg.append("text").attr("class", "legend3C")
+                    .attr("x", "45%")
+                    .attr("y", -145)
+                    .text("Accomodation")
+                    .style("font-size", "1vi")
+                    .attr("alignment-baseline", "middle")
+
+                svg.append("rect")
+                    .attr("class", "legend3C")
+                    .attr("x", "38%")
+                    .attr("y", -100)
+                    .attr('width', '6%')
+                    .attr('height', 10)
+                    .style("fill", "#ffbf29")
+                //.attr('stroke', 'grey')
+                svg.append("text").attr("class", "legend3C")
+                    .attr("x", "45%")
+                    .attr("y", -95)
+                    .text("Real estate")
+                    .style("font-size", "1vi")
+                    .attr("alignment-baseline", "middle")
+
+                svg.append("rect")
+                    .attr("class", "legend3C")
+                    .attr("x", "38%")
+                    .attr("y", -50)
+                    .attr('width', '6%')
+                    .attr('height', 10)
+                    .style("fill", "#00d6ff")
+                //.attr('stroke', 'grey')
+                svg.append("text").attr("class", "legend3C")
+                    .attr("x", "45%")
+                    .attr("y", -45)
+                    .text("Travel agency")
+                    .style("font-size", "1vi")
+                    .attr("alignment-baseline", "middle")
+
+                svg.append("rect")
+                    .attr("class", "legend3C")
+                    .attr("x", "38%")
+                    .attr("y", -0)
+                    .attr('width', '6%')
+                    .attr('height', 10)
+                    .style("fill", "#a862ea")
+                //.attr('stroke', 'grey')
+                svg.append("text").attr("class", "legend3C")
+                    .attr("x", "45%")
+                    .attr("y", 5)
+                    .text("Telecommunications")
+                    .style("font-size", "0.8vi")
+                    .attr("alignment-baseline", "middle")
+
+                svg.append("rect")
+                    .attr("class", "legend3C")
+                    .attr("x", "38%")
+                    .attr("y", 50)
+                    .attr('width', '6%')
+                    .attr('height', 10)
+                    .style("fill", "#46d366")
+                //.attr('stroke', 'grey')
+                svg.append("text").attr("class", "legend3C")
+                    .attr("x", "45%")
+                    .attr("y", 55)
+                    .text("ICT")
+                    .style("font-size", "1vi")
+                    .attr("alignment-baseline", "middle")
+
+
+
+
 
             }
 
+
+
             // Initialize the plot with the first dataset
             update(data1)
+
+            //.range(["#46d366", "#ff3e6b", "#ffbf29", "#00d6ff", "#a862ea"]);
+
         })
+
+
     }
+
+
 })
 
 
