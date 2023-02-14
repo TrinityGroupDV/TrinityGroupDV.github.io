@@ -1,18 +1,181 @@
 $(document).ready(async function () {
     let aux = 0;
     let data_iniziale = 1;
-    draw()
+    let movement = {}
+    let testing = {}
+    let faceMask = {}
+    filterMovement()
+    filterTesting()
+    filterFacemask()
+
+    setTimeout(function () {
+        draw()
+    }, 3000)
+
 
     addEventListener("resize", (event) => {
         data_iniziale = 1;
         draw()
     })
 
+
+    function filterMovement() {
+        d3.csv("../../py/sanità/graph_2D/internal-movement-covid.csv").then(function (data) {
+            //Get only european country
+            let inc1 = 0;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].Code === "ESP" ||
+                    data[i].Code === "ITA" ||
+                    data[i].Code === "DEU" ||
+                    data[i].Code === "PRT" ||
+                    data[i].Code === "IRL" ||
+                    data[i].Code === "GBR" ||
+                    data[i].Code === "CHE" ||
+                    data[i].Code === "LUX" ||
+                    data[i].Code === "BEL" ||
+                    data[i].Code === "AUT" ||
+                    data[i].Code === "SVN" ||
+                    data[i].Code === "CZE" ||
+                    data[i].Code === "POL" ||
+                    data[i].Code === "SVK" ||
+                    data[i].Code === "HUN" ||
+                    data[i].Code === "SRB" ||
+                    data[i].Code === "ALB" ||
+                    data[i].Code === "GRC" ||
+                    data[i].Code === "BGR" ||
+                    data[i].Code === "ROU" ||
+                    data[i].Code === "NOR" ||
+                    data[i].Code === "SWE" ||
+                    data[i].Code === "FIN" ||
+                    data[i].Code === "FRA" ||
+                    data[i].Code === "NLD" ||
+                    data[i].Code === "DNK" ||
+                    data[i].Code === "HRV" ||
+                    data[i].Code === "MDA" ||
+                    data[i].Code === "UKR" ||
+                    data[i].Code === "BLR" ||
+                    data[i].Code === "EST" ||
+                    data[i].Code === "LVA" ||
+                    data[i].Code === "RUS" ||
+                    data[i].Code === "LTU" ||
+                    data[i].Code === "BIH" ||
+                    data[i].Code === "OWID_KOS" ||
+                    data[i].Code === "MNE" ||
+                    data[i].Code === "ISL") {
+
+                    movement[inc1] = data[i]
+                    inc1++
+                }
+            }
+        })
+    }
+
+    function filterTesting() {
+        d3.csv("../../py/sanità/graph_2D/covid-19-testing-policy.csv").then(function (data) {
+            //Get only european country
+            let inc2 = 0;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].Code === "ESP" ||
+                    data[i].Code === "ITA" ||
+                    data[i].Code === "DEU" ||
+                    data[i].Code === "PRT" ||
+                    data[i].Code === "IRL" ||
+                    data[i].Code === "GBR" ||
+                    data[i].Code === "CHE" ||
+                    data[i].Code === "LUX" ||
+                    data[i].Code === "BEL" ||
+                    data[i].Code === "AUT" ||
+                    data[i].Code === "SVN" ||
+                    data[i].Code === "CZE" ||
+                    data[i].Code === "POL" ||
+                    data[i].Code === "SVK" ||
+                    data[i].Code === "HUN" ||
+                    data[i].Code === "SRB" ||
+                    data[i].Code === "ALB" ||
+                    data[i].Code === "GRC" ||
+                    data[i].Code === "BGR" ||
+                    data[i].Code === "ROU" ||
+                    data[i].Code === "NOR" ||
+                    data[i].Code === "SWE" ||
+                    data[i].Code === "FIN" ||
+                    data[i].Code === "FRA" ||
+                    data[i].Code === "NLD" ||
+                    data[i].Code === "DNK" ||
+                    data[i].Code === "HRV" ||
+                    data[i].Code === "MDA" ||
+                    data[i].Code === "UKR" ||
+                    data[i].Code === "BLR" ||
+                    data[i].Code === "EST" ||
+                    data[i].Code === "LVA" ||
+                    data[i].Code === "RUS" ||
+                    data[i].Code === "LTU" ||
+                    data[i].Code === "BIH" ||
+                    data[i].Code === "OWID_KOS" ||
+                    data[i].Code === "MNE" ||
+                    data[i].Code === "ISL") {
+
+                    testing[inc2] = data[i]
+                    inc2++
+                }
+            }
+        })
+    }
+
+    function filterFacemask() {
+        d3.csv("../../py/sanità/graph_2D/face-covering-policies-covid.csv").then(function (data) {
+            //Get only european country
+            let inc3 = 0;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].Code === "ESP" ||
+                    data[i].Code === "ITA" ||
+                    data[i].Code === "DEU" ||
+                    data[i].Code === "PRT" ||
+                    data[i].Code === "IRL" ||
+                    data[i].Code === "GBR" ||
+                    data[i].Code === "CHE" ||
+                    data[i].Code === "LUX" ||
+                    data[i].Code === "BEL" ||
+                    data[i].Code === "AUT" ||
+                    data[i].Code === "SVN" ||
+                    data[i].Code === "CZE" ||
+                    data[i].Code === "POL" ||
+                    data[i].Code === "SVK" ||
+                    data[i].Code === "HUN" ||
+                    data[i].Code === "SRB" ||
+                    data[i].Code === "ALB" ||
+                    data[i].Code === "GRC" ||
+                    data[i].Code === "BGR" ||
+                    data[i].Code === "ROU" ||
+                    data[i].Code === "NOR" ||
+                    data[i].Code === "SWE" ||
+                    data[i].Code === "FIN" ||
+                    data[i].Code === "FRA" ||
+                    data[i].Code === "NLD" ||
+                    data[i].Code === "DNK" ||
+                    data[i].Code === "HRV" ||
+                    data[i].Code === "MDA" ||
+                    data[i].Code === "UKR" ||
+                    data[i].Code === "BLR" ||
+                    data[i].Code === "EST" ||
+                    data[i].Code === "LVA" ||
+                    data[i].Code === "RUS" ||
+                    data[i].Code === "LTU" ||
+                    data[i].Code === "BIH" ||
+                    data[i].Code === "OWID_KOS" ||
+                    data[i].Code === "MNE" ||
+                    data[i].Code === "ISL") {
+
+                    faceMask[inc3] = data[i]
+                    inc3++
+                }
+            }
+        })
+    }
+
+
     function draw() {
         let clientHeight = document.getElementById('graph_2D').clientHeight - 50;
         let clientWidth = document.getElementById('graph_2D').clientWidth - 100;
-
-
 
         // Set margin
         const margin = { top: 10, right: 20, bottom: 30, left: 50 };
@@ -140,61 +303,23 @@ $(document).ready(async function () {
             // Load external data and boot
             Promise.all([
                 d3.json("../europe.geojson"),
-                d3.csv("../../py/sanità/graph_2D/internal-movement-covid.csv").then(function (data) {
 
-                    //Get only european country
-                    aux_var = {};
-                    temp2D = 0;
-                    for (i = 0; i < data.length; i++) {
-                        if (data[i].Code === "ESP" ||
-                            data[i].Code === "ITA" ||
-                            data[i].Code === "DEU" ||
-                            data[i].Code === "PRT" ||
-                            data[i].Code === "IRL" ||
-                            data[i].Code === "GBR" ||
-                            data[i].Code === "CHE" ||
-                            data[i].Code === "LUX" ||
-                            data[i].Code === "BEL" ||
-                            data[i].Code === "AUT" ||
-                            data[i].Code === "SVN" ||
-                            data[i].Code === "CZE" ||
-                            data[i].Code === "POL" ||
-                            data[i].Code === "SVK" ||
-                            data[i].Code === "HUN" ||
-                            data[i].Code === "SRB" ||
-                            data[i].Code === "ALB" ||
-                            data[i].Code === "GRC" ||
-                            data[i].Code === "BGR" ||
-                            data[i].Code === "ROU" ||
-                            data[i].Code === "NOR" ||
-                            data[i].Code === "SWE" ||
-                            data[i].Code === "FIN" ||
-                            data[i].Code === "FRA" ||
-                            data[i].Code === "NLD" ||
-                            data[i].Code === "DNK" ||
-                            data[i].Code === "HRV" ||
-                            data[i].Code === "MDA" ||
-                            data[i].Code === "UKR" ||
-                            data[i].Code === "BLR" ||
-                            data[i].Code === "EST" ||
-                            data[i].Code === "LVA" ||
-                            data[i].Code === "RUS" ||
-                            data[i].Code === "LTU" ||
-                            data[i].Code === "BIH" ||
-                            data[i].Code === "OWID_KOS" ||
-                            data[i].Code === "MNE" ||
-                            data[i].Code === "ISL") {
+            ]).then(function (loadData) {
 
-                            // Get only datas on the selected date
-                            if (data[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
-                                data[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
-                                aux_var[temp2D] = data[i]
-                                temp2D++
-                            }
+                aux_var = {};
+                temp2D = 0;
+                for (i = 0; i < 40551; i++) {
+                    {
+
+                        // Get only datas on the selected date
+                        if (movement[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
+                            movement[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
+                            aux_var[temp2D] = movement[i]
+                            temp2D++
                         }
                     }
-                })
-            ]).then(function (loadData) {
+                }
+
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3])
@@ -346,61 +471,21 @@ $(document).ready(async function () {
 
             // Load external data and boot
             Promise.all([
-                d3.json("../europe.geojson"),
-                d3.csv("../../py/sanità/graph_2D/covid-19-testing-policy.csv").then(function (data) {
+                d3.json("../europe.geojson")
+            ]).then(function (loadData) {
 
-                    //Get only european country
-                    aux_var = {};
-                    temp2D = 0;
-                    for (i = 0; i < data.length; i++) {
-                        if (data[i].Code === "ESP" ||
-                            data[i].Code === "ITA" ||
-                            data[i].Code === "DEU" ||
-                            data[i].Code === "PRT" ||
-                            data[i].Code === "IRL" ||
-                            data[i].Code === "GBR" ||
-                            data[i].Code === "CHE" ||
-                            data[i].Code === "LUX" ||
-                            data[i].Code === "BEL" ||
-                            data[i].Code === "AUT" ||
-                            data[i].Code === "SVN" ||
-                            data[i].Code === "CZE" ||
-                            data[i].Code === "POL" ||
-                            data[i].Code === "SVK" ||
-                            data[i].Code === "HUN" ||
-                            data[i].Code === "SRB" ||
-                            data[i].Code === "ALB" ||
-                            data[i].Code === "GRC" ||
-                            data[i].Code === "BGR" ||
-                            data[i].Code === "ROU" ||
-                            data[i].Code === "NOR" ||
-                            data[i].Code === "SWE" ||
-                            data[i].Code === "FIN" ||
-                            data[i].Code === "FRA" ||
-                            data[i].Code === "NLD" ||
-                            data[i].Code === "DNK" ||
-                            data[i].Code === "HRV" ||
-                            data[i].Code === "MDA" ||
-                            data[i].Code === "UKR" ||
-                            data[i].Code === "BLR" ||
-                            data[i].Code === "EST" ||
-                            data[i].Code === "LVA" ||
-                            data[i].Code === "RUS" ||
-                            data[i].Code === "LTU" ||
-                            data[i].Code === "BIH" ||
-                            data[i].Code === "OWID_KOS" ||
-                            data[i].Code === "ISL") {
-
-                            // Get only datas on the selected date
-                            if (data[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
-                                data[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
-                                aux_var[temp2D] = data[i]
-                                temp2D++
-                            }
+                aux_var = {};
+                temp2D = 0;
+                for (i = 0; i < 40551; i++) {
+                    {
+                        // Get only datas on the selected date
+                        if (testing[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
+                            testing[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
+                            aux_var[temp2D] = testing[i]
+                            temp2D++
                         }
                     }
-                })
-            ]).then(function (loadData) {
+                }
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4])
@@ -528,60 +613,20 @@ $(document).ready(async function () {
             // Load external data and boot
             Promise.all([
                 d3.json("../europe.geojson"),
-                d3.csv("../../py/sanità/graph_2D/face-covering-policies-covid.csv").then(function (data) {
-                    //Put data that i need in array based on date
-                    aux_var = {};
-                    temp2D = 0;
-                    for (i = 0; i < data.length; i++) {
-                        if (data[i].Code === "ESP" ||
-                            data[i].Code === "ITA" ||
-                            data[i].Code === "DEU" ||
-                            data[i].Code === "PRT" ||
-                            data[i].Code === "IRL" ||
-                            data[i].Code === "GBR" ||
-                            data[i].Code === "CHE" ||
-                            data[i].Code === "LUX" ||
-                            data[i].Code === "BEL" ||
-                            data[i].Code === "AUT" ||
-                            data[i].Code === "SVN" ||
-                            data[i].Code === "CZE" ||
-                            data[i].Code === "POL" ||
-                            data[i].Code === "SVK" ||
-                            data[i].Code === "HUN" ||
-                            data[i].Code === "SRB" ||
-                            data[i].Code === "ALB" ||
-                            data[i].Code === "GRC" ||
-                            data[i].Code === "BGR" ||
-                            data[i].Code === "ROU" ||
-                            data[i].Code === "NOR" ||
-                            data[i].Code === "SWE" ||
-                            data[i].Code === "FIN" ||
-                            data[i].Code === "FRA" ||
-                            data[i].Code === "NLD" ||
-                            data[i].Code === "DNK" ||
-                            data[i].Code === "HRV" ||
-                            data[i].Code === "MDA" ||
-                            data[i].Code === "UKR" ||
-                            data[i].Code === "BLR" ||
-                            data[i].Code === "EST" ||
-                            data[i].Code === "LVA" ||
-                            data[i].Code === "RUS" ||
-                            data[i].Code === "LTU" ||
-                            data[i].Code === "BIH" ||
-                            data[i].Code === "OWID_KOS" ||
-                            data[i].Code === "ISL") {
-                            if (data[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
-                                data[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
-                                aux_var[temp2D] = data[i]
-                                temp2D++
-                            }
-
-
-                        }
-
-                    }
-                })
             ]).then(function (loadData) {
+
+                aux_var = {};
+                temp2D = 0;
+                for (i = 0; i < 40551; i++) {
+                    {
+                        if (faceMask[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
+                            faceMask[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
+                            aux_var[temp2D] = faceMask[i]
+                            temp2D++
+                        }
+                    }
+                }
+                console.log(faceMask)
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4, 5])

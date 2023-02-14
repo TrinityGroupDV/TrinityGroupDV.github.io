@@ -2,10 +2,66 @@ $(document).ready(async function () {
     //TODO: sistemare data, colori
 
     let aux = 0;
-    draw()
+    let restriction = {}
+    filterFacemask()
+    setTimeout(function () {
+        draw()
+    }, 3000)
+
     addEventListener("resize", (event) => {
         draw()
     })
+    function filterFacemask() {
+        d3.csv("../../py/sanità/graph_2D/stay-at-home-covid.csv").then(function (data) {
+            //Get only european country
+            let inc = 0;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].Code === "ESP" ||
+                    data[i].Code === "ITA" ||
+                    data[i].Code === "DEU" ||
+                    data[i].Code === "PRT" ||
+                    data[i].Code === "IRL" ||
+                    data[i].Code === "GBR" ||
+                    data[i].Code === "CHE" ||
+                    data[i].Code === "LUX" ||
+                    data[i].Code === "BEL" ||
+                    data[i].Code === "AUT" ||
+                    data[i].Code === "SVN" ||
+                    data[i].Code === "CZE" ||
+                    data[i].Code === "POL" ||
+                    data[i].Code === "SVK" ||
+                    data[i].Code === "HUN" ||
+                    data[i].Code === "SRB" ||
+                    data[i].Code === "ALB" ||
+                    data[i].Code === "GRC" ||
+                    data[i].Code === "BGR" ||
+                    data[i].Code === "ROU" ||
+                    data[i].Code === "NOR" ||
+                    data[i].Code === "SWE" ||
+                    data[i].Code === "FIN" ||
+                    data[i].Code === "FRA" ||
+                    data[i].Code === "NLD" ||
+                    data[i].Code === "DNK" ||
+                    data[i].Code === "HRV" ||
+                    data[i].Code === "MDA" ||
+                    data[i].Code === "UKR" ||
+                    data[i].Code === "BLR" ||
+                    data[i].Code === "EST" ||
+                    data[i].Code === "LVA" ||
+                    data[i].Code === "RUS" ||
+                    data[i].Code === "LTU" ||
+                    data[i].Code === "BIH" ||
+                    data[i].Code === "OWID_KOS" ||
+                    data[i].Code === "MNE" ||
+                    data[i].Code === "ISL") {
+
+                    restriction[inc] = data[i]
+                    inc++
+                }
+            }
+        })
+    }
+
     function draw() {
 
         let clientHeight = document.getElementById('graph_4B').clientHeight - 90;
@@ -69,65 +125,33 @@ $(document).ready(async function () {
         function drawMap(dataSlider) {
             Promise.all([
                 d3.json("../europe.geojson"),
-                d3.csv("../../py/sanità/graph_2D/stay-at-home-covid.csv").then(function (data) {
-                    //Get only european country
-                    aux_var = {};
-                    temp2D = 0;
-                    for (i = 0; i < data.length; i++) {
-                        if (data[i].Code === "ESP" ||
-                            data[i].Code === "ITA" ||
-                            data[i].Code === "DEU" ||
-                            data[i].Code === "PRT" ||
-                            data[i].Code === "IRL" ||
-                            data[i].Code === "GBR" ||
-                            data[i].Code === "CHE" ||
-                            data[i].Code === "LUX" ||
-                            data[i].Code === "BEL" ||
-                            data[i].Code === "AUT" ||
-                            data[i].Code === "SVN" ||
-                            data[i].Code === "CZE" ||
-                            data[i].Code === "POL" ||
-                            data[i].Code === "SVK" ||
-                            data[i].Code === "HUN" ||
-                            data[i].Code === "SRB" ||
-                            data[i].Code === "ALB" ||
-                            data[i].Code === "GRC" ||
-                            data[i].Code === "BGR" ||
-                            data[i].Code === "ROU" ||
-                            data[i].Code === "NOR" ||
-                            data[i].Code === "SWE" ||
-                            data[i].Code === "FIN" ||
-                            data[i].Code === "FRA" ||
-                            data[i].Code === "NLD" ||
-                            data[i].Code === "DNK" ||
-                            data[i].Code === "HRV" ||
-                            data[i].Code === "MDA" ||
-                            data[i].Code === "UKR" ||
-                            data[i].Code === "BLR" ||
-                            data[i].Code === "EST" ||
-                            data[i].Code === "LVA" ||
-                            data[i].Code === "RUS" ||
-                            data[i].Code === "LTU" ||
-                            data[i].Code === "BIH" ||
-                            data[i].Code === "OWID_KOS" ||
-                            data[i].Code === "ISL") {
+            ]).then(function (loadData) {
+                aux_var = {};
+                temp2D = 0;
+                for (i = 0; i < 40551; i++) {
+                    {
 
-                            // Get only datas on the selected date
-                            if (data[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
-                                data[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
-                                aux_var[temp2D] = data[i]
-                                temp2D++
-                            }
+                        // Get only datas on the selected date
+                        if (restriction[i].Day === "2020-0" + (Number(dataSlider) + 1).toString() + "-01" ||
+                            restriction[i].Day === "2020-" + (Number(dataSlider) + 1).toString() + "-01") {
+                            aux_var[temp2D] = restriction[i]
+                            temp2D++
                         }
                     }
-                })
-            ]).then(function (loadData) {
+                }
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4])
                     .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b"])
 
+                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", stay_home_requirements: '2' }
+                aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", stay_home_requirements: -1 }
+                aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", stay_home_requirements: -1 }
+
                 map.clear()
+
+
+
                 for (let i = 0; i < 37; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].stay_home_requirements)

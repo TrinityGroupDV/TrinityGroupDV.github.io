@@ -344,9 +344,6 @@ $(document).ready(function () {
                             .on("mouseleave", doNotHighlight)
 
                     }
-
-                    console.log(clientWidth)
-
                 })
     }
 })
