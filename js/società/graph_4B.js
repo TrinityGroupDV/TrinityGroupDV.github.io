@@ -144,7 +144,7 @@ $(document).ready(async function () {
                     .domain([0, 1, 2, 3, 4])
                     .range(["grey", "#65b5fd", "#fdfe73", "#ffbf29", "#ff3e6b"])
 
-                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", stay_home_requirements: '2' }
+                aux_var[37] = { Entity: "Montenegro", Code: "MNE", Day: "/", stay_home_requirements: -1 }
                 aux_var[38] = { Entity: "Macedonia", Code: "MKD", Day: "/", stay_home_requirements: -1 }
                 aux_var[39] = { Entity: "Kosovo", Code: "KSV", Day: "/", stay_home_requirements: -1 }
 
@@ -152,12 +152,13 @@ $(document).ready(async function () {
 
 
 
-                for (let i = 0; i < 37; i++) {
+                for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].stay_home_requirements)
                 }
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
+                console.log(map)
 
                 // Write date
                 d3.selectAll('text.legend_2D').remove()
