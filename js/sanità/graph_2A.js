@@ -6,7 +6,7 @@ $(document).ready(function () {
         draw()
     })
     function draw() {
-        let clientHeight = document.getElementById('graph_2A').clientHeight - 120;
+        let clientHeight = document.getElementById('graph_2A').clientHeight - 80;
         let clientWidth = document.getElementById('graph_2A').clientWidth - 30;
 
         const margin = { top: 70, right: 0, bottom: 10, left: 0 },

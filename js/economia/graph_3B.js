@@ -12,7 +12,7 @@ $(document).ready(function () {
         let clientWidth = document.getElementById('graph_3B').clientWidth - 120;
 
         // set the dimensions and margins of the graph
-        const margin = { top: 10, right: 20, bottom: 40, left: 65 };
+        const margin = { top: 30, right: 20, bottom: 40, left: 65 };
         if (aux == 1) {
             $("#graph_3B").empty();
         }
