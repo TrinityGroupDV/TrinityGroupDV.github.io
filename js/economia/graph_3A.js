@@ -70,9 +70,9 @@ $(document).ready(function () {
             if (clientWidth < 1547) {
                 svg.append("text")
                     .attr("class", "legend1B")
-                    .attr("x", "-60")
+                    .attr("x", "-30")
                     .attr("y", 190)
-                    .text("Export volume index (2015=100)")
+                    .text("Export unit index (2015=100)")
                     .style("font-size", "90%")
                     .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
                     .attr("alignment-baseline", "middle")
