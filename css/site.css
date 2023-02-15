@@ -101,6 +101,7 @@ p.text {
     text-align: justify;
     margin-top: auto;
     margin-bottom: auto;
+    font-size: 20px;
     /* margin-left: 20px;
     margin-right: 20px; */
     color: #ffffff;
@@ -239,10 +240,12 @@ section.card {
     width: 100%;
     height: 450px;
 }
+
 #box3 {
     width: 100%;
     height: 450px;
 }
+
 .box3_auto {
     width: 100%;
     height: auto;
@@ -252,12 +255,15 @@ section.card {
     width: 100%;
     height: 600px;
 }
-.green{
+
+.green {
     background-color: rgb(130, 235, 130);
 }
-.orange{
+
+.orange {
     background-color: orange;
 }
+
 /*----------- HOVER-GRAPH -----------*/
 div.box_l:hover {
     transform: scale(1.1);
