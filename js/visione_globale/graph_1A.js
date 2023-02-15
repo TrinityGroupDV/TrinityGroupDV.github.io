@@ -58,14 +58,7 @@ $(document).ready(function () {
                     for (i = 0; i < (data.length / 7) - 1; i++) {
                         dataProva[i] = data[i * 7]
                         dataProva[i].value =
-                            Number(data[i * 7].value) +
-                            Number(data[i * 7 + 1].value) +
-                            Number(data[i * 7 + 3].value) +
-                            Number(data[i * 7 + 4].value) +
-                            Number(data[i * 7 + 5].value) +
-                            Number(data[i * 7 + 6].value)
-
-                        dataProva[i].value = dataProva[i].value / 7;
+                            Number(data[i * 7].value)
                     }
 
 

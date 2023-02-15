@@ -116,7 +116,7 @@ class CovidDataHelper:
         csv_helper.set_header(['date', 'value'])
         # Scrive le righe nel CSV
         for date, value in self.stats_by_days.items():
-            csv_helper.add_row([date, value['new_deaths']])
+            csv_helper.add_row([date, value['new_deaths_smoothed']])
         # Salvo il file csv
         csv_helper.save_file(path)
 
@@ -149,4 +149,4 @@ if __name__ == '__main__':
     covid_data_helper.set_covid_path(covid_path.name)
 
     # covid_data_helper.create_death_by_days_csv('../../csv/' + 'graph_1A')
-    covid_data_helper.create_stats_europe_by_days_csv('../../csv/' + 'graph_2B_2E')
+    covid_data_helper.create_death_by_days_csv('../../csv/' + 'graph_2B_2E')
