@@ -158,7 +158,6 @@ $(document).ready(async function () {
                 }
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
-                console.log(map)
 
                 // Write date
                 d3.selectAll('text.legend_2D').remove()
