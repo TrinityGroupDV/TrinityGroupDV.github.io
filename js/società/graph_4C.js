@@ -27,22 +27,41 @@ $(document).ready(function () {
             .attr("transform", `translate(${margin.left},${margin.top})`)
 
         // Inizitialization array all data links and aux variable
-        let dataValue = [];
-        let year = ["2019", "2020", "2021"];
-        let state = ["DE", "ES", "FR", "IT"];
-        let age = ["u18", "18-24", "25-49", "50-64", "65-74", "o75"];
+        let values = new Array();
+        let column = ["year", "state", "age", "value"];
 
-        dataValue = 
 
-        
-            // Parse the Data
-            // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv")
-            d3.csv("../../csv/società/graph_4C.csv").then(function (data) {
+        // Parse the Data
+        // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv")
+        d3.csv("../../csv/società/graph_4C.csv")
+            .then(function (data) {
+                console.log(typeof (data))
                 console.log(data)
+                // console.log(data.length)
+                // console.log(data[0]["TIME_PERIOD"])
+                console.log(data[0])
+
+                for (var i = 0; i < data.length; i++) {
+                    values[i] = {};
+                    values[i][column[0]] = data[i]["TIME_PERIOD"];
+                    values[i][column[1]] = data[i]["geo"];
+                    values[i][column[2]] = data[i]["age"];
+                    values[i][column[3]] = data[i]["OBS_VALUE"];
+                }
+                console.log(values)
 
                 // List of subgroups = header of the csv files = soil condition here
                 const subgroups = data.columns.slice(1)
+                console.log(subgroups)
 
+
+
+
+
+
+
+
+                
                 // List of groups = species here = value of the first column called group -> I show them on the X axis
                 const groups = data.map(d => (d.group))
 
