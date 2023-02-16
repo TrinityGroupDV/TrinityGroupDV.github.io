@@ -30,9 +30,11 @@ $(document).ready(function () {
         let dataValue = [];
         let year = ["2019", "2020", "2021"];
         let state = ["DE", "ES", "FR", "IT"];
-        let age =["u18", "18-24", "25-49", "50-64", "65-74", "o75"];
-        
+        let age = ["u18", "18-24", "25-49", "50-64", "65-74", "o75"];
 
+        dataValue = 
+
+        
             // Parse the Data
             // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv")
             d3.csv("../../csv/società/graph_4C.csv").then(function (data) {

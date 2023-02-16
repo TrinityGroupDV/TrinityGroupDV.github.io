@@ -8,8 +8,8 @@ $(document).ready(async function () {
 
     function draw() {
 
-        let clientHeight = document.getElementById('graph_2D').clientHeight - 60;
-        let clientWidth = document.getElementById('graph_2D').clientWidth - 100;
+        let clientHeight = document.getElementById('graph_5A').clientHeight - 60;
+        let clientWidth = document.getElementById('graph_5A').clientWidth - 100;
 
         // Set margin
         const margin = { top: 10, right: 20, bottom: 30, left: 50 };
@@ -98,44 +98,50 @@ $(document).ready(async function () {
 
             // create a tooltip
             const Tooltip = d3.select("#graph_5A")
-                .append("g")
+                .append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 1)
+                .style("position", "absolute")
                 .style("background-color", "white")
                 .style("border", "solid")
                 .style("border-width", "2px")
                 .style("border-radius", "5px")
                 .style("padding", "5px")
+                .style("font-size", "12px");
 
+            // Show tooltip on mouseover
             const mouseover = function (event, d) {
-                Tooltip.style("opacity", 1)
-                console.log('dentro')
-            }
-            var mousemove = function (event, d) {
-                Tooltip
-                    .html(d.name + "<br>" + "long: " + d.long + "<br>" + "lat: " + d.lat)
-                    .style("left", (event.x) / 2 + "px")
-                    .style("top", (event.y) / 2 - 30 + "px")
-            }
-            var mouseleave = function (event, d) {
-                Tooltip.style("opacity", 0)
+                Tooltip.style("opacity", 1);
             }
 
+            // Move tooltip on mousemove
+            const mousemove = function (event, d) {
+                Tooltip.html("Country: " + d.country + "<br>" + "Percentage: " + d3.format(".2f")(d.percentage) + "%")
+                    .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
+                    .style("top", (event.offsetY - 20) + "px"); // sottratto 20px per spostare il tooltip in alto
+            }
 
-            svg
-                .selectAll("myCircles")
+            // Hide tooltip on mouseout
+            const mouseout = function (event, d) {
+                Tooltip.style("opacity", 0);
+            }
+
+            // Add listeners to markers
+            svg.selectAll("myCircles")
                 .data(markers)
-                .join("circle")
-                .attr("cx", d => projection([d.long, d.lat])[0])
-                .attr("cy", d => projection([d.long, d.lat])[1])
-                .attr("r", d => size(d.size))
-                .style("fill", d => color(d.group))
-                .attr("stroke", d => color(d.group))
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return projection([d.long, d.lat])[0]; })
+                .attr("cy", function (d) { return projection([d.long, d.lat])[1]; })
+                .attr("r", function (d) { return size(d.size); })
+                .style("fill", function (d) { return color(d.size); })
+                .attr("stroke", function (d) { return color(d.size); })
                 .attr("stroke-width", 3)
                 .attr("fill-opacity", .4)
                 .on("mouseover", mouseover)
                 .on("mousemove", mousemove)
-                .on("mouseleave", mouseleave)
+                .on("mouseout", mouseout);
+
 
             const valuesToShow = [4 * 8, 8 * 8, 12 * 8, 16 * 8]
             const xCircle = 100
