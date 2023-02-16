@@ -29,7 +29,7 @@ $(document).ready(function () {
         // Map and projection
         const path = d3.geoPath();
         const projection = d3.geoMercator()
-            .scale(600)
+            .scale(400)
             .center([20, 51])
             .translate([clientWidth / 1.79, clientHeight / 1.6]);
 
@@ -54,24 +54,24 @@ $(document).ready(function () {
 
 
             const markers = [
-                { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage },
-                { long: 25, lat: 43, country: "Bulgaria", size: percentage[1].percentage },
-                { long: 9, lat: 51, country: "Germany", size: percentage[2].percentage },
-                { long: 22, lat: 39, country: "Greece", size: percentage[3].percentage },
-                { long: -3, lat: 40, country: "Spain", size: percentage[4].percentage },
-                { long: 2, lat: 46, country: "France", size: percentage[5].percentage },
-                { long: 20, lat: 47, country: "Hungary", size: percentage[6].percentage },
-                { long: 12.5, lat: 42.5, country: "Italy", size: percentage[7].percentage },
-                { long: 10, lat: 62, country: "Norway", size: percentage[8].percentage },
-                { long: 20, lat: 52, country: "Poland", size: percentage[9].percentage },
-                { long: -8, lat: 40, country: "Portugal", size: percentage[10].percentage },
-                { long: 25, lat: 46, country: "Romania", size: percentage[11].percentage },
-                { long: 15, lat: 62, country: "Sweden", size: percentage[12].percentage },
-                { long: -8, lat: 53, country: "Ireland", size: percentage[13].percentage },
-                { long: 15.3, lat: 45.10, country: "Croatia", size: percentage[14].percentage },
-                { long: 26, lat: 64, country: "Finland", size: percentage[15].percentage },
+                { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage / 1.5 },
+                { long: 25, lat: 43, country: "Bulgaria", size: percentage[1].percentage / 1.5 },
+                { long: 9, lat: 51, country: "Germany", size: percentage[2].percentage / 1.5 },
+                { long: 22, lat: 39, country: "Greece", size: percentage[3].percentage / 1.5 },
+                { long: -3, lat: 40, country: "Spain", size: percentage[4].percentage / 1.5 },
+                { long: 2, lat: 46, country: "France", size: percentage[5].percentage / 1.5 },
+                { long: 20, lat: 47, country: "Hungary", size: percentage[6].percentage / 1.5 },
+                { long: 12.5, lat: 42.5, country: "Italy", size: percentage[7].percentage / 1.5 },
+                { long: 10, lat: 62, country: "Norway", size: percentage[8].percentage / 1.5 },
+                { long: 20, lat: 52, country: "Poland", size: percentage[9].percentage / 1.5 },
+                { long: -8, lat: 40, country: "Portugal", size: percentage[10].percentage / 1.5 },
+                { long: 25, lat: 46, country: "Romania", size: percentage[11].percentage / 1.5 },
+                { long: 15, lat: 62, country: "Sweden", size: percentage[12].percentage / 1.5 },
+                { long: -8, lat: 53, country: "Ireland", size: percentage[13].percentage / 1.5 },
+                { long: 15.3, lat: 45.10, country: "Croatia", size: percentage[14].percentage / 1.5 },
+                { long: 26, lat: 64, country: "Finland", size: percentage[15].percentage / 1.5 },
                 { long: 4.55, lat: 52.23, country: "Netherlands", size: percentage[16].percentage },
-                { long: -18, lat: 65, country: "Iceland", size: percentage[17].percentage }
+                { long: -18, lat: 65, country: "Iceland", size: percentage[17].percentage / 1.5 }
             ];
 
 
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
             // Move tooltip on mousemove
             const mousemove = function (event, d) {
-                Tooltip.html("Country: " + d.country + "<br>" + "Percentage: -" + d.size + "%")
+                Tooltip.html("Country: " + d.country + "<br>" + "Percentage: -" + (d.size * 1.5).toFixed(2) + "%")
                     .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
                     .style("top", (event.offsetY - 20) + "px"); // sottratto 20px per spostare il tooltip in alto
             }
@@ -125,7 +125,6 @@ $(document).ready(function () {
             const mouseout = function (event, d) {
                 Tooltip.style("opacity", 0);
             }
-
 
             svg
                 .selectAll("myCircles")
@@ -141,11 +140,12 @@ $(document).ready(function () {
                 .on("mouseover", mouseover)
                 .on("mousemove", mousemove)
                 .on("mouseleave", mouseout)
+
             // Add legend: circles
-            const valuesToShow = [100, 80, 60]
-            const xCircle = 100
-            const xLabel = 170
-            const yCircle = 400
+            const valuesToShow = [100 / 1.5, 75 / 1.5, 50 / 1.5]
+            const xCircle = 30
+            const xLabel = 100
+            const yCircle = 300
             svg
                 .selectAll("legend")
                 .data(valuesToShow)
@@ -168,19 +168,25 @@ $(document).ready(function () {
                 .attr('stroke', 'black')
                 .style('stroke-dasharray', ('2,2'))
 
-            // Add legend: labels
-            svg
-                .selectAll("legend")
-                .data(valuesToShow)
-                .join("text")
-                .attr('x', xLabel)
-                .attr('y', d => yCircle - size(d))
-                .text(d => d)
                 .style("font-size", 10)
-                .attr('alignment-baseline', 'middle')
-
-
-
+            svg.append("text")
+                .attr("x", 105)
+                .attr("y", 268)
+                .attr("class", "legend5B")
+                .text("100%")
+                .style("font-size", 10)
+            svg.append("text")
+                .attr("x", 105)
+                .attr("y", 277)
+                .attr("class", "legend5B")
+                .text("75%")
+                .style("font-size", 10)
+            svg.append("text")
+                .attr("x", 105)
+                .attr("y", 285)
+                .attr("class", "legend5B")
+                .text("50%")
+                .style("font-size", 10)
         })
     }
 })
