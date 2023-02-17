@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    //DIMINUZIONE PERCENTUALE DEL CONSUMO DI ENERGIA FINALE TRA IL 2019 E il 2020 NELL'UNIONE EUROPEA
+
     let aux = 0;
     draw()
 
@@ -50,9 +53,6 @@ $(document).ready(function () {
                 temp++
                 i++
             }
-
-
-
 
             const markers = [
                 { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage * 5 },
@@ -144,8 +144,8 @@ $(document).ready(function () {
 
 
             const valuesToShow = [4 * 5, 8 * 5, 12 * 5, 16 * 5]
-            const xCircle = 30
-            const xLabel = 100
+            const xCircle = 0
+            const xLabel = 50
             const yCircle = 300
             svg
                 .selectAll("legend")
@@ -169,25 +169,25 @@ $(document).ready(function () {
                 .style('stroke-dasharray', ('2,2'))
 
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 260)
                 .attr("class", "legend5A")
                 .text("16%")
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 270)
                 .attr("class", "legend5A")
                 .text("12%")
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 280)
                 .attr("class", "legend5A")
                 .text("8%")
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 290)
                 .attr("class", "legend5A")
                 .text("4%")

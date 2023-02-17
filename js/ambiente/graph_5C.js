@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    //PRIMARY ENERGY CONSUMPTION IN EUROPEAN UNION
+
     let aux = 0;
     draw()
 

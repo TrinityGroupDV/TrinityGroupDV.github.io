@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    // Greenhouse gases production in European union
+
     let aux = 0;
     draw()
 

@@ -187,12 +187,13 @@ $(document).ready(async function () {
         let slider = document.querySelector("input[type='range']");
         slider.value = 0
 
+
         // Append the svg object to the body of the page
         const svg = d3.select("#graph_2D")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
-
+        console.log(clientWidth)
         svg.append("text")
             .attr("class", "data_iniziale")
             .attr("x", "13%")

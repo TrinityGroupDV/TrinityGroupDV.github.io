@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    //DIMINUZIONE PERCENTUALE DEL NUMERO DI PASSEGGERI AEREI TRA IL 2019 E il 2020 NELL'UNONE EUROPEA
+
     let aux = 0;
     draw()
 
@@ -143,8 +146,8 @@ $(document).ready(function () {
 
             // Add legend: circles
             const valuesToShow = [100 / 1.5, 75 / 1.5, 50 / 1.5]
-            const xCircle = 30
-            const xLabel = 100
+            const xCircle = 0
+            const xLabel = 50
             const yCircle = 300
             svg
                 .selectAll("legend")
@@ -170,19 +173,19 @@ $(document).ready(function () {
 
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 268)
                 .attr("class", "legend5B")
                 .text("100%")
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 277)
                 .attr("class", "legend5B")
                 .text("75%")
                 .style("font-size", 10)
             svg.append("text")
-                .attr("x", 105)
+                .attr("x", 55)
                 .attr("y", 285)
                 .attr("class", "legend5B")
                 .text("50%")
