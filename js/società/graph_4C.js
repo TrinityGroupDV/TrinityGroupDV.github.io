@@ -62,16 +62,55 @@ $(document).ready(function () {
                         acc++
                     }
                 }
-                let array = {}
+                for (i = 0; i < 24; i++) {
+                    if (dataByYear[2019][i].state == "FR") {
+                        array_2019[acc] = dataByYear[2019][i]
+                        acc++
+                    }
+                }
+                for (i = 0; i < 24; i++) {
+                    if (dataByYear[2019][i].state == "ES") {
+                        array_2019[acc] = dataByYear[2019][i]
+                        acc++
+                    }
+                }
+                for (i = 0; i < 24; i++) {
+                    if (dataByYear[2019][i].state == "IT") {
+                        array_2019[acc] = dataByYear[2019][i]
+                        acc++
+                    }
+                }
+                /*let array = []
                 console.log(array_2019)
-                for (let i; i < array_2019.length; i++) {
+                for (let i = 0; i < 1; i++) {
+                    array[0] = {
+                        "state": array_2019[i].state,
+                        "Y18-24": array_2019[i].value,
+                        "Y25-49": array_2019[i + 1].value,
+                        "Y50-64": array_2019[i + 2].value,
+                        "Y65-74": array_2019[i + 3].value,
+                        "Y_GE75": array_2019[i + 4].value,
+                        "Y_LT18": array_2019[i + 5].value
+                    }
+                    i=i+5
+
+                }*/
+                let array19 = [];
+
+                array19[0] = { 'state': germany };
+                array19[0] = { 'state': france };
+                array19[0] = { 'state': germany };
+                array19[0] = { 'state': germany };
+                console.log(array_2019)
+                for (let i = 1; i <= array_2019.length; i++) {
                     array[array_2019[i].age] = array_2019[i].value;
                 }
-                console.log(typeof array_2019[0].value)
-            }
 
 
-            )
+
+                console.log(array)
+
+            })
     }
 
 
