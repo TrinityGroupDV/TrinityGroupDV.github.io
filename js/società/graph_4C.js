@@ -80,7 +80,6 @@ $(document).ready(function () {
                             case 0:
                                 array[i] = { state: 'Germany' };
                                 key_state = Object.keys(newData[a])[i];
-                                // console.log(key_state)
                                 break;
                             case 1:
                                 array[i] = { state: 'Spain' };
@@ -118,62 +117,74 @@ $(document).ready(function () {
                     }
                 }
 
+                // let array = [];
 
-                let prova = [];
-                prova = year2021;
+                // array = year2019;
+                update(array)
 
-                // List of subgroups = header of the csv files = soil condition here
-                const subgroups = Object.keys(prova[0]).slice(1);
-                // console.log(subgroups)
+                var myButton = document.getElementById("myButton");
 
-                // List of groups = species here = value of the first column called group -> I show them on the X axis
-                const groups = prova.map(d => (d.state))
-                // console.log(groups)
+                myButton.addEventListener("click", function () {
+                    update(array2020)
+                });
 
-                // Add X axis
-                const x = d3.scaleLinear()
-                    .domain([16000, 0])
-                    .range([clientWidth, 0])
-                svg.append("g")
-                    .attr("transform", `translate(0, ${clientHeight})`)
-                    .call(d3.axisBottom(x).tickSizeOuter(0));
+                function update(array) {
 
-                // Add Y axis
-                const y = d3.scaleBand()
-                    .domain(groups)
-                    .range([0, clientHeight])
-                    .padding([0.2])
+                    // List of subgroups = header of the csv files = soil condition here
+                    const subgroups = Object.keys(array[0]).slice(1);
+                    // console.log(subgroups)
 
-                svg.append("g")
-                    .call(d3.axisLeft(y));
+                    // List of groups = species here = value of the first column called group -> I show them on the X axis
+                    const groups = array.map(d => (d.state))
+                    // console.log(groups)
 
-                // color palette = one color per subgroup
-                const color = d3.scaleOrdinal()
-                    .domain(subgroups)
-                    .range(['#e41a1c', '#377eb8', '#4daf4a', '#aabbcc', '#bbccaa', '#4f4d4d'])
+                    // Add X axis
+                    const x = d3.scaleLinear()
+                        .domain([16000, 0])
+                        .range([clientWidth, 0])
+                    svg.append("g")
+                        .attr("transform", `translate(0, ${clientHeight})`)
+                        .call(d3.axisBottom(x).tickSizeOuter(0));
 
-                //stack the data? --> stack per subgroup
-                const stackedData = d3.stack()
-                    .keys(subgroups)
-                    (prova)
-                // console.log(stackedData)
+                    // Add Y axis
+                    const y = d3.scaleBand()
+                        .domain(groups)
+                        .range([0, clientHeight])
+                        .padding([0.2])
 
-                // Show the bars
-                svg.append("g")
-                    .selectAll("g")
-                    // Enter in the stack data = loop key per key = group per group
-                    .data(stackedData)
-                    .join("g")
-                    .attr("fill", d => color(d.key))
-                    .selectAll("rect")
-                    // enter a second time = loop subgroup per subgroup to add all rectangles
-                    .data(d => d)
-                    .join("rect")
-                    .attr("x", d => x(d[0]))
-                    .attr("y", d => y(d.data.state))
-                    .attr("width", d => x(d[1]) - x(d[0]))
-                    .attr("height", y.bandwidth())
+                    svg.append("g")
+                        .call(d3.axisLeft(y));
+
+                    // color palette = one color per subgroup
+                    const color = d3.scaleOrdinal()
+                        .domain(subgroups)
+                        .range(['#e41a1c', '#377eb8', '#4daf4a', '#aabbcc', '#bbccaa', '#4f4d4d'])
+
+                    //stack the data? --> stack per subgroup
+                    const stackedData = d3.stack()
+                        .keys(subgroups)
+                        (array)
+                    // console.log(stackedData)
+
+                    // Show the bars
+                    svg.append("g")
+                        .selectAll("g")
+                        // Enter in the stack data = loop key per key = group per group
+                        .data(stackedData)
+                        .join("g")
+                        .attr("fill", d => color(d.key))
+                        .selectAll("rect")
+                        // enter a second time = loop subgroup per subgroup to add all rectangles
+                        .data(d => d)
+                        .join("rect")
+                        .attr("x", d => x(d[0]))
+                        .attr("y", d => y(d.data.state))
+                        .attr("width", d => x(d[1]) - x(d[0]))
+                        .attr("height", y.bandwidth())
+                }
             })
+
+
     }
 })
 
