@@ -21,7 +21,7 @@ $(document).ready(function () {
         }
         aux = 1;
 
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_5D")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -65,7 +65,6 @@ $(document).ready(function () {
                             .x(function (d) { return x(d.date) })
                             .y(function (d) { return y(d.value) })
                         )
-
                     svg.append("text")
                         .attr("class", "legend5C")
                         .attr("x", "-145")

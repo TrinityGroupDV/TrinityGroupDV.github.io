@@ -21,9 +21,7 @@ $(document).ready(function () {
         }
         aux = 1;
 
-        //https://ec.europa.eu/eurostat/databrowser/view/NRG_BAL_C__custom_4981243/default/table?lang=en
-
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_5C")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -33,7 +31,6 @@ $(document).ready(function () {
 
         //Read the data
         d3.csv("../../csv/ambiente/graph_5C.csv",
-
             // When reading the csv, I must format variables:
             function (d) {
                 return { date: d3.timeParse("%Y")(d.TIME_PERIOD), value: d.OBS_VALUE }
@@ -85,7 +82,6 @@ $(document).ready(function () {
             .style("font-size", "100%")
             .attr("alignment-baseline", "middle")
     }
-
 })
 
 

@@ -21,14 +21,16 @@ $(document).ready(function () {
         }
         aux = 1;
 
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_5A")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
+
         let array = []
+
         // Map and projection
         const path = d3.geoPath();
         const projection = d3.geoMercator()
@@ -43,6 +45,7 @@ $(document).ready(function () {
                 array.push(d)
             })
         ]).then(function (loadData) {
+
             let topo = loadData[0]
 
             let temp = 0;
@@ -75,15 +78,13 @@ $(document).ready(function () {
                 { long: -18, lat: 65, country: "Iceland", size: percentage[17].percentage * 5 }
             ];
 
-
-
             const color = d3.scaleOrdinal()
                 //.domain(["A"])
                 .range(["#d48415"])
 
             const size = d3.scaleLinear()
-                .domain([1, 100])  // What's in the data
-                .range([4, 50])  // Size in pixel
+                .domain([1, 100])
+                .range([4, 50])
 
             // Draw the map
             svg.append("g")
@@ -96,7 +97,7 @@ $(document).ready(function () {
                 )
                 .style("stroke", "#fff")
 
-            // create a tooltip
+            // Create a tooltip
             const Tooltip = d3.select("#graph_5A")
                 .append("div")
                 .attr("class", "tooltip")
@@ -142,7 +143,6 @@ $(document).ready(function () {
                 .on("mousemove", mousemove)
                 .on("mouseout", mouseout);
 
-
             const valuesToShow = [4 * 5, 8 * 5, 12 * 5, 16 * 5]
             const xCircle = 0
             const xLabel = 50
@@ -156,6 +156,7 @@ $(document).ready(function () {
                 .attr("r", d => size(d))
                 .style("fill", "none")
                 .attr("stroke", "black")
+
             // Add legend: segments
             svg
                 .selectAll("legend")
@@ -192,9 +193,6 @@ $(document).ready(function () {
                 .attr("class", "legend5A")
                 .text("4%")
                 .style("font-size", 10)
-
-
-
         })
     }
 })

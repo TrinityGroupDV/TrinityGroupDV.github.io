@@ -21,14 +21,16 @@ $(document).ready(function () {
         }
         aux = 1;
 
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_5B")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
+
         let array = []
+
         // Map and projection
         const path = d3.geoPath();
         const projection = d3.geoMercator()
@@ -54,8 +56,6 @@ $(document).ready(function () {
                 i++
             }
 
-
-
             const markers = [
                 { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage / 1.5 },
                 { long: 25, lat: 43, country: "Bulgaria", size: percentage[1].percentage / 1.5 },
@@ -77,9 +77,6 @@ $(document).ready(function () {
                 { long: -18, lat: 65, country: "Iceland", size: percentage[17].percentage / 1.5 }
             ];
 
-
-
-
             const color = d3.scaleOrdinal()
                 .domain(["A"])
                 .range(["#3b8bcc"])
@@ -99,7 +96,7 @@ $(document).ready(function () {
                 )
                 .style("stroke", "#fff")
 
-            // create a tooltip
+            // Create a tooltip
             const Tooltip = d3.select("#graph_5B")
                 .append("div")
                 .attr("class", "tooltip")

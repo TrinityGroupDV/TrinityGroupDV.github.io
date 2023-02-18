@@ -1,9 +1,11 @@
 $(document).ready(async function () {
+
     let aux = 0;
     let data_iniziale = 1;
     let movement = {}
     let testing = {}
     let faceMask = {}
+
     filterMovement()
     filterTesting()
     filterFacemask()
@@ -12,12 +14,10 @@ $(document).ready(async function () {
         draw()
     }, 3000)
 
-
     addEventListener("resize", (event) => {
         data_iniziale = 1;
         draw()
     })
-
 
     function filterMovement() {
         d3.csv("../../csv/sanità/graph_2D_1.csv").then(function (data) {
@@ -62,7 +62,6 @@ $(document).ready(async function () {
                     data[i].Code === "OWID_KOS" ||
                     data[i].Code === "MNE" ||
                     data[i].Code === "ISL") {
-
                     movement[inc1] = data[i]
                     inc1++
                 }
@@ -113,7 +112,6 @@ $(document).ready(async function () {
                     data[i].Code === "OWID_KOS" ||
                     data[i].Code === "MNE" ||
                     data[i].Code === "ISL") {
-
                     testing[inc2] = data[i]
                     inc2++
                 }
@@ -164,7 +162,6 @@ $(document).ready(async function () {
                     data[i].Code === "OWID_KOS" ||
                     data[i].Code === "MNE" ||
                     data[i].Code === "ISL") {
-
                     faceMask[inc3] = data[i]
                     inc3++
                 }
@@ -172,8 +169,8 @@ $(document).ready(async function () {
         })
     }
 
-
     function draw() {
+
         let clientHeight = document.getElementById('graph_2D').clientHeight - 50;
         let clientWidth = document.getElementById('graph_2D').clientWidth - 100;
 
@@ -183,17 +180,16 @@ $(document).ready(async function () {
             $("#graph_2D").empty();
         }
         aux = 1;
+
         // Append the svg object to the body of the page
         let slider = document.querySelector("input[type='range']");
         slider.value = 0
-
 
         // Append the svg object to the body of the page
         const svg = d3.select("#graph_2D")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
-
 
         svg.append("text")
             .attr("class", "data_iniziale")
@@ -210,11 +206,7 @@ $(document).ready(async function () {
             .center([20, 50])
             .translate([clientWidth / 1.79, clientHeight / 1.6]);
 
-        // Data and color scale
         let map = new Map()
-        /*const colorScale = d3.scaleThreshold()
-            .domain([0, 1, 2, 3, 4])
-            .range(["grey", "#08c0ff", "#ffa500", "#ff0831", "#FF3B22"])*/
 
         //Aux variables for first ever draw map
         checkFirstDrawMap = 0;
@@ -222,12 +214,6 @@ $(document).ready(async function () {
         //Aux variable for plot date
         let date;
 
-        // Draw First Map
-        // internalMovementDataset(0)
-
-        /*if(aux_2==0){
-            internalMovementDataset(0)
-        }*/
         internalMovementDataset(0)
 
         //Auxiliary variables for first redrawing after changing datasets
@@ -301,7 +287,6 @@ $(document).ready(async function () {
         // Draw Map function
         // FIRST DATASET
         function internalMovementDataset(dataSlider) {
-
             // Load external data and boot
             Promise.all([
                 d3.json("../europe.geojson"),
@@ -322,7 +307,6 @@ $(document).ready(async function () {
                     }
                 }
 
-
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3])
                     .range(["grey", "#65b5fd", "#ffbf29", "#ff3e6b"])
@@ -338,6 +322,7 @@ $(document).ready(async function () {
 
                     map.set(aux_var[i].Code, aux_var[i].restrictions_internal_movements)
                 }
+
                 date = aux_var[dataSlider].Day.toString()
                 date = date.substr(0, 7)
 
@@ -345,7 +330,9 @@ $(document).ready(async function () {
                     d3.selectAll('text.data_iniziale').remove()
 
                 }
+
                 data_iniziale = 0
+
                 // Write date
                 svg.selectAll('text.legend_2D').remove()
 
@@ -470,7 +457,6 @@ $(document).ready(async function () {
 
         //SECOND DATASET
         function testingDataset(dataSlider) {
-
             // Load external data and boot
             Promise.all([
                 d3.json("../europe.geojson")
@@ -499,13 +485,14 @@ $(document).ready(async function () {
 
 
                 map.clear()
+
                 for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].testing_policy)
                 }
+
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
-
 
                 // Write date
                 d3.selectAll('text.legend_2D').remove()
@@ -611,7 +598,6 @@ $(document).ready(async function () {
         }
 
         function faceCoveringsDataset(dataSlider) {
-
             // Load external data and boot
             Promise.all([
                 d3.json("../europe.geojson"),
@@ -639,10 +625,12 @@ $(document).ready(async function () {
 
 
                 map.clear()
+
                 for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].facial_coverings)
                 }
+
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
 
@@ -671,7 +659,6 @@ $(document).ready(async function () {
                         .attr("d", d3.geoPath()
                             .projection(projection)
                         )
-
                         // Set the color of each country
                         .attr("fill", function (d) {
                             d.total = map.get(d.properties.iso_a3) || 0;
@@ -809,8 +796,6 @@ $(document).ready(async function () {
             })
         }
     }
-
-
 });
 
 

@@ -27,7 +27,6 @@ $(document).ready(function () {
 
 
         // Parse the Data
-        // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv")
         d3.csv("../../csv/società/graph_4C.csv")
             .then(function (data) {
                 let values = new Array();
@@ -118,16 +117,11 @@ $(document).ready(function () {
                             break;
                     }
                 }
-                console.log("2019:  ")
-                console.log(year2019)
-                console.log("2020:  ")
-                console.log(year2020)
-                console.log("2021:  ")
-                console.log(year2021)
+
 
                 let prova = [];
                 prova = year2021;
-                
+
                 // List of subgroups = header of the csv files = soil condition here
                 const subgroups = Object.keys(prova[0]).slice(1);
                 // console.log(subgroups)

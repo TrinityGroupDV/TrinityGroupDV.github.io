@@ -5,6 +5,7 @@ $(document).ready(function () {
     addEventListener("resize", (event) => {
         draw()
     })
+
     function draw() {
 
         let clientHeight = document.getElementById('graph_2E').clientHeight - 80;
@@ -16,8 +17,6 @@ $(document).ready(function () {
             $("#graph_2E").empty();
         }
         aux = 1;
-
-
 
         const svg = d3.select("#graph_2E")
             .append("svg")
@@ -34,21 +33,15 @@ $(document).ready(function () {
         let mapVaccines = new Map();
         let mapCases = new Map();
 
-
-
-
-
         // Leggo i dati
         d3.csv("../../csv/sanità/graph_2E.csv",
 
             // Formatto le date
-            // QUANDO SI AGGIORNA IL CSV, OCCHIO AL FORMATO
             function (d) {
                 return { date: d3.timeParse("%Y-%m-%d")(d.date), death: d.death, vaccines: d.vaccines, case: d.cases }
             }).then(
 
                 function (data) {
-
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
                         arrayDeath.push({ "date": data[i].date, "n": data[i].death }) //ROSSO
@@ -62,13 +55,7 @@ $(document).ready(function () {
                             // console.log(max)
 
                         }
-
-
-
                     }
-
-
-
 
                     //Inserisco i dati dentro alle mappe
                     mapDeath.set("death", arrayDeath)
@@ -89,7 +76,6 @@ $(document).ready(function () {
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
-
 
                     // Funzioni che gestiscono i tooltip
                     // EVIDENZIARE DEATH
@@ -166,7 +152,6 @@ $(document).ready(function () {
                                     .y(function (d) { return y(+d.n); })
                                     (d[1])
                             })
-
                     }
 
                     // EVIDENZIARE VACCINES
@@ -215,7 +200,6 @@ $(document).ready(function () {
                         svg.selectAll("path.vaccines1").remove();
 
                         // LE RIDISEGNO DA ZERO
-
                         // Draw DEATH
                         svg.selectAll(".line")
                             .data(mapDeath)
@@ -326,23 +310,6 @@ $(document).ready(function () {
                     let width = window.innerWidth;
                     let fontSize;
 
-                    /*  if (width < 1400) {
-                          fontSize = "15";
-                      } else if (width < 1800) {
-                          fontSize = 18;
-                      } else if (width < 2000) {
-                          fontSize = 20;
-                      }
-                      else {
-                          fontSize = 25;
-                      }
-  
-                      console.log(width)
-                      let font = fontSize + "px"
-                      console.log(font)
-  
-                      console.log(width)*/
-
                     //Label
                     svg.append("text")
                         .attr("class", "legend1B")
@@ -360,11 +327,10 @@ $(document).ready(function () {
                         .style("font-size", "100%")
                         .attr("alignment-baseline", "middle")
 
-
                     //LEGEND
-                    //DEATH
 
                     if (clientWidth > 690) {
+                        //DEATH
                         svg.append("rect")
                             .attr("x", "70%")
                             .attr("y", -2)
@@ -403,7 +369,6 @@ $(document).ready(function () {
                             .style("font-size", "80%")
                             .on("mouseover", highlightCases)
                             .on("mouseleave", doNotHighlight)
-
                         //ICU
                         svg.append("rect")
                             .attr("x", "70%")
@@ -429,6 +394,7 @@ $(document).ready(function () {
                             .on("mouseleave", doNotHighlight)
                     }
                     else {
+                        //DEATH
                         svg.append("rect")
                             .attr("x", "70%")
                             .attr("y", -2)

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    //TODO: LE LINEE CON I NUMERI ESCONO FUORI
 
     let aux = 0;
     draw()
@@ -11,8 +10,7 @@ $(document).ready(function () {
         let clientHeight = document.getElementById('graph_2C').clientHeight;
         let clientWidth = document.getElementById('graph_2C').clientWidth;
 
-        //DATI DEL 2020
-        // set the dimensions and margins of the graph
+        // Set the dimensions and margins of the graph
         const margin = 10;
 
         if (aux == 1) {
@@ -42,25 +40,18 @@ $(document).ready(function () {
                 "45-64": parseInt(data[2].death),
             }
 
-
-
             let total = dataArray["0-24"] + dataArray["25-44"] + dataArray["45-64"] + dataArray["65-74"] + dataArray["74+"]
-
 
             //Color palette
             const color = d3.scaleOrdinal()
                 .domain(["65-74", "74+", "0-24", "25-44", "45-64"])
                 .range(["#35bc35", "#ff0831", "#4d4dff", "#ffa500", "#08c0ff"]);
-            // ffff00
-            // 35bc35
-
 
             // Compute the position of each group on the pie:
             const pie = d3.pie()
                 .sort(null) // Do not sort group by size
                 .value(d => d[1])
             const data_ready = pie(Object.entries(dataArray))
-
 
             // The arc generator
             const arc = d3.arc()
@@ -170,7 +161,6 @@ $(document).ready(function () {
                         return (midangle < Math.PI ? 'start' : 'end')
                     })
             }
-
 
             // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
             svg

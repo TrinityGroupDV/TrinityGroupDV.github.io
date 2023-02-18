@@ -1,27 +1,24 @@
 $(document).ready(function () {
-    // UNITA' DI MISURA: PERCENTUALE RISPETTO AL PERIODO PRECEDENTE (BASATA SU PERSONA)
-    // LINK: https://ec.europa.eu/eurostat/databrowser/view/NAMA_10_A10_E__custom_85496/bookmark/table?lang=en&bookmarkId=0d3c5276-dfb4-4342-9834-a4fbec282768
-
-    //FINITO
 
     let aux = 0;
     draw()
     addEventListener("resize", (event) => {
         draw()
     })
+
     function draw() {
 
         let clientHeight = document.getElementById('graph_3D').clientHeight - 50;
         let clientWidth = document.getElementById('graph_3D').clientWidth - 70;
 
-        // set the dimensions and margins of the graph
+        // Set the dimensions and margins of the graph
         const margin = { top: 10, right: 30, bottom: 40, left: 60 };
-
         if (aux == 1) {
             $("#graph_3D").empty();
         }
         aux = 1;
-        // append the svg object to the body of the page
+
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_3D")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -67,7 +64,6 @@ $(document).ready(function () {
                     let arrayFrance = [];
                     let arrayGermany = [];
                     let arraySpain = [];
-
                     let auxObj = {}
 
                     // Insert in the right array the correspondent data
@@ -75,7 +71,6 @@ $(document).ready(function () {
 
                         // Put in array data of Italy
                         if (data[i].country == "Italy") {
-
                             arrayItaly[data[0].country] = data[0].employment
                             auxObj = { "date": data[i].date, "employment": data[i].employment }
                             arrayItaly.push(auxObj)
@@ -88,20 +83,19 @@ $(document).ready(function () {
                             arrayFrance.push(auxObj)
                         }
 
+                        // Put in array data of Germany
                         if (data[i].country == "Germany (until 1990 former territory of the FRG)") {
                             arrayGermany[data[0].country] = data[0].employment
                             auxObj = { "date": data[i].date, "employment": data[i].employment }
                             arrayGermany.push(auxObj)
                         }
 
-
+                        // Put in array data of Spain
                         if (data[i].country == "Spain") {
                             arraySpain[data[0].country] = data[0].employment
                             auxObj = { "date": data[i].date, "employment": data[i].employment }
                             arraySpain.push(auxObj)
                         }
-
-
                     }
 
                     svg.selectAll("path").remove();
@@ -123,8 +117,6 @@ $(document).ready(function () {
                         .text("Date")
                         .style("font-size", "100%")
                         .attr("alignment-baseline", "middle")
-
-
 
                     // Redraw the axes
                     const x = d3.scaleTime()
@@ -152,8 +144,6 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.employment) })
                             )
                     }
-
-
                     //FRANCE
                     if (buttonFrance.checked) {
                         svg.append("path")
@@ -166,8 +156,7 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.employment) })
                             )
                     }
-
-                    //FRANCE
+                    //SPAIN
                     if (buttonSpain.checked) {
                         svg.append("path")
                             .datum(arraySpain)
@@ -179,8 +168,7 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.employment) })
                             )
                     }
-
-                    //FRANCE
+                    //GERMANY
                     if (buttonGermany.checked) {
                         svg.append("path")
                             .datum(arrayGermany)
@@ -192,7 +180,6 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.employment) })
                             )
                     }
-
 
                     // Event listener that check when a box is checked
                     addEventListener("click", function (e) {
@@ -217,8 +204,6 @@ $(document).ready(function () {
                             .text("Date")
                             .style("font-size", "100%")
                             .attr("alignment-baseline", "middle")
-
-
 
                         // Redraw the axes
                         const x = d3.scaleTime()
@@ -246,8 +231,6 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.employment) })
                                 )
                         }
-
-
                         //FRANCE
                         if (buttonFrance.checked) {
                             svg.append("path")
@@ -260,8 +243,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.employment) })
                                 )
                         }
-
-                        //FRANCE
+                        //SPAIN
                         if (buttonSpain.checked) {
                             svg.append("path")
                                 .datum(arraySpain)
@@ -273,8 +255,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.employment) })
                                 )
                         }
-
-                        //FRANCE
+                        //GERMANY
                         if (buttonGermany.checked) {
                             svg.append("path")
                                 .datum(arrayGermany)

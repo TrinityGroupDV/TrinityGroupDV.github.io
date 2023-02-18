@@ -1,27 +1,25 @@
 $(document).ready(function () {
-    //TODO: unità di misura, label assi, colori, legenda
-
-    //LINK: https://ec.europa.eu/eurostat/databrowser/view/SDG_01_10__custom_4922621/default/table?lang=en
-
 
     let aux = 0;
     draw()
     addEventListener("resize", (event) => {
         draw()
     })
+
     function draw() {
 
         let clientHeight = document.getElementById('graph_4A').clientHeight - 50;
         let clientWidth = document.getElementById('graph_4A').clientWidth - 80;
 
-        // set the dimensions and margins of the graph
+        // Set the dimensions and margins of the graph
         const margin = { top: 10, right: 30, bottom: 40, left: 70 };
+
         if (aux == 1) {
             $("#graph_4A").empty();
         }
         aux = 1;
 
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_4A")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -34,7 +32,6 @@ $(document).ready(function () {
         const buttonFrance = document.getElementById("france_4A")
         const buttonSpain = document.getElementById("spain_4A")
         const buttonGermany = document.getElementById("germany_4A")
-
 
         //Label
         svg.append("text")
@@ -53,8 +50,6 @@ $(document).ready(function () {
             .style("font-size", "100%")
             .attr("alignment-baseline", "middle")
 
-
-
         //Read the data
         d3.csv("../../csv/società/graph_4A.csv",
 
@@ -66,8 +61,6 @@ $(document).ready(function () {
                 // Now I can use this dataset:
                 function (data) {
 
-
-
                     // Auxiliary variables for construct the data
                     let arrayItaly = [];
                     let arrayFrance = [];
@@ -75,7 +68,6 @@ $(document).ready(function () {
                     let arraySpain = [];
                     let auxObj = {}
 
-                    // console.log(data[0])
                     // Insert in the right array the correspondent data
                     for (i = 0; i < data.length; i++) {
 
@@ -93,30 +85,20 @@ $(document).ready(function () {
                             arrayFrance.push(auxObj)
                         }
 
+                        // Put in array data of Germany
                         if (data[i].country == "Germany (until 1990 former territory of the FRG)") {
                             arrayGermany[data[0].country] = data[0].poverty
                             auxObj = { "date": data[i].date, "poverty": data[i].poverty }
                             arrayGermany.push(auxObj)
                         }
 
-                        // Put in array data of France
+                        // Put in array data of Spain
                         if (data[i].country == "Spain") {
                             arraySpain[data[0].country] = data[0].poverty
                             auxObj = { "date": data[i].date, "poverty": data[i].poverty }
                             arraySpain.push(auxObj)
                         }
-
-
                     }
-
-
-                    // Draw only axes
-                    // Add X axis
-
-
-
-
-
 
                     // Delete all previous lines including the axes
                     d3.selectAll("path.line_4A").remove();
@@ -138,8 +120,6 @@ $(document).ready(function () {
                         .text("Date")
                         .style("font-size", "100%")
                         .attr("alignment-baseline", "middle")
-
-
 
                     // Redraw the axes
                     const x = d3.scaleTime()
@@ -168,8 +148,6 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.poverty) })
                             )
                     }
-
-
                     //FRANCE
                     if (buttonFrance.checked) {
                         svg.append("path")
@@ -183,8 +161,7 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.poverty) })
                             )
                     }
-
-                    //FRANCE
+                    //SPAIN
                     if (buttonSpain.checked) {
                         svg.append("path")
                             .datum(arraySpain)
@@ -197,8 +174,7 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.poverty) })
                             )
                     }
-
-                    //FRANCE
+                    //GERMANY
                     if (buttonGermany.checked) {
                         svg.append("path")
                             .datum(arrayGermany)
@@ -211,8 +187,6 @@ $(document).ready(function () {
                                 .y(function (d) { return y(d.poverty) })
                             )
                     }
-
-
 
                     // Event listener that check when a box is checked
                     addEventListener("click", function (e) {
@@ -237,8 +211,6 @@ $(document).ready(function () {
                             .text("Date")
                             .style("font-size", "100%")
                             .attr("alignment-baseline", "middle")
-
-
 
                         // Redraw the axes
                         const x = d3.scaleTime()
@@ -267,8 +239,6 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.poverty) })
                                 )
                         }
-
-
                         //FRANCE
                         if (buttonFrance.checked) {
                             svg.append("path")
@@ -282,8 +252,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.poverty) })
                                 )
                         }
-
-                        //FRANCE
+                        //SPAIN
                         if (buttonSpain.checked) {
                             svg.append("path")
                                 .datum(arraySpain)
@@ -296,8 +265,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(d.poverty) })
                                 )
                         }
-
-                        //FRANCE
+                        //GERMANY
                         if (buttonGermany.checked) {
                             svg.append("path")
                                 .datum(arrayGermany)
@@ -312,11 +280,7 @@ $(document).ready(function () {
                         }
                     })
                 })
-
-
     }
-
-
 })
 
 

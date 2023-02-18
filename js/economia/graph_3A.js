@@ -1,21 +1,5 @@
 $(document).ready(function () {
 
-    //TODO: rivedere il tooltip
-
-    //LINK: https://ec.europa.eu/eurostat/databrowser/view/TET00001/default/table?lang=en&category=ext_go.ext_go_agg.ext_go_lti.ext_go_lti_int
-    //UNITA DI MISURA:
-    /*Volume index = value index / unit-value index Value index: The value index is 
-    calculated as the percentage change between the trade value of the current month
-     and the average monthly trade value of the previous year. Unit-value index: 
-     Monthly raw data are processed at the most detailed level in order to calculate
-      elementary unit-values defined by trade value/quantity. These unit-values are 
-      divided by the average unit-value of the previous year to obtain elementary 
-      unit-value indices, from which outliers are detected and removed. Elementary 
-      unit-value indices are then aggregated over countries and commodities, by 
-      using the Laspeyres, Paasche and Fisher formulae. Finally, the Fisher unit-value 
-      indices are chained back to the reference year (2015 = 100).*/
-
-
     let aux = 0;
     draw()
     addEventListener("resize", (event) => {
@@ -23,6 +7,7 @@ $(document).ready(function () {
     })
 
     function draw() {
+
         let clientHeight = document.getElementById('graph_3A').clientHeight - 100;
         let clientWidth = document.getElementById('graph_3A').clientWidth - 100;
 
@@ -32,11 +17,8 @@ $(document).ready(function () {
             $("#graph_3A").empty();
         }
         aux = 1;
-        // append the svg object to the body of the page
-        // set the dimensions and margins of the graph
 
-
-        // append the svg object to the body of the page
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_3A")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -45,27 +27,19 @@ $(document).ready(function () {
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         let arrayData = []
+
         // Parse the Data
         d3.csv("../../csv/economia/graph_3A.csv").then(function (data) {
-
-            //"../../py/economia/graph_3A/tet00001__custom_4855850_linear.csv"
-            //console.log(data)
-            // List of subgroups = header of the csv files = soil condition here
-
-            // arrProv = { data: ["cazzo", "culo"] }
-
             arrayData[0] = { "2017": data[0].OBS_VALUE, "2018": data[1].OBS_VALUE, "2019": data[2].OBS_VALUE, "2020": data[3].OBS_VALUE, "2021": data[4].OBS_VALUE, country: "Germany" }
             arrayData[1] = { "2017": data[5].OBS_VALUE, "2018": data[6].OBS_VALUE, "2019": data[7].OBS_VALUE, "2020": data[8].OBS_VALUE, "2021": data[9].OBS_VALUE, country: "Spain" }
             arrayData[2] = { "2017": data[10].OBS_VALUE, "2018": data[11].OBS_VALUE, "2019": data[12].OBS_VALUE, "2020": data[13].OBS_VALUE, "2021": data[14].OBS_VALUE, country: "France" }
             arrayData[3] = { "2017": data[15].OBS_VALUE, "2018": data[16].OBS_VALUE, "2019": data[17].OBS_VALUE, "2020": data[18].OBS_VALUE, "2021": data[19].OBS_VALUE, country: "Italy" }
             arrayData["columns"] = ["country", "2017", "2018", "2019", "2020", "2021"]
 
-
             const subgroups = arrayData.columns.slice(1)
 
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             const groups = arrayData.map(d => d.country)
-
 
             if (clientWidth < 1547) {
                 svg.append("text")
@@ -86,11 +60,7 @@ $(document).ready(function () {
                     .style("font-size", "100%")
                     .attr('transform', 'rotate(270 ' + 10 + ' ' + 240 + ')')
                     .attr("alignment-baseline", "middle")
-
             }
-
-
-
 
             // Add X axis
             const x = d3.scaleBand()
@@ -108,15 +78,12 @@ $(document).ready(function () {
                 .range([clientHeight, 0]);
             svg.append("g")
                 .call(d3.axisLeft(y))
-            //.style("font-size", "18px")
 
             // Another scale for subgroup position?
             const xSubgroup = d3.scaleBand()
                 .domain(subgroups)
                 .range([0, x.bandwidth()])
                 .padding([0.05])
-
-            //console.log(xSubgroup.key)
 
             // Color palette = one color per subgroup
             const color = d3.scaleOrdinal()
@@ -177,13 +144,7 @@ $(document).ready(function () {
                         .text(arrayData[3][2017])
                         .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
-
-
                 }
-
-
-
-
 
                 if (date == "2018") {
 
@@ -234,7 +195,6 @@ $(document).ready(function () {
                         .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
                 }
-
 
                 // Funziona che evidenziano le barre in base all'anno
                 if (date == "2019") {
@@ -330,8 +290,6 @@ $(document).ready(function () {
                         .style("font-size", "1vi")
                         .attr("alignment-baseline", "middle")
 
-
-
                     svg.append("text")
                         .attr("class", "label_2A")
                         .attr("text-anchor", "middle")
@@ -354,7 +312,6 @@ $(document).ready(function () {
                     d3.select(".bar" + (bar + 5 * 1)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 2)).style("opacity", 1)
                     d3.select(".bar" + (bar + 5 * 3)).style("opacity", 1)
-
 
                     svg.append("text")
                         .attr("class", "label_2A")
@@ -395,7 +352,6 @@ $(document).ready(function () {
             }
 
             const mouseleave = function (event, d) {
-
                 // Riporto tutte le barre alla stessa opacità
                 d3.selectAll("rect")
                     .style("opacity", 1)
@@ -423,10 +379,7 @@ $(document).ready(function () {
                 .on("mouseover", mouseover)
                 // .on("mousemove", mousemove) DA FARE
                 .on("mouseleave", mouseleave)
-
-
         })
-
 
         //Legend
         svg.append("rect").attr("class", "legend4B")
@@ -435,7 +388,6 @@ $(document).ready(function () {
             .attr('width', '5%')
             .attr('height', 7)
             .style("fill", "#46d366")
-        //.attr('stroke', 'grey')
         svg.append("text").attr("class", "legend4B")
             .attr("x", "15%")
             .attr("y", 400)
@@ -450,7 +402,6 @@ $(document).ready(function () {
             .attr('width', '5%')
             .attr('height', 7)
             .style("fill", "#ff3e6b")
-        //.attr('stroke', 'grey')
         svg.append("text").attr("class", "legend4B")
             .attr("x", "30%")
             .attr("y", 400)
@@ -465,7 +416,6 @@ $(document).ready(function () {
             .attr('width', '5%')
             .attr('height', 7)
             .style("fill", "#ffbf29")
-        //.attr('stroke', 'grey')
         svg.append("text").attr("class", "legend4B")
             .attr("x", "45%")
             .attr("y", 400)
@@ -479,7 +429,6 @@ $(document).ready(function () {
             .attr('width', '5%')
             .attr('height', 7)
             .style("fill", "#00d6ff")
-        //.attr('stroke', 'grey')
         svg.append("text").attr("class", "legend4B")
             .attr("x", "60%")
             .attr("y", 400)
@@ -493,7 +442,6 @@ $(document).ready(function () {
             .attr('width', '5%')
             .attr('height', 7)
             .style("fill", "#a862ea")
-        //.attr('stroke', 'grey')
         svg.append("text").attr("class", "legend4B")
             .attr("x", "75%")
             .attr("y", 400)
@@ -501,7 +449,6 @@ $(document).ready(function () {
             .style("font-size", "1vi")
             .attr("alignment-baseline", "middle")
     }
-
 })
 
 

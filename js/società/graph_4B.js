@@ -1,9 +1,9 @@
 $(document).ready(async function () {
-    //TODO: sistemare data, colori
 
     let aux = 0;
     let restriction = {}
     filterFacemask()
+
     setTimeout(function () {
         draw()
     }, 3000)
@@ -11,6 +11,7 @@ $(document).ready(async function () {
     addEventListener("resize", (event) => {
         draw()
     })
+
     function filterFacemask() {
         d3.csv("../../csv/società/graph_4B.csv").then(function (data) {
             //Get only european country
@@ -54,7 +55,6 @@ $(document).ready(async function () {
                     data[i].Code === "OWID_KOS" ||
                     data[i].Code === "MNE" ||
                     data[i].Code === "ISL") {
-
                     restriction[inc] = data[i]
                     inc++
                 }
@@ -67,13 +67,14 @@ $(document).ready(async function () {
         let clientHeight = document.getElementById('graph_4B').clientHeight - 90;
         let clientWidth = document.getElementById('graph_4B').clientWidth - 140;
 
-
         // Set margin
         const margin = { top: 10, right: 30, bottom: 50, left: 80 }
+
         if (aux == 1) {
             $("#graph_4B").empty();
         }
         aux = 1;
+
         // Append the svg object to the body of the page
         const svg = d3.select("#graph_4B")
             .append("svg")
@@ -95,31 +96,18 @@ $(document).ready(async function () {
 
         //Aux variables for first ever draw map
         let checkFirstDrawMap = 0;
-
         let date;
-
-        // Draw First Map
 
         //Auxiliary variables for first redrawing after changing datasets
         let firstRedraw1 = 1;
         let firstRedraw2, firstRedraw3 = 0;
 
-        // Check drop menu 
-
-
-        //If FIRST dataset
-
-
-        // Draw Map function
-
-        // FIRST DATASET
         slider = document.getElementById("myRange4B");
         slider.oninput = function () {
             drawMap(this.value)
         }
 
         drawMap(0)
-
 
         // Load external data and boot
         function drawMap(dataSlider) {
@@ -150,12 +138,11 @@ $(document).ready(async function () {
 
                 map.clear()
 
-
-
                 for (let i = 0; i < 40; i++) {
 
                     map.set(aux_var[i].Code, aux_var[i].stay_home_requirements)
                 }
+
                 date = aux_var[dataSlider].Day
                 date = date.substr(0, 7)
 
@@ -182,7 +169,6 @@ $(document).ready(async function () {
                         .attr("d", d3.geoPath()
                             .projection(projection)
                         )
-
                         // Set the color of each country
                         .attr("fill", function (d) {
                             d.total = map.get(d.properties.iso_a3) || 0;
@@ -190,7 +176,6 @@ $(document).ready(async function () {
                         })
                         .style("stroke", "black")
                         .attr("stroke-width", 1)
-
                     checkFirstDrawMap = 1;
                 }
                 // Draw the map
@@ -204,9 +189,7 @@ $(document).ready(async function () {
                         })
                 }
 
-
                 checkFirstDrawMap = 1;
-
 
                 svg.selectAll('text.legend4B').remove()
                 svg.selectAll('rect.legend4B').remove()
@@ -285,10 +268,7 @@ $(document).ready(async function () {
                     .text("Required (few exceptions)")
                     .style("font-size", "1.2vi")
                     .attr("alignment-baseline", "middle")
-
-
             })
-
         }
     }
 })

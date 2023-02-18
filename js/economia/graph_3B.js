@@ -8,19 +8,16 @@ $(document).ready(function () {
     })
 
     function draw() {
+
         let clientHeight = document.getElementById('graph_3B').clientHeight - 85;
         let clientWidth = document.getElementById('graph_3B').clientWidth - 120;
 
-        // set the dimensions and margins of the graph
+        // Set the dimensions and margins of the graph
         const margin = { top: 30, right: 20, bottom: 40, left: 65 };
         if (aux == 1) {
             $("#graph_3B").empty();
         }
         aux = 1;
-
-        // GDP: https://ec.europa.eu/eurostat/databrowser/view/tec00115/default/table?lang=en
-        // INFLATION: https://ec.europa.eu/eurostat/databrowser/view/tec00118/default/table?lang=en
-
 
         const svg = d3.select("#graph_3B")
             .append("svg")
@@ -51,19 +48,15 @@ $(document).ready(function () {
             .style("font-size", "100%")
             .attr("alignment-baseline", "middle")
 
-
-
         // Leggo i dati
         d3.csv("../../csv/economia/graph_3B.csv",
 
             // Formatto le date
-            // QUANDO SI AGGOIORNA IL CSV, OCCHIO AL FORMATO
             function (d) {
                 return { date: d3.timeParse("%Y")(d.date), gdp: d.gdp, inflation: d.inflation }
             }).then(
 
                 function (data) {
-
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
                         arrayGDP.push({ "date": data[i].date, "n": data[i].gdp })
@@ -88,8 +81,6 @@ $(document).ready(function () {
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
-
-
 
                     // Funzioni che gestiscono i tooltip
                     // EVIDENZIARE GDP
@@ -150,9 +141,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(+d.n); })
                                     (d[1])
                             })
-
                     }
-
 
                     //FUNZIONE PER QUANDO TOLGO IL MOUSE
                     const doNotHighlight = function (event, d) {
@@ -162,7 +151,6 @@ $(document).ready(function () {
                         svg.selectAll("path.gdp").remove();
 
                         // LE RIDISEGNO DA ZERO
-
                         // Draw GDP
                         svg.selectAll(".line")
                             .data(mapGDP)
@@ -237,7 +225,6 @@ $(document).ready(function () {
                         .on("mouseleave", doNotHighlight)
 
                     if (clientWidth < 491) {
-
                         //LEGEND
                         //GDP
                         svg.append("rect")
@@ -342,7 +329,6 @@ $(document).ready(function () {
                             .style("font-size", "80%")
                             .on("mouseover", highlightInflation)
                             .on("mouseleave", doNotHighlight)
-
                     }
                 })
     }

@@ -42,7 +42,6 @@ $(document).ready(function () {
             .attr('transform', 'rotate(270 ' + 10 + ' ' + 160 + ')')
             .attr("vertical-align", "middle")
 
-
         svg.append("text")
             .attr("x", "45%")
             .attr("y", 400)
@@ -167,7 +166,6 @@ $(document).ready(function () {
                                     .y(function (d) { return y(+d.n); })
                                     (d[1])
                             })
-
                     }
 
                     // EVIDENZIARE ICU
