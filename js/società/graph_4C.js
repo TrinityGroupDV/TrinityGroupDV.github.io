@@ -117,16 +117,10 @@ $(document).ready(function () {
                     }
                 }
 
-                // let array = [];
+                let array = [];
 
-                // array = year2019;
-                update(array)
+                array = year2019;
 
-                var myButton = document.getElementById("myButton");
-
-                myButton.addEventListener("click", function () {
-                    update(array2020)
-                });
 
                 function update(array) {
 
@@ -182,6 +176,38 @@ $(document).ready(function () {
                         .attr("width", d => x(d[1]) - x(d[0]))
                         .attr("height", y.bandwidth())
                 }
+                update(array)
+
+                var myButton = document.getElementById("myButton");
+                myButton.addEventListener("click", function () {
+                    array = year2020;
+                    update(array)
+                });
+
+                var buttons = document.querySelectorAll("button[data-value]");
+
+                buttons.forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        var value = button.getAttribute("data-value");
+                        switch (value) {
+                            case "valore1":
+                                array = year2019;
+                                update(array)
+                                break;
+                            case "valore2":
+                                array = year2020;
+                                update(array)
+                                break;
+                            case "valore3":
+                                array = year2021;
+                                update(array)
+                                break;
+                        }
+                    });
+                });
+
+
+
             })
 
 
