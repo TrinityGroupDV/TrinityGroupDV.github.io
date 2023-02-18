@@ -1,5 +1,4 @@
 $(document).ready(async function () {
-    // TODO: aggiustare legenda, scegliere colori, fare GIF
 
     const margin = { top: 10, right: 20, bottom: 30, left: 50 },
         width = 1300 - margin.left - margin.right,
@@ -9,7 +8,9 @@ $(document).ready(async function () {
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+
     let formattedDate = 0;
+
     // Mappa e proiezione
     const path = d3.geoPath();
     const projection = d3.geoMercator()
@@ -48,7 +49,7 @@ $(document).ready(async function () {
 
             let dataTemp = 0;
 
-            //Inizializzo prima data in assoluto
+            // Inizializzo prima data in assoluto
             dataTemp = new Date("2020-01-21")
 
             // Aggiungo tot giorni
@@ -72,7 +73,7 @@ $(document).ready(async function () {
                 dataMap.set(dateObj[i].Code, +dateObj[i].school_closures)
             }
 
-            //If è la prima mappa disegnata in assoluto
+            // If è la prima mappa disegnata in assoluto
             if (firstDrawMap == 0) {
                 // Disegno la mappa
                 svg.append("g")
@@ -93,7 +94,7 @@ $(document).ready(async function () {
                 firstDrawMap = 1;
             }
 
-            //If non lo è
+            // If non lo è
             else {
                 svg.selectAll("path")
                     .data(topo.features)
@@ -135,9 +136,8 @@ $(document).ready(async function () {
         dataMap.clear()
     })
 
-    // Disegno la legenda
-
-    //No data
+    // LEGEND
+    // No data
     svg.append("rect")
         .attr("x", 370)
         .attr("y", 520)
@@ -152,7 +152,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Primo blocco
+    // Primo blocco
     svg.append("rect")
         .attr("x", 500)
         .attr("y", 520)
@@ -167,7 +167,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Secondo blocco
+    // Secondo blocco
     svg.append("rect")
         .attr("x", 620)
         .attr("y", 520)
@@ -182,7 +182,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Terzo blocco
+    // Terzo blocco
     svg.append("rect")
         .attr("x", 740)
         .attr("y", 520)
@@ -197,7 +197,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Quarto blocco
+    // Quarto blocco
     svg.append("rect")
         .attr("x", 860)
         .attr("y", 520)

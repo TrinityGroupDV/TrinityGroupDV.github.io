@@ -12,7 +12,7 @@ $(document).ready(async function () {
         draw()
     })
     function filterFacemask() {
-        d3.csv("../../py/sanità/graph_2D/stay-at-home-covid.csv").then(function (data) {
+        d3.csv("../../csv/società/graph_4B.csv").then(function (data) {
             //Get only european country
             let inc = 0;
             for (i = 0; i < data.length; i++) {

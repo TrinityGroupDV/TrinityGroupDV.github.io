@@ -23,9 +23,6 @@ $(document).ready(async function () {
 
     // Variabile aux per controllare se è la prima mappa disegnata in assoluto
     let firstDrawMap = 0;
-
-
-
     let temp_i = 0
     let tempObj1 = {}
     let dataMap = new Map();
@@ -44,13 +41,11 @@ $(document).ready(async function () {
             })
 
         ]).then(function (loadData) {
-            let topo = loadData[0]
 
+            let topo = loadData[0]
             let dataTemp = 0;
 
-            // console.log(tempObj1)
-
-            //Inizializzo prima data in assoluto
+            // Inizializzo prima data in assoluto
             dataTemp = new Date("2020-01-21")
 
             // Aggiungo tot giorni
@@ -58,7 +53,6 @@ $(document).ready(async function () {
 
             // Converto in string e formatto
             let formattedDate1 = dataTemp.toISOString().slice(0, 10);
-
             let dateObj = {};
             let temp_a = 0;
 
@@ -71,12 +65,11 @@ $(document).ready(async function () {
             }
 
             // Riempo la mappa
-
             for (i = 0; i < Object.keys(dateObj).length; i++) {
                 dataMap.set(dateObj[i].Code, +dateObj[i].cancel_public_events)
             }
 
-            //If è la prima mappa disegnata in assoluto
+            // If è la prima mappa disegnata in assoluto
             if (firstDrawMap == 0) {
                 // Disegno la mappa
                 svg.append("g")
@@ -96,7 +89,8 @@ $(document).ready(async function () {
                     .attr("stroke-opacity", 0.4)
                 firstDrawMap = 1;
             }
-            //If non lo è
+
+            // If non lo è
             else {
                 svg.selectAll("path")
                     .data(topo.features)
@@ -115,27 +109,16 @@ $(document).ready(async function () {
                 .text(formattedDate1)
                 .style("font-size", "20px")
                 .attr("alignment-baseline", "middle")
-            console.log(formattedDate1)
-
 
             dateObj = {};
             dataMap.clear()
 
             if (bool == true) {
-
                 tempObj1 = {}
-                //let tempObj1 = {}
-                console.log(tempObj1)
-                console.log(dataMap)
-                console.log(dateObj)
-
             }
-
-
         })
     }
 
-    // Controllo se l'animazione è in corso
     // Controllo se l'animazione è in corso
     buttonWorld2 = 1;
     function check() {
@@ -146,19 +129,16 @@ $(document).ready(async function () {
     document.getElementById('world2').addEventListener("click", function () {
         if (buttonWorld2 == 1) {
             buttonWorld2 = 0;
-
             date1C(0);
             for (i = 0; i < 72; i++) {
                 setTimeout(date1C, i * 2000, i * 10, false);
             }
-
             setTimeout(check, 18000);
         }
     })
 
-    // Disegno la legenda
-
-    //No data
+    // LEGEND
+    // No data
     svg.append("rect")
         .attr("x", 380)
         .attr("y", 520)
@@ -173,7 +153,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Primo blocco
+    // Primo blocco
     svg.append("rect")
         .attr("x", 530)
         .attr("y", 520)
@@ -188,7 +168,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Terzo blocco
+    // Terzo blocco
     svg.append("rect")
         .attr("x", 690)
         .attr("y", 520)
@@ -203,7 +183,7 @@ $(document).ready(async function () {
         .style("font-size", "12px")
         .attr("alignment-baseline", "middle")
 
-    //Quarto blocco
+    // Quarto blocco
     svg.append("rect")
         .attr("x", 850)
         .attr("y", 520)

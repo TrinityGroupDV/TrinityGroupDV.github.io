@@ -5,18 +5,19 @@ $(document).ready(function () {
     addEventListener("resize", (event) => {
         draw()
     })
-    function draw() {
 
+    function draw() {
         let clientHeight = document.getElementById('graph_1A').clientHeight - 80;
         let clientWidth = document.getElementById('graph_1A').clientWidth - 140;
 
-        // set the dimensions and margins of the graph
+        // Set the dimensions and margins of the graph
         const margin = { top: 10, right: 30, bottom: 40, left: 80 };
         if (aux == 1) {
             $("#graph_1A").empty();
         }
         aux = 1;
-        // append the svg object to the body of the page
+
+        // Append the svg object to the body of the page
         const svg = d3.select("#graph_1A")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -45,7 +46,6 @@ $(document).ready(function () {
 
         //Read the data
         d3.csv("../../csv/visione_globale/graph_1A.csv",
-
             // When reading the csv, I must format variables:
             function (d) {
                 return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
@@ -60,7 +60,6 @@ $(document).ready(function () {
                         dataProva[i].value =
                             Number(data[i * 7].value)
                     }
-
 
                     // Add X axis --> it is a date format
                     const x = d3.scaleTime()
@@ -87,9 +86,9 @@ $(document).ready(function () {
                         .attr("y", 0);
 
                     // Add brushing
-                    const brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-                        .extent([[0, 0], [clientWidth, clientHeight]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-                        .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
+                    const brush = d3.brushX()
+                        .extent([[0, 0], [clientWidth, clientHeight]])
+                        .on("end", updateChart)
 
                     // Create the line variable: where both the line and the brush take place
                     const line = svg.append('g')
@@ -98,7 +97,7 @@ $(document).ready(function () {
                     // Add the line
                     line.append("path")
                         .datum(dataProva)
-                        .attr("class", "line")  // I add the class line to be able to modify this line later on.
+                        .attr("class", "line")
                         .attr("fill", "none")
                         .attr("stroke", "#ff0831")
                         .attr("stroke-width", 2)

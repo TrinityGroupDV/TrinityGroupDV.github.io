@@ -56,7 +56,7 @@ $(document).ready(function () {
 
 
         //Read the data
-        d3.csv("../../py/società/graph_4A/sdg_01_10__custom_4922621_linear.csv",
+        d3.csv("../../csv/società/graph_4A.csv",
 
             // When reading the csv, I must format variables:
             function (d) {

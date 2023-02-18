@@ -5,17 +5,21 @@ $(document).ready(function () {
     addEventListener("resize", (event) => {
         draw()
     })
+
     function draw() {
+
         let clientHeight = document.getElementById('graph_2A').clientHeight - 80;
         let clientWidth = document.getElementById('graph_2A').clientWidth - 30;
 
         const margin = { top: 70, right: 0, bottom: 10, left: 0 },
             innerRadius = 100,
             outerRadius = Math.min(clientWidth, clientHeight) / 2;   // The outerRadius goes from the middle of the SVG area to the border
+
         if (aux == 1) {
             $("#graph_2A").empty();
         }
         aux = 1;
+
         const svg = d3.select("#graph_2A")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -33,14 +37,6 @@ $(document).ready(function () {
             const y = d3.scaleRadial()
                 .range([innerRadius, outerRadius])  // Domain will be define later.
                 .domain([0, 300000]);
-
-            const highlight = function (event, d) {
-
-
-            }
-
-            /* data.Value.sort();
-             console.log(data) Domain of Y is from 0 to the max seen in the data*/
 
             //  Show tooltip
             const showTooltipText = function (event, d) {
@@ -68,7 +64,6 @@ $(document).ready(function () {
 
                 svg.selectAll("path").attr('fill', "grey").style("opacity", 0.2)
                 d3.select(this).attr('fill', "#ffa500").style("opacity", 1)
-
                 svg.selectAll("text").attr('fill', "black")
 
                 let legend = d3.select(this).datum()
@@ -89,7 +84,6 @@ $(document).ready(function () {
                     .style("font-size", "18px")
                     .attr("alignment-baseline", "middle")
             }
-
 
             // Hide tooltip
             const hideTooltip = function (event, d) {
@@ -113,7 +107,6 @@ $(document).ready(function () {
                     .padRadius(innerRadius))
                 .on("mouseover", showTooltipBar)
                 .on("mouseleave", hideTooltip)
-            //.on("mouseover", highlight)
 
             // Add the labels
             svg.append("g")

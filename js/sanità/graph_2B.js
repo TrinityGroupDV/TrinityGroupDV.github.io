@@ -1,13 +1,15 @@
 $(document).ready(function () {
+
     let aux = 0;
     draw()
     addEventListener("resize", (event) => {
         draw()
     })
+
     function draw() {
+
         let clientHeight = document.getElementById('graph_2B').clientHeight - 90;
         let clientWidth = document.getElementById('graph_2B').clientWidth - 140;
-
 
         const margin = { top: 10, right: 30, bottom: 50, left: 80 };
 
@@ -15,6 +17,7 @@ $(document).ready(function () {
             $("#graph_2B").empty();
         }
         aux = 1;
+
         const svg = d3.select("#graph_2B")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
@@ -45,7 +48,6 @@ $(document).ready(function () {
             .attr("y", 400)
             .text("Date")
             .style("font-size", "90%")
-        //.attr("alignment-baseline", "middle")
 
         // Leggo i dati
         d3.csv("../../csv/sanità/graph_2B.csv",
@@ -58,11 +60,10 @@ $(document).ready(function () {
                 function (data) {
                     // Inserisco i dati entro agli array
                     for (let i = 0; i < data.length; i++) {
-                        arrayDeath.push({ "date": data[i].date, "n": data[i].death }) //ROSSO
-                        arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })//BLU, CASI OGNI 10 MILIONI DI ABITANTI
+                        arrayDeath.push({ "date": data[i].date, "n": data[i].death })
+                        arrayCases.push({ "date": data[i].date, "n": data[i].case / 10 })
                     }
 
-                    //WEEKLY ICU, VERDE
                     for (i = 0; i < (data.length / 7) - 1; i++) {
                         arrayIcu.push({
                             "date": data[i * 7].date, "n":
@@ -325,6 +326,7 @@ $(document).ready(function () {
                     if (clientWidth > 1000) {
                         d3.selectAll('rect.legend2B').remove()
                         d3.selectAll('text.legend2B').remove()
+
                         //LEGEND
                         //DEATH
                         svg.append("rect")
@@ -344,6 +346,7 @@ $(document).ready(function () {
                             .style("font-size", "80%")
                             .on("mouseover", highlightDeath)
                             .on("mouseleave", doNotHighlight)
+
                         //CASES
                         svg.append("rect")
                             .attr("x", "70%")
@@ -401,6 +404,7 @@ $(document).ready(function () {
                     else {
                         d3.selectAll('rect.legend2B').remove()
                         d3.selectAll('text.legend2B').remove()
+
                         //LEGEND
                         //DEATH
                         svg.append("rect")
@@ -420,6 +424,7 @@ $(document).ready(function () {
                             .style("font-size", "1vi")
                             .on("mouseover", highlightDeath)
                             .on("mouseleave", doNotHighlight)
+
                         //CASES
                         svg.append("rect")
                             .attr("x", "70%")
@@ -481,11 +486,7 @@ $(document).ready(function () {
                             .style("font-size", "1vi")
                             .on("mouseover", highlightICU)
                             .on("mouseleave", doNotHighlight)
-
-
                     }
-
-
                 })
     }
 })
