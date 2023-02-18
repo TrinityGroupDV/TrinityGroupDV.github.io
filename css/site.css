@@ -96,16 +96,26 @@ h3 {
     color: #ffffff;
 }
 
-p.text {
+.text {
     width: auto;
     text-align: justify;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 20px;
-    /* margin-left: 20px;
-    margin-right: 20px; */
     color: #ffffff;
-    /* background-color: #46c985; */
+}
+
+.titleGraph {
+    font-size: 23px;
+    color: #232323e6;
+    font-weight: bold;
+    /* margin-bottom: 1%; */
+
+}
+
+.tooltip {
+    font-size: 15px;
+    color: #949494;
 }
 
 header {
@@ -229,7 +239,7 @@ section.card {
 .box2 {
     width: 48%;
     height: 450px;
-    
+
 }
 
 .box2_auto {
@@ -258,11 +268,13 @@ section.card {
 }
 
 .green {
-    background-color: rgb(130, 235, 130);
+    background-color: rgb(234, 234, 234);
+    border-radius: 9px;
+    margin-bottom: 1%
 }
 
 .orange {
-    background-color: orange;
+    /* background-color: orange; */
 }
 
 /*----------- HOVER-GRAPH -----------*/
