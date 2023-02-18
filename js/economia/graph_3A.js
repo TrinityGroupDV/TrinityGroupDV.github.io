@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         let arrayData = []
         // Parse the Data
-        d3.csv("../../py/economia/graph_3A/tet00001__custom_4855850_linear.csv").then(function (data) {
+        d3.csv("../../csv/economia/graph_3A.csv").then(function (data) {
 
             //"../../py/economia/graph_3A/tet00001__custom_4855850_linear.csv"
             //console.log(data)

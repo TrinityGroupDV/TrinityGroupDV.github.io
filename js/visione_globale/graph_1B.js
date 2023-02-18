@@ -38,7 +38,7 @@ $(document).ready(async function () {
         // Carico i dati
         Promise.all([
             d3.json("../world.geojson"),
-            d3.csv("../../csv/visione_globale/school-closures-covid_full.csv", function (d) {
+            d3.csv("../../csv/visione_globale/graph_1B.csv", function (d) {
                 tempObj[temp_i] = d;
                 temp_i++;
             })

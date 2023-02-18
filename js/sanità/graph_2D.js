@@ -20,7 +20,7 @@ $(document).ready(async function () {
 
 
     function filterMovement() {
-        d3.csv("../../py/sanità/graph_2D/internal-movement-covid.csv").then(function (data) {
+        d3.csv("../../csv/sanità/graph_2D_1.csv").then(function (data) {
             //Get only european country
             let inc1 = 0;
             for (i = 0; i < data.length; i++) {
@@ -71,7 +71,7 @@ $(document).ready(async function () {
     }
 
     function filterTesting() {
-        d3.csv("../../py/sanità/graph_2D/covid-19-testing-policy.csv").then(function (data) {
+        d3.csv("../../csv/sanità/graph_2D_2.csv").then(function (data) {
             //Get only european country
             let inc2 = 0;
             for (i = 0; i < data.length; i++) {
@@ -122,7 +122,7 @@ $(document).ready(async function () {
     }
 
     function filterFacemask() {
-        d3.csv("../../py/sanità/graph_2D/face-covering-policies-covid.csv").then(function (data) {
+        d3.csv("../../csv/sanità/graph_2D_3.csv").then(function (data) {
             //Get only european country
             let inc3 = 0;
             for (i = 0; i < data.length; i++) {

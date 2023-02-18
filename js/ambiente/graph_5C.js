@@ -32,7 +32,7 @@ $(document).ready(function () {
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         //Read the data
-        d3.csv("../../csv/ambiente/nrg_bal_c__custom_4981243_linear.csv",
+        d3.csv("../../csv/ambiente/graph_5C.csv",
 
             // When reading the csv, I must format variables:
             function (d) {

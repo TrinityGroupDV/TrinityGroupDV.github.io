@@ -39,7 +39,7 @@ $(document).ready(function () {
         Promise.all([
             // Load external data and boot
             d3.json("../europe.geojson"),
-            d3.csv("../../csv/ambiente/sdg_07_11__custom_4972814_linear.csv", function (d) {
+            d3.csv("../../csv/ambiente/graph_5A.csv", function (d) {
                 array.push(d)
             })
         ]).then(function (loadData) {
