@@ -12,7 +12,7 @@ $(document).ready(function () {
     function draw() {
 
         let clientHeight = document.getElementById('graph_5A').clientHeight - 60;
-        let clientWidth = document.getElementById('graph_5A').clientWidth - 100;
+        let clientWidth = document.getElementById('graph_5A').clientWidth - 70;
 
         // Set margin
         const margin = { top: 10, right: 20, bottom: 30, left: 50 };
