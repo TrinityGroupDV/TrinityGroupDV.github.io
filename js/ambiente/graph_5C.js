@@ -42,7 +42,6 @@ $(document).ready(function () {
                 // Now I can use this dataset:
                 function (data) {
 
-                    console.log(data)
                     // Add X axis --> it is a date format
                     const x = d3.scaleTime()
                         .domain(d3.extent(data, function (d) { return d.date; }))

@@ -193,7 +193,8 @@ $(document).ready(async function () {
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
-        console.log(clientWidth)
+
+
         svg.append("text")
             .attr("class", "data_iniziale")
             .attr("x", "13%")
@@ -627,7 +628,6 @@ $(document).ready(async function () {
                         }
                     }
                 }
-                console.log(faceMask)
 
                 const colorScale = d3.scaleThreshold()
                     .domain([0, 1, 2, 3, 4, 5])
