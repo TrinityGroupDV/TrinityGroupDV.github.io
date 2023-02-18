@@ -358,8 +358,6 @@ select {
 
 /*-------------------BOTTONI-------------------*/
 .button {
-    /* border: none; */
-    /* color: white; */
     padding: 1% 4%;
     border-radius: 20px;
     background-color: rgb(255, 254, 254);
@@ -371,6 +369,44 @@ select {
     transition-duration: 0.4s;
     cursor: pointer;
 }
+
+.box_btt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; /* impostare la larghezza del div in base alla larghezza dei bottoni */
+    background-color: #d7d7d75d;
+    box-shadow: 1px 1px 5px #00000041;
+    margin: auto;
+    border-radius: 20px;
+    /* margin-bottom: 1%; */
+  }
+  
+  .btt {
+    padding: 10px;
+    background-color: #d7d7d700;
+    border: none;
+    /* outline: none; */
+    cursor: pointer;
+    /* border-radius: 20px; */
+  }
+  
+  .active {
+    background-color: #f98989;
+    color: #fff;
+    border-radius: 20px;
+  }
+  
+  .btt:active {
+    background-color: #f98989d3;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+
+
+
+
 
 .button1 {
     background-color: white;

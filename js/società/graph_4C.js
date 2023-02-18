@@ -7,7 +7,7 @@ $(document).ready(function () {
     })
 
     function draw() {
-        let clientHeight = document.getElementById('graph_4C').clientHeight - 100;
+        let clientHeight = document.getElementById('graph_4C').clientHeight - 70;
         let clientWidth = document.getElementById('graph_4C').clientWidth - 100;
 
         // set the dimensions and margins of the graph
@@ -18,7 +18,7 @@ $(document).ready(function () {
         aux = 1;
 
         // append the svg object to the body of the page
-        const svg = d3.select("#graph_4C")
+        var svg = d3.select("#graph_4C")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
@@ -64,6 +64,7 @@ $(document).ready(function () {
                     }, {});
                     newData.push(help)
                 }
+                console.log(newData)
 
                 let year2019 = [];
                 let year2020 = [];
@@ -124,6 +125,9 @@ $(document).ready(function () {
 
                 function update(array) {
 
+
+                    svg.selectAll("rect").remove();
+
                     // List of subgroups = header of the csv files = soil condition here
                     const subgroups = Object.keys(array[0]).slice(1);
                     // console.log(subgroups)
@@ -134,7 +138,7 @@ $(document).ready(function () {
 
                     // Add X axis
                     const x = d3.scaleLinear()
-                        .domain([16000, 0])
+                        .domain([18000, 0])
                         .range([clientWidth, 0])
                     svg.append("g")
                         .attr("transform", `translate(0, ${clientHeight})`)
@@ -176,18 +180,19 @@ $(document).ready(function () {
                         .attr("width", d => x(d[1]) - x(d[0]))
                         .attr("height", y.bandwidth())
                 }
+
                 update(array)
 
-                var myButton = document.getElementById("myButton");
-                myButton.addEventListener("click", function () {
-                    array = year2020;
-                    update(array)
+                $('.btt').on('click', function () {
+                    $('.btt').removeClass('active');
+                    $(this).addClass('active');
                 });
-
                 var buttons = document.querySelectorAll("button[data-value]");
 
                 buttons.forEach(function (button) {
                     button.addEventListener("click", function () {
+                        // console.log(array)
+                        // array.length = 0;
                         var value = button.getAttribute("data-value");
                         switch (value) {
                             case "valore1":
@@ -203,14 +208,10 @@ $(document).ready(function () {
                                 update(array)
                                 break;
                         }
+                        console.log(array)
                     });
                 });
-
-
-
             })
-
-
     }
 })
 
