@@ -95,25 +95,31 @@ $(document).ready(function () {
                     i=i+5
 
                 }*/
-                let array19 = [];
-
-                array19[0] = { 'state': germany };
-                array19[0] = { 'state': france };
-                array19[0] = { 'state': germany };
-                array19[0] = { 'state': germany };
                 console.log(array_2019)
-                for (let i = 1; i <= array_2019.length; i++) {
-                    array[array_2019[i].age] = array_2019[i].value;
+                let array19 = [];
+                for (let j = 0; j < 4; j++) {
+                    switch (j) {
+                        case 0:
+                            array19[j] = { state: 'Germany' };
+                            break;
+                        case 1:
+                            array19[j] = { state: 'France' };
+                            break;
+                        case 2:
+                            array19[j] = { state: 'Spain' };
+                            break;
+                        case 3:
+                            array19[j] = { state: 'Italy' };
+                            break;
+                    }
+                    for (let i = 0; i < array_2019.length/4; i++) {
+                        array19[j][array_2019[i+(j*6)].age] = array_2019[i+(j*6)].value;
+                    }
                 }
-
-
-
-                console.log(array)
-
+                console.log(array_2019)
+                console.log(array19)
             })
     }
-
-
 
 
 
