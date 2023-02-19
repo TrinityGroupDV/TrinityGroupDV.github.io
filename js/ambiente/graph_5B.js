@@ -54,7 +54,7 @@ $(document).ready(function () {
                 i++
             }
 
-            console.log(percentage[16].percentage)
+            // console.log(percentage[16].percentage)
 
             const markers = [
                 { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage / 1.5 },
