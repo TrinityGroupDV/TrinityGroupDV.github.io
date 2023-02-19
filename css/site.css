@@ -101,14 +101,14 @@ h3 {
     text-align: justify;
     margin-top: auto;
     margin-bottom: auto;
-    font-size: 20px;
+    font-size: 15px;
     color: #ffffff;
 }
 
 .titleGraph {
     font-size: 23px;
     color: #232323e6;
-    font-weight: 600; 
+    font-weight: 600;
     text-align: center;
     /* margin-bottom: 1%; */
 
@@ -275,10 +275,9 @@ section.card {
     height: 600px;
 }
 
-
 .box_title {
     /* background-color: rgb(234, 234, 234); */
-    background-color: rgb(239, 239, 239);
+    /* background-color: rgb(239, 239, 239); */
     border-radius: 9px;
     align-items: center;
     display: flex;
