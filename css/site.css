@@ -108,13 +108,14 @@ h3 {
 .titleGraph {
     font-size: 23px;
     color: #232323e6;
-    font-weight: bold;
+    font-weight: 600; 
+    text-align: center;
     /* margin-bottom: 1%; */
 
 }
 
 .tooltip {
-    font-size: 15px;
+    font-size: 13px;
     color: #949494;
 }
 
@@ -274,24 +275,35 @@ section.card {
     height: 600px;
 }
 
-.green {
-    background-color: rgb(234, 234, 234);
+
+.box_title {
+    /* background-color: rgb(234, 234, 234); */
+    background-color: rgb(239, 239, 239);
     border-radius: 9px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     margin-bottom: 1%
 }
 
-.orange {
+/* .green {
+    background-color: rgb(234, 234, 234);
+    border-radius: 9px;
+    margin-bottom: 1%
+} */
+
+/* .orange {
     background-color: orange;
-}
+} */
 
 /*----------- HOVER-GRAPH -----------*/
 div.box_l:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     z-index: 1;
 }
 
 div.box_r:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     z-index: 1;
 }
 
