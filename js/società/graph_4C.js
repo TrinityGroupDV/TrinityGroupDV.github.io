@@ -125,8 +125,10 @@ $(document).ready(function () {
 
                 function update(array) {
 
-
+                    // $("graph_4C").empty();
                     svg.selectAll("rect").remove();
+                    svg.selectAll("path").remove();
+                    svg.selectAll("text").remove();
 
                     // List of subgroups = header of the csv files = soil condition here
                     const subgroups = Object.keys(array[0]).slice(1);
