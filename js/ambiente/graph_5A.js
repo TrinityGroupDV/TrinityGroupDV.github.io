@@ -98,7 +98,7 @@ $(document).ready(function () {
             // Create a tooltip
             const Tooltip = d3.select("#graph_5A")
                 .append("div")
-                .attr("class", "tooltip")
+                .attr("class", "tooltip5A")
                 .style("opacity", 0)
                 .style("position", "absolute")
                 .style("background-color", "white")

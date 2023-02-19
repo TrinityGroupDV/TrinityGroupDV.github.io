@@ -53,7 +53,7 @@ $(document).ready(async function () {
 
         const Tooltip = d3.select("#graph_4D")
             .append("div")
-            .attr("class", "tooltip")
+            .attr("class", "tooltip4D")
             .style("opacity", 0)
             .style("position", "absolute")
             .style("background-color", "white")
