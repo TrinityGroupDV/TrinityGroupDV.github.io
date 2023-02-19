@@ -182,7 +182,7 @@ $(document).ready(function () {
                                     .y(function (d) { return y(+d.n); })
                                     (d[1])
                             })
-                            .on("mouseover", highlightGDP)
+                            .on("mouseover", highlightInflation)
                             .on("mouseleave", doNotHighlight)
                     }
 
