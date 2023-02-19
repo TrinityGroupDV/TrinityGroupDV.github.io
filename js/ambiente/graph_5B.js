@@ -54,6 +54,8 @@ $(document).ready(function () {
                 i++
             }
 
+            console.log(percentage[16].percentage)
+
             const markers = [
                 { long: 13.20, lat: 47.20, country: "Austria", size: percentage[0].percentage / 1.5 },
                 { long: 25, lat: 43, country: "Bulgaria", size: percentage[1].percentage / 1.5 },
@@ -71,7 +73,7 @@ $(document).ready(function () {
                 { long: -8, lat: 53, country: "Ireland", size: percentage[13].percentage / 1.5 },
                 { long: 15.3, lat: 45.10, country: "Croatia", size: percentage[14].percentage / 1.5 },
                 { long: 26, lat: 64, country: "Finland", size: percentage[15].percentage / 1.5 },
-                { long: 4.55, lat: 52.23, country: "Netherlands", size: percentage[16].percentage },
+                { long: 4.55, lat: 52.23, country: "Netherlands", size: percentage[16].percentage / 1.5 },
                 { long: -18, lat: 65, country: "Iceland", size: percentage[17].percentage / 1.5 }
             ];
 
