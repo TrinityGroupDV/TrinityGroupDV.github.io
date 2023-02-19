@@ -105,7 +105,7 @@ $(document).ready(function () {
                     .attr("x", "45%")
                     .attr("y", -145)
                     .text("Accomodation")
-                    .style("font-size", "1vi")
+                    .style("font-size", "0.8vi")
                     .attr("alignment-baseline", "middle")
 
                 svg.append("rect")
@@ -119,7 +119,7 @@ $(document).ready(function () {
                     .attr("x", "45%")
                     .attr("y", -95)
                     .text("Real estate")
-                    .style("font-size", "1vi")
+                    .style("font-size", "0.8vi")
                     .attr("alignment-baseline", "middle")
 
                 svg.append("rect")
@@ -133,7 +133,7 @@ $(document).ready(function () {
                     .attr("x", "45%")
                     .attr("y", -45)
                     .text("Travel agency")
-                    .style("font-size", "1vi")
+                    .style("font-size", "0.8vi")
                     .attr("alignment-baseline", "middle")
 
                 svg.append("rect")
@@ -161,7 +161,7 @@ $(document).ready(function () {
                     .attr("x", "45%")
                     .attr("y", 55)
                     .text("ICT")
-                    .style("font-size", "1vi")
+                    .style("font-size", "0.8vi")
                     .attr("alignment-baseline", "middle")
             }
             // Initialize the plot with the first dataset
