@@ -104,10 +104,16 @@ $(document).ready(function () {
                         }
                     }
                 }
+
+
+
+
+
                 for (let i = 0; i < newData.length; i++) {
                     switch (i) {
                         case 0:
                             fill(year2019, i);
+                            console.log(year2019)
                             break;
                         case 1:
                             fill(year2020, i);
