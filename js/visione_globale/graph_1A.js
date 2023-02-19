@@ -11,7 +11,7 @@ $(document).ready(function () {
         let clientWidth = document.getElementById('graph_1A').clientWidth - 120;
 
         // Set the dimensions and margins of the graph
-        const margin = { top: 10, right: 30, bottom: 40, left: 80 };
+        const margin = { top: 10, right: 30, bottom: 50, left: 80 };
         if (aux == 1) {
             $("#graph_1A").empty();
         }
