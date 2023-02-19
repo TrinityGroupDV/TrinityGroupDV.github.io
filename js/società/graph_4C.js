@@ -166,6 +166,60 @@ $(document).ready(function () {
                         (array)
                     // console.log(stackedData)
 
+                    const Tooltip = d3.select("#graph_4C")
+                        .append("div")
+                        .attr("class", "tooltip4C")
+                        .style("opacity", 0)
+                        .style("position", "absolute")
+                        .style("background-color", "white")
+                        .style("border", "solid")
+                        .style("border-width", "2px")
+                        .style("border-radius", "5px")
+                        .style("padding", "5px")
+                        .style("font-size", "12px");
+
+
+                    const mouseover = function (event, d) {
+                        Tooltip.style("opacity", 1);
+                        let legend = d3.select(this).datum()
+                        let total = legend[1] - legend[0]
+                        const subgroupName = d3.select(this.parentNode).datum().key;
+                        console.log(subgroupName)
+
+                        Tooltip.html('Age range: ' + subgroupName + '<br>' + 'Total: ' + total + ' thousand people')
+                            .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
+                            .style("top", (event.offsetY) + "px"); // sottratto 20px per spostare il tooltip in alto
+
+                        console.log(legend)
+
+                    }
+
+
+                    const mousemove = function (event, d) {
+
+
+                        //const subgroupName = d3.select(this.parentNode).datum().key;
+                        //const subgroupValue = d.array[subgroupName];
+
+                        //console.log(subgroupName)
+                        // tooltip
+                        //     .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
+
+
+                        Tooltip.style("transform", "translateY(-10%)")
+                            .style("left", (event.offsetX + 20) + "px")
+                            .style("top", (event.offsetY) + "px")
+
+
+                        /*  Tooltip.html('Total: ' + total)
+                              .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
+                              .style("top", (event.offsetY) + "px"); // sottratto 20px per spostare il tooltip in alto*/
+                    }
+
+                    const mouseout = function (event, d) {
+                        Tooltip.style("opacity", 0);
+                    }
+
                     // Show the bars
                     svg.append("g")
                         .selectAll("g")
@@ -181,6 +235,11 @@ $(document).ready(function () {
                         .attr("y", d => y(d.data.state))
                         .attr("width", d => x(d[1]) - x(d[0]))
                         .attr("height", y.bandwidth())
+                        .on("mouseover", mouseover)
+                        //.on("mouseover", highlight)
+                        .on("mousemove", mousemove)
+                        .on("mouseout", mouseout);
+
                 }
 
                 update(array)
