@@ -376,7 +376,7 @@ select {
 }
 
 /*-------------------BOTTONI-------------------*/
-.button {
+/* .button {
     padding: 1% 4%;
     border-radius: 20px;
     background-color: rgb(255, 254, 254);
@@ -387,7 +387,7 @@ select {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-}
+} */
 
 .box_btt {
     display: flex;
@@ -423,7 +423,26 @@ select {
     border-radius: 20px;
 }
 
+.btt1 {
+    padding: 10px;
+    background-color: #d7d7d700;
+    border: none;
+    /* outline: none; */
+    cursor: pointer;
+    /* border-radius: 20px; */
+}
 
+.active1 {
+    background-color: #f98989;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.btt1:active {
+    background-color: #f98989;
+    color: #fff;
+    border-radius: 20px;
+}
 
 
 

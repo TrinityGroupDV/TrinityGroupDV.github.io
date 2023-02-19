@@ -46,6 +46,12 @@ $(document).ready(function () {
             // A function that create / update the plot for a given variable:
             function update(data) {
 
+                d3.select('text.legend3CB').remove()
+                svg.append("text")
+                    .attr("x", -40)
+                    .attr("y", -200)
+                    .text("May 2020")
+                    .style("font-size", "17px")
                 // Compute the position of each group on the pie:
                 const pie = d3.pie()
                     .value(function (d) { return d[1]; })
@@ -166,6 +172,7 @@ $(document).ready(function () {
             }
             // Initialize the plot with the first dataset
             update(data1)
+
             // $("button").click(function () {
             //     butt = this.value
 
@@ -174,40 +181,37 @@ $(document).ready(function () {
             //     }
             //     if (butt == 2) {
             //         update(data2)
-            //         d3.select('text.legend3CB').remove()
-            //         svg.append("text")
-            //             .attr("x", -40)
-            //             .attr("y", -200)
-            //             .text("May 2020")
-            //             .style("font-size", "17px")
+
             //     }
             // });
-            $('.btt1').on('click', function () {
-                $('.btt1').removeClass('active1');
-                $(this).addClass('active1');
-            });
-            let buttons = document.querySelectorAll("button[value]");
 
-            console.log(buttons)
+
+
+
+
+
+
+            $('.button').on('click', function () {
+                $('.button').removeClass('active');
+                $(this).addClass('active');
+            });
+            var buttons = document.querySelectorAll("button[value]");
+
             buttons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     // console.log(array)
                     // array.length = 0;
-                    let value = button.getAttribute("value");
+                    var value = button.getAttribute("value");
                     switch (value) {
                         case "1":
                             update(data1)
                             break;
                         case "2":
                             update(data2)
-                            d3.select('text.legend3CB').remove()
-                            svg.append("text")
-                                .attr("x", -40)
-                                .attr("y", -200)
-                                .text("May 2020")
-                                .style("font-size", "17px")
                             break;
+
                     }
+                    console.log(array)
                 });
             });
         })

@@ -248,13 +248,12 @@ $(document).ready(function () {
                     $('.btt').removeClass('active');
                     $(this).addClass('active');
                 });
-                var buttons = document.querySelectorAll("button[data-value]");
-
+                let buttons = document.querySelectorAll("button[data-value]");
                 buttons.forEach(function (button) {
                     button.addEventListener("click", function () {
                         // console.log(array)
                         // array.length = 0;
-                        var value = button.getAttribute("data-value");
+                        let value = button.getAttribute("data-value");
                         switch (value) {
                             case "valore1":
                                 array = year2019;
