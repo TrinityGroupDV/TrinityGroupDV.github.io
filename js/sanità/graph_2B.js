@@ -8,8 +8,8 @@ $(document).ready(function () {
 
     function draw() {
 
-        let clientHeight = document.getElementById('graph_2B').clientHeight - 90;
-        let clientWidth = document.getElementById('graph_2B').clientWidth - 140;
+        let clientHeight = document.getElementById('graph_2B').clientHeight - 55;
+        let clientWidth = document.getElementById('graph_2B').clientWidth - 120;
 
         const margin = { top: 10, right: 30, bottom: 50, left: 80 };
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         svg.append("text")
             .attr("x", "45%")
-            .attr("y", 400)
+            .attr("y", 435)
             .text("Date")
             .style("font-size", "90%")
 

@@ -7,8 +7,8 @@ $(document).ready(function () {
     })
 
     function draw() {
-        let clientHeight = document.getElementById('graph_1A').clientHeight - 80;
-        let clientWidth = document.getElementById('graph_1A').clientWidth - 140;
+        let clientHeight = document.getElementById('graph_1A').clientHeight - 55;
+        let clientWidth = document.getElementById('graph_1A').clientWidth - 120;
 
         // Set the dimensions and margins of the graph
         const margin = { top: 10, right: 30, bottom: 40, left: 80 };
@@ -37,7 +37,7 @@ $(document).ready(function () {
         svg.append("text")
             .attr("class", "legend1B")
             .attr("x", "40%")
-            .attr("y", 400)
+            .attr("y", 435)
             .text("Date")
             .style("font-size", "100%")
             .attr("alignment-baseline", "middle")

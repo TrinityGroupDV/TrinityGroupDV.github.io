@@ -117,7 +117,7 @@ $(document).ready(async function () {
                 .data(words)
                 .enter().append("text")
                 .style("font-size", function (d) { return d.size; })
-                .style("fill", "#69b3a2")
+                .style("fill", "#974be3")
                 .attr("text-anchor", "middle")
                 .style("font-family", "Impact")
                 .attr("transform", function (d) {
@@ -129,6 +129,8 @@ $(document).ready(async function () {
                 //.on("mouseover", highlight)
                 .on("mousemove", mousemove)
                 .on("mouseout", mouseout);
+
+            //.range(['#e41a1c', '#377eb8', '#4daf4a', '#aabbcc', '#bbccaa', '#4f4d4d'])
         }
     }
 })

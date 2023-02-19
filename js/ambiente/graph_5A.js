@@ -77,7 +77,6 @@ $(document).ready(function () {
             ];
 
             const color = d3.scaleOrdinal()
-                //.domain(["A"])
                 .range(["#d48415"])
 
             const size = d3.scaleLinear()
