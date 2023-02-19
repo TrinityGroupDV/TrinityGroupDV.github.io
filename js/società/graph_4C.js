@@ -104,6 +104,20 @@ $(document).ready(function () {
                         }
                     }
                 }
+                function fix(array) {
+                    let values = new Array();
+                    let help = new Array();
+                    let newKeys = ['state', '<18', '18-24', '25-49', '50-64', '65-74', '>75'];
+                    for (let i = 0; i < array.length; i++) {
+                        help[i] = {};
+                        values = Object.values(array[i]);
+                        values.splice(1, 0, values.splice(6, 1)[0]);
+                        for (let j = 0; j < newKeys.length; j++) {
+                            help[i][newKeys[j]] = values[j];
+                        }
+                    }
+                    return help;
+                }
 
 
 
@@ -113,13 +127,15 @@ $(document).ready(function () {
                     switch (i) {
                         case 0:
                             fill(year2019, i);
-                            console.log(year2019)
+                            year2019 = fix(year2019)
                             break;
                         case 1:
                             fill(year2020, i);
+                            year2020 = fix(year2020)
                             break;
                         case 2:
                             fill(year2021, i);
+                            year2021 = fix(year2021)
                             break;
                     }
                 }
@@ -174,7 +190,7 @@ $(document).ready(function () {
                     // color palette = one color per subgroup
                     const color = d3.scaleOrdinal()
                         .domain(subgroups)
-                        .range(['#e41a1c', '#377eb8', '#4daf4a', '#aabbcc', '#bbccaa', '#4f4d4d'])
+                        .range(['#46d366', '#00d6ff', '#007fff', '#a862ea', '#ff3e6b', '#ffbf29'])
 
                     //stack the data? --> stack per subgroup
                     const stackedData = d3.stack()
@@ -200,13 +216,14 @@ $(document).ready(function () {
                         let legend = d3.select(this).datum()
                         let total = legend[1] - legend[0]
                         const subgroupName = d3.select(this.parentNode).datum().key;
-                        console.log(subgroupName)
+                        // console.log(subgroupName)
 
                         Tooltip.html('Age range: ' + subgroupName + '<br>' + 'Total: ' + total + ' thousand people')
                             .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
                             .style("top", (event.offsetY) + "px"); // sottratto 20px per spostare il tooltip in alto
 
-                        console.log(legend)
+                        // console.log(legend)
+
 
                     }
 
@@ -284,7 +301,7 @@ $(document).ready(function () {
                                 update(array)
                                 break;
                         }
-                        console.log(array)
+                        // console.log(array)
                     });
                 });
             })
