@@ -11,14 +11,14 @@ $(document).ready(function () {
         let clientWidth = document.getElementById('graph_4C').clientWidth - 100;
 
         // set the dimensions and margins of the graph
-        const margin = { top: 30, right: 20, bottom: 40, left: 65 };
+        const margin = { top: 30, right: 20, bottom: 50, left: 65 };
         if (aux == 1) {
             $("#graph_4C").empty();
         }
         aux = 1;
 
         // append the svg object to the body of the page
-        var svg = d3.select("#graph_4C")
+        let svg = d3.select("#graph_4C")
             .append("svg")
             .attr("width", clientWidth + margin.left + margin.right)
             .attr("height", clientHeight + margin.top + margin.bottom)
@@ -125,10 +125,20 @@ $(document).ready(function () {
 
                 function update(array) {
 
+
                     // $("graph_4C").empty();
                     svg.selectAll("rect").remove();
                     svg.selectAll("path").remove();
                     svg.selectAll("text").remove();
+
+                    //Label
+                    svg.append("text")
+                        .attr("class", "legend4C")
+                        .attr("x", "40%")
+                        .attr("y", 420)
+                        .text("Thousands people")
+                        .style("font-size", "100%")
+                        .attr("alignment-baseline", "middle")
 
                     // List of subgroups = header of the csv files = soil condition here
                     const subgroups = Object.keys(array[0]).slice(1);
