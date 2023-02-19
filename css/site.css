@@ -22,7 +22,7 @@ body {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 30px;
+    padding: 14px 20px;
     text-decoration: none;
     /* font-size: 17px; */
 }
@@ -117,6 +117,9 @@ h3 {
 .tooltip {
     font-size: 13px;
     color: #949494;
+}
+li{
+    padding-left: 5%;
 }
 
 header {
@@ -322,57 +325,39 @@ select {
     position: relative;
 }
 
-/* The slider itself */
 .slider {
     -webkit-appearance: none;
-    /* Override default CSS styles */
     appearance: none;
     width: 100%;
-    /* Full-width */
     height: 25px;
-    /* Specified height */
     border-radius: 20px;
-    background: #d3d3d3;
-    /* Grey background */
+    background: #bfbfbf;
     outline: none;
-    /* Remove outline */
     opacity: 0.7;
-    /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s;
-    /* 0.2 seconds transition on hover */
     transition: opacity .2s;
 }
 
-/* Mouse-over effects */
 .slider:hover {
     opacity: 1;
-    /* Fully shown on mouse-over */
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    /* Override default look */
     appearance: none;
     width: 25px;
-    /* Set a specific slider handle width */
     height: 25px;
-    /* Slider handle height */
-    background: #045faa;
-    /* Green background */
+    background: #ffffff;
+    border: 2px solid;
+    border-radius: 20px;
     cursor: pointer;
-    /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
-    /* Set a specific slider handle width */
     height: 25px;
-    /* Slider handle height */
     background: #04AA6D;
-    /* Green background */
     cursor: pointer;
-    /* Cursor on hover */
 }
 
 /*-------------------BOTTONI-------------------*/
@@ -412,13 +397,15 @@ select {
 }
 
 .active {
-    background-color: #f98989;
+    /* background-color: #f98989; */
+    background-color: #a0a0a0;
     color: #fff;
     border-radius: 20px;
 }
 
 .btt:active {
-    background-color: #f98989d3;
+    /* background-color: #f98989d3; */
+    background-color: #bfbfbf;
     color: #fff;
     border-radius: 20px;
 }
@@ -433,20 +420,20 @@ select {
 }
 
 .active1 {
-    background-color: #f98989;
+    /* background-color: #f98989; */
+    background-color: #a0a0a0;
     color: #fff;
     border-radius: 20px;
 }
 
 .btt1:active {
-    background-color: #f98989;
+    /* background-color: #f98989; */
+    background-color: #bfbfbf;
     color: #fff;
     border-radius: 20px;
 }
 
-
-
-
+/* 
 .button1 {
     background-color: white;
     color: black;
@@ -467,7 +454,7 @@ select {
 .button2:hover {
     background-color: #008CBA;
     color: white;
-}
+} */
 
 /* --------------- LABEL ------------- */
 .form-control {
