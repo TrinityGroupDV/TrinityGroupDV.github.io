@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    //DIMINUZIONE PERCENTUALE DEL NUMERO DI PASSEGGERI AEREI TRA IL 2019 E il 2020 NELL'UNONE EUROPEA
-
     let aux = 0;
     draw()
 

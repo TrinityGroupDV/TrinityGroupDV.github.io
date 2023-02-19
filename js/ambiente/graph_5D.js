@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    // Greenhouse gases production in European union
-
     let aux = 0;
     draw()
 
@@ -11,11 +9,11 @@ $(document).ready(function () {
 
     function draw() {
 
-        let clientHeight = document.getElementById('graph_5D').clientHeight - 75;
+        let clientHeight = document.getElementById('graph_5D').clientHeight - 60;
         let clientWidth = document.getElementById('graph_5D').clientWidth - 100;
 
         // Set margin
-        const margin = { top: 10, right: 20, bottom: 40, left: 60 };
+        const margin = { top: 10, right: 20, bottom: 50, left: 60 };
         if (aux == 1) {
             $("#graph_5D").empty();
         }
@@ -76,7 +74,7 @@ $(document).ready(function () {
                     svg.append("text")
                         .attr("class", "legend5C")
                         .attr("x", "40%")
-                        .attr("y", 410)
+                        .attr("y", 430)
                         .text("Date")
                         .style("font-size", "100%")
                         .attr("alignment-baseline", "middle")

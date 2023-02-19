@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    //PRIMARY ENERGY CONSUMPTION IN EUROPEAN UNION
-
     let aux = 0;
     draw()
 
@@ -11,7 +9,7 @@ $(document).ready(function () {
 
     function draw() {
 
-        let clientHeight = document.getElementById('graph_5C').clientHeight - 80;
+        let clientHeight = document.getElementById('graph_5C').clientHeight - 60;
         let clientWidth = document.getElementById('graph_5C').clientWidth - 140;
 
         // Set margin
@@ -77,7 +75,7 @@ $(document).ready(function () {
         svg.append("text")
             .attr("class", "legend5C")
             .attr("x", "40%")
-            .attr("y", 410)
+            .attr("y", 430)
             .text("Date")
             .style("font-size", "100%")
             .attr("alignment-baseline", "middle")

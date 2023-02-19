@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    //DIMINUZIONE PERCENTUALE DEL CONSUMO DI ENERGIA FINALE TRA IL 2019 E il 2020 NELL'UNIONE EUROPEA
-
     let aux = 0;
     draw()
 

@@ -313,6 +313,7 @@ select {
     /* Full-width */
     height: 25px;
     /* Specified height */
+    border-radius: 20px;
     background: #d3d3d3;
     /* Grey background */
     outline: none;
@@ -339,7 +340,7 @@ select {
     /* Set a specific slider handle width */
     height: 25px;
     /* Slider handle height */
-    background: #04aa20;
+    background: #045faa;
     /* Green background */
     cursor: pointer;
     /* Cursor on hover */
@@ -374,34 +375,35 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: fit-content; /* impostare la larghezza del div in base alla larghezza dei bottoni */
+    width: fit-content;
+    /* impostare la larghezza del div in base alla larghezza dei bottoni */
     background-color: #d7d7d75d;
     box-shadow: 1px 1px 5px #00000041;
     margin: auto;
     border-radius: 20px;
     /* margin-bottom: 1%; */
-  }
-  
-  .btt {
+}
+
+.btt {
     padding: 10px;
     background-color: #d7d7d700;
     border: none;
     /* outline: none; */
     cursor: pointer;
     /* border-radius: 20px; */
-  }
-  
-  .active {
+}
+
+.active {
     background-color: #f98989;
     color: #fff;
     border-radius: 20px;
-  }
-  
-  .btt:active {
+}
+
+.btt:active {
     background-color: #f98989d3;
     color: #fff;
     border-radius: 20px;
-  }
+}
 
 
 
