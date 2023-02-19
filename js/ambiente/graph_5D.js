@@ -57,7 +57,7 @@ $(document).ready(function () {
                     svg.append("path")
                         .datum(data)
                         .attr("fill", "none")
-                        .attr("stroke", "steelblue")
+                        .attr("stroke", "#4f4f4f")
                         .attr("stroke-width", 1.5)
                         .attr("d", d3.line()
                             .x(function (d) { return x(d.date) })
