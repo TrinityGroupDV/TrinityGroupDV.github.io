@@ -395,7 +395,6 @@ $(document).ready(function () {
             .style("font-size", "1vi")
             .attr("alignment-baseline", "middle")
 
-        //Legend
         svg.append("rect").attr("class", "legend4B")
             .attr("x", "24%")
             .attr("y", 395)
