@@ -132,8 +132,8 @@ $(document).ready(function () {
                     }
                 }
 
-                let array = [];
-                array = year2019;
+                // let array = [];
+                // array = year2019;
                 function update(array) {
 
                     svg.selectAll("rect").remove();
@@ -275,31 +275,66 @@ $(document).ready(function () {
                         .on("mouseout", mouseout);
                 }
 
-                update(array)
-                $('.btt').on('click', function () {
-                    $('.btt').removeClass('active');
-                    $(this).addClass('active');
+                update(year2019)
+
+                $('.btt2').on('click', function () {
+                    $('.btt2').removeClass('active2');
+                    $(this).addClass('active2');
                 });
-                let buttons = document.querySelectorAll("button[data-value]");
-                buttons.forEach(function (button) {
+                let buttons2 = document.querySelectorAll("button[data-value]");
+                buttons2.forEach(function (button) {
                     button.addEventListener("click", function () {
                         let value = button.getAttribute("data-value");
                         switch (value) {
                             case "valore1":
-                                array = year2019;
-                                update(array)
+                                // array = year2019;
+                                update(year2019)
                                 break;
                             case "valore2":
-                                array = year2020;
-                                update(array)
+                                // array = year2020;
+                                update(year2020)
                                 break;
                             case "valore3":
-                                array = year2021;
-                                update(array)
+                                // array = year2021;
+                                update(year2021)
                                 break;
                         }
                     });
                 });
+
+                // // seleziona i pulsanti e l'elemento contenitore
+                // const buttonsContainer = document.querySelector('.box_bott');
+                // const buttons = buttonsContainer.querySelectorAll("button[data-value]");
+
+                // // seleziona l'elemento che deve essere aggiornato
+                // const elementToUpdate = document.getElementById('element-to-update');
+
+                // // imposta un unico event listener sull'elemento contenitore dei pulsanti
+                // buttonsContainer.addEventListener('click', function (event) {
+                //     if (!event.target.matches('button[data-value]')) return;
+
+                //     // rimuovi la classe 'active2' da tutti i pulsanti e aggiungi la classe 'active2' al pulsante cliccato
+                //     buttons.forEach(button => button.classList.remove('active2'));
+                //     event.target.classList.add('active2');
+
+                //     // mappa il valore del pulsante alla funzione di aggiornamento e chiama la funzione corrispondente
+                //     const value = event.target.getAttribute('data-value');
+                //     const updateFunctions = {
+                //         valore1: () => update(year2019),
+                //         valore2: () => update(year2020),
+                //         valore3: () => update(year2021),
+                //     };
+                //     updateFunctions[value]();
+                // });
+
+                // // funzione di aggiornamento
+                // function update(data) {
+                //     // aggiorna l'elemento con i nuovi dati
+                //     elementToUpdate.textContent = data;
+                // }
+
+
+
             })
     }
 })

@@ -389,7 +389,7 @@ select {
 }
 
 /*-------------------BOTTONI-------------------*/
-/* .button {
+.button {
     padding: 1% 4%;
     border-radius: 20px;
     background-color: rgb(255, 254, 254);
@@ -400,7 +400,7 @@ select {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-} */
+}
 
 .box_btt {
     display: flex;
@@ -415,7 +415,7 @@ select {
     /* margin-bottom: 1%; */
 }
 
-.btt {
+.btt2 {
     padding: 10px;
     background-color: #d7d7d700;
     border: none;
@@ -424,16 +424,9 @@ select {
     /* border-radius: 20px; */
 }
 
-.active {
+.active2 {
     /* background-color: #f98989; */
     background-color: #a0a0a0;
-    color: #fff;
-    border-radius: 20px;
-}
-
-.btt:active {
-    /* background-color: #f98989d3; */
-    background-color: #bfbfbf;
     color: #fff;
     border-radius: 20px;
 }
@@ -454,14 +447,19 @@ select {
     border-radius: 20px;
 }
 
-.btt1:active {
-    /* background-color: #f98989; */
+/* .btt:active {
     background-color: #bfbfbf;
     color: #fff;
     border-radius: 20px;
-}
-
+} */
 /* 
+.btt1:active {
+    background-color: #bfbfbf;
+    color: #fff;
+    border-radius: 20px;
+} */
+
+
 .button1 {
     background-color: white;
     color: black;
@@ -482,7 +480,7 @@ select {
 .button2:hover {
     background-color: #008CBA;
     color: white;
-} */
+}
 
 /* --------------- LABEL ------------- */
 .form-control {
