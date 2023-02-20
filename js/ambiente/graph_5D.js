@@ -52,17 +52,45 @@ $(document).ready(function () {
                         .range([clientHeight, 0]);
                     svg.append("g")
                         .call(d3.axisLeft(y));
+                    //Gradadient color
+                    const gradient = svg.append("defs")
+                        .append("linearGradient")
+                        .attr("id", "gradient1")
+                        .attr("x1", "0%")
+                        .attr("y1", "0%")
+                        .attr("x2", "100%")
+                        .attr("y2", "0%");
+
+                    gradient.append("stop")
+                        .attr("offset", "0%")
+                        .attr("stop-color", "black");
+                    gradient.append("stop")
+                        .attr("offset", "50%")
+                        .attr("stop-color", "grey");
+
+                    gradient.append("stop")
+                        .attr("offset", "100%")
+                        .attr("stop-color", "darkblue");
 
                     // Add the line
                     svg.append("path")
                         .datum(data)
                         .attr("fill", "none")
-                        .attr("stroke", "#4f4f4f")
+                        .attr("stroke", "url(#gradient1)")
                         .attr("stroke-width", 1.5)
                         .attr("d", d3.line()
                             .x(function (d) { return x(d.date) })
                             .y(function (d) { return y(d.value) })
-                        )
+                        ).on("mouseover", function () {
+                            d3.select(this)
+                                .style("stroke", "url(#gradient1)")
+                                .style("stroke-width", "4px");
+                        })
+                        .on("mouseout", function () {
+                            d3.select(this)
+                                .style("stroke", "url(#gradient1)")
+                                .style("stroke-width", "1.5px");
+                        });
                     svg.append("text")
                         .attr("class", "legend5C")
                         .attr("x", "-145")

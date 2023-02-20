@@ -52,16 +52,46 @@ $(document).ready(function () {
                     svg.append("g")
                         .call(d3.axisLeft(y));
 
+                    //Gradadient color
+                    const gradient = svg.append("defs")
+                        .append("linearGradient")
+                        .attr("id", "gradient")
+                        .attr("x1", "0%")
+                        .attr("y1", "0%")
+                        .attr("x2", "100%")
+                        .attr("y2", "0%");
+
+                    gradient.append("stop")
+                        .attr("offset", "0%")
+                        .attr("stop-color", "red");
+                    gradient.append("stop")
+                        .attr("offset", "50%")
+                        .attr("stop-color", "orange");
+
+                    gradient.append("stop")
+                        .attr("offset", "100%")
+                        .attr("stop-color", "yellow");
+
                     // Add the line
                     svg.append("path")
                         .datum(data)
                         .attr("fill", "none")
-                        .attr("stroke", "#d48415")
+                        .attr("stroke", "url(#gradient)")
                         .attr("stroke-width", 1.5)
                         .attr("d", d3.line()
                             .x(function (d) { return x(d.date) })
                             .y(function (d) { return y(d.value) })
                         )
+                        .on("mouseover", function () {
+                            d3.select(this)
+                                .style("stroke", "url(#gradient)")
+                                .style("stroke-width", "4px");
+                        })
+                        .on("mouseout", function () {
+                            d3.select(this)
+                                .style("stroke", "url(#gradient)")
+                                .style("stroke-width", "1.5px");
+                        });
                 })
 
         svg.append("text")
