@@ -77,7 +77,7 @@ $(document).ready(function () {
                         .datum(data)
                         .attr("fill", "none")
                         .attr("stroke", "url(#gradient1)")
-                        .attr("stroke-width", 1.5)
+                        .attr("stroke-width", 2.5)
                         .attr("d", d3.line()
                             .x(function (d) { return x(d.date) })
                             .y(function (d) { return y(d.value) })
@@ -89,7 +89,7 @@ $(document).ready(function () {
                         .on("mouseout", function () {
                             d3.select(this)
                                 .style("stroke", "url(#gradient1)")
-                                .style("stroke-width", "1.5px");
+                                .style("stroke-width", "2.5px");
                         });
                     svg.append("text")
                         .attr("class", "legend5C")
