@@ -115,10 +115,6 @@ $(document).ready(function () {
                     return help;
                 }
 
-
-
-
-
                 for (let i = 0; i < newData.length; i++) {
                     switch (i) {
                         case 0:
@@ -137,10 +133,7 @@ $(document).ready(function () {
                 }
 
                 let array = [];
-
                 array = year2019;
-
-
                 function update(array) {
 
                     svg.selectAll("rect").remove();
@@ -190,84 +183,6 @@ $(document).ready(function () {
                         .text(d => d.label)
                         .style('font-size', '1vi')
                         .attr('alignment-baseline', 'middle');
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "4%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#46d366")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "10%")
-                    //     .attr("y", 410)
-                    //     .text("<18")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "19%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#00d6ff")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "25%")
-                    //     .attr("y", 410)
-                    //     .text("18-24")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "34%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#007fff")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "40%")
-                    //     .attr("y", 410)
-                    //     .text("25-49")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "49%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#a862ea")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "55%")
-                    //     .attr("y", 410)
-                    //     .text("50-64")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "64%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#ff3e6b")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "70%")
-                    //     .attr("y", 410)
-                    //     .text("65-74")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
-
-                    // svg.append("rect").attr("class", "legend4B")
-                    //     .attr("x", "79%")
-                    //     .attr("y", 405)
-                    //     .attr('width', '5%')
-                    //     .attr('height', 7)
-                    //     .style("fill", "#ffbf29")
-                    // svg.append("text").attr("class", "legend4B")
-                    //     .attr("x", "85%")
-                    //     .attr("y", 410)
-                    //     .text(">75")
-                    //     .style("font-size", "1vi")
-                    //     .attr("alignment-baseline", "middle")
 
                     // List of subgroups = header of the csv files = soil condition here
                     const subgroups = Object.keys(array[0]).slice(1);
