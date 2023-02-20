@@ -1,11 +1,9 @@
 $(document).ready(function () {
-
     let aux = 0;
     draw()
     addEventListener("resize", (event) => {
         draw()
     })
-
     function draw() {
         let clientHeight = document.getElementById('graph_4C').clientHeight - 100;
         let clientWidth = document.getElementById('graph_4C').clientWidth - 100;
@@ -24,7 +22,6 @@ $(document).ready(function () {
             .attr("height", clientHeight + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`)
-
 
         // Parse the Data
         d3.csv("../../csv/società/graph_4C.csv")
@@ -64,13 +61,12 @@ $(document).ready(function () {
                     }, {});
                     newData.push(help)
                 }
-                console.log(newData)
 
                 let year2019 = [];
                 let year2020 = [];
                 let year2021 = [];
+                let keys = ['state', '<18', '18-24', '25-49', '50-64', '65-74', '>75'];
 
-                //Funzione per riempire fli array
                 function fill(array, a) {
                     let key_state;
                     let chiave;
@@ -107,7 +103,7 @@ $(document).ready(function () {
                 function fix(array) {
                     let values = new Array();
                     let help = new Array();
-                    let newKeys = ['state', '<18', '18-24', '25-49', '50-64', '65-74', '>75'];
+                    let newKeys = ['state', 'under_18', '_18-24', '_25-49', '_50-64', '_65-74', 'above_75'];
                     for (let i = 0; i < array.length; i++) {
                         help[i] = {};
                         values = Object.values(array[i]);
@@ -147,8 +143,6 @@ $(document).ready(function () {
 
                 function update(array) {
 
-
-                    // $("graph_4C").empty();
                     svg.selectAll("rect").remove();
                     svg.selectAll("path").remove();
                     svg.selectAll("text").remove();
@@ -163,91 +157,123 @@ $(document).ready(function () {
                         .attr("alignment-baseline", "middle")
 
                     //Legend
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "4%")
-                        .attr("y", 405)
+                    const legendData = [
+                        { x: '4%', color: '#46d366', label: '<18' },
+                        { x: '19%', color: '#00d6ff', label: '18-24' },
+                        { x: '34%', color: '#007fff', label: '25-49' },
+                        { x: '49%', color: '#a862ea', label: '50-64' },
+                        { x: '64%', color: '#ff3e6b', label: '65-74' },
+                        { x: '79%', color: '#ffbf29', label: '>75' }
+                    ];
+                    const legendGroup = svg.append('g').attr('class', 'legend4B');
+                    legendGroup.selectAll('rect')
+                        .data(legendData)
+                        .enter()
+                        .append('rect')
+                        .attr('class', 'legend4B')
+                        .attr('x', d => d.x)
+                        .attr('y', 405)
                         .attr('width', '5%')
                         .attr('height', 7)
-                        .style("fill", "#46d366")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "10%")
-                        .attr("y", 410)
-                        .text("<18")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                        .style('fill', d => d.color);
 
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "19%")
-                        .attr("y", 405)
-                        .attr('width', '5%')
-                        .attr('height', 7)
-                        .style("fill", "#00d6ff")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "25%")
-                        .attr("y", 410)
-                        .text("18-24")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                    legendGroup.selectAll('text')
+                        .data(legendData)
+                        .enter()
+                        .append('text')
+                        .attr('class', 'legend4B')
+                        .attr('x', d => {
+                            const width = parseFloat(d.x) + 6;
+                            return `${width}%`;
+                        })
+                        .attr('y', 410)
+                        .text(d => d.label)
+                        .style('font-size', '1vi')
+                        .attr('alignment-baseline', 'middle');
 
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "34%")
-                        .attr("y", 405)
-                        .attr('width', '5%')
-                        .attr('height', 7)
-                        .style("fill", "#007fff")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "40%")
-                        .attr("y", 410)
-                        .text("25-49")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "4%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#46d366")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "10%")
+                    //     .attr("y", 410)
+                    //     .text("<18")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
 
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "49%")
-                        .attr("y", 405)
-                        .attr('width', '5%')
-                        .attr('height', 7)
-                        .style("fill", "#a862ea")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "55%")
-                        .attr("y", 410)
-                        .text("50-64")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "19%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#00d6ff")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "25%")
+                    //     .attr("y", 410)
+                    //     .text("18-24")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
 
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "64%")
-                        .attr("y", 405)
-                        .attr('width', '5%')
-                        .attr('height', 7)
-                        .style("fill", "#ff3e6b")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "70%")
-                        .attr("y", 410)
-                        .text("65-74")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "34%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#007fff")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "40%")
+                    //     .attr("y", 410)
+                    //     .text("25-49")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
 
-                    svg.append("rect").attr("class", "legend4B")
-                        .attr("x", "79%")
-                        .attr("y", 405)
-                        .attr('width', '5%')
-                        .attr('height', 7)
-                        .style("fill", "#ffbf29")
-                    svg.append("text").attr("class", "legend4B")
-                        .attr("x", "85%")
-                        .attr("y", 410)
-                        .text(">75")
-                        .style("font-size", "1vi")
-                        .attr("alignment-baseline", "middle")
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "49%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#a862ea")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "55%")
+                    //     .attr("y", 410)
+                    //     .text("50-64")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
+
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "64%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#ff3e6b")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "70%")
+                    //     .attr("y", 410)
+                    //     .text("65-74")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
+
+                    // svg.append("rect").attr("class", "legend4B")
+                    //     .attr("x", "79%")
+                    //     .attr("y", 405)
+                    //     .attr('width', '5%')
+                    //     .attr('height', 7)
+                    //     .style("fill", "#ffbf29")
+                    // svg.append("text").attr("class", "legend4B")
+                    //     .attr("x", "85%")
+                    //     .attr("y", 410)
+                    //     .text(">75")
+                    //     .style("font-size", "1vi")
+                    //     .attr("alignment-baseline", "middle")
 
                     // List of subgroups = header of the csv files = soil condition here
                     const subgroups = Object.keys(array[0]).slice(1);
-                    // console.log(subgroups)
 
                     // List of groups = species here = value of the first column called group -> I show them on the X axis
                     const groups = array.map(d => (d.state))
-                    // console.log(groups)
 
                     // Add X axis
                     const x = d3.scaleLinear()
@@ -271,11 +297,9 @@ $(document).ready(function () {
                         .domain(subgroups)
                         .range(['#46d366', '#00d6ff', '#007fff', '#a862ea', '#ff3e6b', '#ffbf29'])
 
-                    //stack the data? --> stack per subgroup
                     const stackedData = d3.stack()
                         .keys(subgroups)
                         (array)
-                    // console.log(stackedData)
 
                     const Tooltip = d3.select("#graph_4C")
                         .append("div")
@@ -295,67 +319,48 @@ $(document).ready(function () {
                         let legend = d3.select(this).datum()
                         let total = legend[1] - legend[0]
                         const subgroupName = d3.select(this.parentNode).datum().key;
-                        // console.log(subgroupName)
-
-                        Tooltip.html('Age range: ' + subgroupName + '<br>' + 'Total: ' + total + ' thousand people')
+                        let index = d3.select(this.parentNode).datum().index;
+                        Tooltip.html('Age range: ' + keys[index + 1] + '<br>' + 'Total: ' + total + ' thousand people')
                             .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
                             .style("top", (event.offsetY) + "px"); // sottratto 20px per spostare il tooltip in alto
 
-                        // console.log(legend)
-
-
+                        d3.selectAll(".myRect ").style("opacity", 0.2)
+                        d3.selectAll("." + subgroupName).style("opacity", 1)
                     }
 
-
                     const mousemove = function (event, d) {
-
-
-                        //const subgroupName = d3.select(this.parentNode).datum().key;
-                        //const subgroupValue = d.array[subgroupName];
-
-                        //console.log(subgroupName)
-                        // tooltip
-                        //     .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
-
-
                         Tooltip.style("transform", "translateY(-10%)")
                             .style("left", (event.offsetX + 20) + "px")
                             .style("top", (event.offsetY) + "px")
-
-
-                        /*  Tooltip.html('Total: ' + total)
-                              .style("left", (event.offsetX + 20) + "px") // aggiunto 20px per spostare il tooltip a destra
-                              .style("top", (event.offsetY) + "px"); // sottratto 20px per spostare il tooltip in alto*/
                     }
 
                     const mouseout = function (event, d) {
+                        d3.selectAll(".myRect")
+                            .style("opacity", 1)
                         Tooltip.style("opacity", 0);
                     }
 
                     // Show the bars
                     svg.append("g")
                         .selectAll("g")
-                        // Enter in the stack data = loop key per key = group per group
                         .data(stackedData)
                         .join("g")
                         .attr("fill", d => color(d.key))
+                        .attr("class", d => "myRect " + d.key)
                         .selectAll("rect")
-                        // enter a second time = loop subgroup per subgroup to add all rectangles
                         .data(d => d)
                         .join("rect")
                         .attr("x", d => x(d[0]))
                         .attr("y", d => y(d.data.state))
                         .attr("width", d => x(d[1]) - x(d[0]))
                         .attr("height", y.bandwidth())
+                        .attr("stroke", "white")
                         .on("mouseover", mouseover)
-                        //.on("mouseover", highlight)
                         .on("mousemove", mousemove)
                         .on("mouseout", mouseout);
-
                 }
 
                 update(array)
-
                 $('.btt').on('click', function () {
                     $('.btt').removeClass('active');
                     $(this).addClass('active');
@@ -363,8 +368,6 @@ $(document).ready(function () {
                 let buttons = document.querySelectorAll("button[data-value]");
                 buttons.forEach(function (button) {
                     button.addEventListener("click", function () {
-                        // console.log(array)
-                        // array.length = 0;
                         let value = button.getAttribute("data-value");
                         switch (value) {
                             case "valore1":
@@ -380,7 +383,6 @@ $(document).ready(function () {
                                 update(array)
                                 break;
                         }
-                        // console.log(array)
                     });
                 });
             })
