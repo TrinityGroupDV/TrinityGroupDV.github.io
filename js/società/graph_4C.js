@@ -303,40 +303,6 @@ $(document).ready(function () {
                         }
                     });
                 });
-
-                // // seleziona i pulsanti e l'elemento contenitore
-                // const buttonsContainer = document.querySelector('.box_bott');
-                // const buttons = buttonsContainer.querySelectorAll("button[data-value]");
-
-                // // seleziona l'elemento che deve essere aggiornato
-                // const elementToUpdate = document.getElementById('element-to-update');
-
-                // // imposta un unico event listener sull'elemento contenitore dei pulsanti
-                // buttonsContainer.addEventListener('click', function (event) {
-                //     if (!event.target.matches('button[data-value]')) return;
-
-                //     // rimuovi la classe 'active2' da tutti i pulsanti e aggiungi la classe 'active2' al pulsante cliccato
-                //     buttons.forEach(button => button.classList.remove('active2'));
-                //     event.target.classList.add('active2');
-
-                //     // mappa il valore del pulsante alla funzione di aggiornamento e chiama la funzione corrispondente
-                //     const value = event.target.getAttribute('data-value');
-                //     const updateFunctions = {
-                //         valore1: () => update(year2019),
-                //         valore2: () => update(year2020),
-                //         valore3: () => update(year2021),
-                //     };
-                //     updateFunctions[value]();
-                // });
-
-                // // funzione di aggiornamento
-                // function update(data) {
-                //     // aggiorna l'elemento con i nuovi dati
-                //     elementToUpdate.textContent = data;
-                // }
-
-
-
             })
     }
 })

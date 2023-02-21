@@ -166,50 +166,34 @@ $(document).ready(function () {
             }
             // Initialize the plot with the first dataset
             update(data1)
-            $("button").click(function () {
-                butt = this.value
 
-                if (butt == 1) {
-                    update(data1)
-                }
-                if (butt == 2) {
-                    update(data2)
-                    d3.select('text.legend3CB').remove()
-                    svg.append("text")
-                        .attr("x", -40)
-                        .attr("y", -200)
-                        .text("May 2020")
-                        .style("font-size", "17px")
-                }
+            $('.btt1').on('click', function () {
+                $('.btt1').removeClass('active1');
+                $(this).addClass('active1');
             });
-            // $('.btt1').on('click', function () {
-            //     $('.btt1').removeClass('active1');
-            //     $(this).addClass('active1');
-            // });
-            // let buttons1 = document.querySelectorAll("button[value]");
-            // console.log(buttons1)
+            let buttons1 = document.querySelectorAll("button[value]");
 
-            // buttons1.forEach(function (button) {
-            //     button.addEventListener("click", function () {
-            //         // console.log(array)
-            //         // array.length = 0;
-            //         let value = button.getAttribute("value");
-            //         switch (value) {
-            //             case "1":
-            //                 update(data1)
-            //                 break;
-            //             case "2":
-            //                 update(data2)
-            //                 d3.select('text.legend3CB').remove()
-            //                 svg.append("text")
-            //                     .attr("x", -40)
-            //                     .attr("y", -200)
-            //                     .text("May 2020")
-            //                     .style("font-size", "17px")
-            //                 break;
-            //         }
-            //     });
-            // });
+            buttons1.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    // console.log(array)
+                    // array.length = 0;
+                    let value = button.getAttribute("value");
+                    switch (value) {
+                        case "1":
+                            update(data1)
+                            break;
+                        case "2":
+                            update(data2)
+                            d3.select('text.legend3CB').remove()
+                            svg.append("text")
+                                .attr("x", -40)
+                                .attr("y", -200)
+                                .text("May 2020")
+                                .style("font-size", "17px")
+                            break;
+                    }
+                });
+            });
         })
     }
 })

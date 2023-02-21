@@ -105,7 +105,8 @@ h3 {
     color: #ffffff;
     /* justify-content: center; */
 }
-a{
+
+a {
     width: auto;
     text-align: justify;
     margin-top: auto;
@@ -113,6 +114,7 @@ a{
     font-size: 15px;
     color: #ffffff;
 }
+
 .titleGraph {
     font-size: 20px;
     color: #232323e6;
@@ -451,6 +453,15 @@ select {
     border-radius: 20px;
 }
 
+.btt1 {
+    padding: 12px;
+    font-size: 17px;
+    background-color: #d7d7d700;
+    border: none;
+    /* outline: none; */
+    cursor: pointer;
+    /* border-radius: 20px; */
+}
 
 .active1 {
     /* background-color: #f98989; */
