@@ -54,18 +54,14 @@ $(document).ready(function () {
 
                 // Now I can use this dataset:
                 function (data) {
-                    console.log(data)
-
+        
                     // NUMERO DI MORTI GLOBALI PER OGNI SETTIMANA
                     for (let i = 0; i < (data.length / 7) - 1; i++) {
                         dataProva[i] = data[(i + 1) * 7]
 
                         dataProva[i].value = (Number(data[(i * 7)].value) + Number(data[(i * 7 + 1)].value) + Number(data[(i * 7 + 2)].value) + Number(data[(i * 7 + 3)].value) +
-                            Number(data[(i * 7 + 4)].value) + Number(data[(i * 7 + 5)].value) + Number(data[(i * 7 + 6)].value))/7;
+                            Number(data[(i * 7 + 4)].value) + Number(data[(i * 7 + 5)].value) + Number(data[(i * 7 + 6)].value)) / 7;
                     }
-
-
-                    console.log(dataProva)
                     // Add X axis --> it is a date format
                     const x = d3.scaleTime()
                         .domain(d3.extent(dataProva, function (d) { return d.date; }))
