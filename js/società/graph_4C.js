@@ -252,7 +252,9 @@ $(document).ready(function () {
                     const mouseout = function (event, d) {
                         d3.selectAll(".myRect")
                             .style("opacity", 1)
-                        Tooltip.style("opacity", 0);
+                        Tooltip.style("opacity", 0)
+                            .style("left", 0 + "px")
+                            .style("top", 0 + "px")
                     }
 
                     // Show the bars
